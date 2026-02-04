@@ -1,0 +1,35 @@
+# Implementation Plan: High-Impact Visuals
+
+## Goal
+Enhance the presentation's persuasive power by adding two "Tangible" visual slides:
+1.  **Integrated Control Dashboard (CSS UI)**: A realistic, grid-based mock-up of the system interface.
+2.  **Golden Time Comparison**: A quantitative bar chart comparing "As-Is" vs "To-Be" response times.
+
+## User Review Required
+- [ ] No specific review requested; user explicitly asked to proceed with "No. 1 & 2".
+
+## Proposed Changes
+
+### 1. New Slide: Integrated Control Dashboard (Place before Slide 33 / Section 08)
+- **Title**: 08. 통합 관제 대시보드 (Live UI Preview)
+- **Design Concept**: Dark Mode "Command Center" theme.
+    - **Header**: Status indicators (System Normal, Network Online).
+    - **Left Col**: Ship Gyro (CSS Rotated Box), Active Alarms List.
+    - **Center**: "Live Map" placeholder with pulsing CSS markers (LiDAR/Thermal dots).
+    - **Right Col**: Evacuation Route Status (Path A: Safe, Path B: Blocked).
+    - **Bottom**: Terminal Log window.
+
+### 2. New Slide: Golden Time Comparison (Place before ROI / Section 08-2)
+- **Title**: 08-2. 골든타임 단축 효과 비교 (Time-to-Response)
+- **Design Concept**: Horizontal Comparison Bar Chart.
+    - **Row 1 (Conventional)**: Long Red Bar (300s). Segments: Fire(30s) -> Report(120s) -> Cognition(60s) -> Broadcast(90s).
+    - **Row 2 (I-SEDSS)**: Short Blue Bar (3s). Segments: Fire(0.1s) -> Detection(0.4s) -> AI Route(0.5s) -> Automated Alert(2s).
+    - **Key Visual**: "99% Faster" badge.
+
+## Implementation Steps
+1.  **Use `multi_replace_file_content`** to insert the HTML blocks into `presentation.html`.
+    - Insertion Point 1: Before `<div class="slide">...<h1>09. 실물 가시화...` (Line ~2530).
+    - Insertion Point 2: Before `<div class="slide">...<h1>17. 경제적 파급효과...` (Note: The title text in file might differ due to restructure, will verify by content).
+
+## Verification
+- **Visual Audit**: Browser Screenshot of the two new slides to ensure CSS Grid layout renders correctly.

@@ -1,0 +1,44 @@
+# Implementation Plan: Technical Depth & Competitive Differentiation Enhancement
+
+This plan focuses on elevating the technical credibility and market positioning of the I-SEDSS presentation by adding specialized technical slides and refining existing specifications.
+
+## Proposed Changes
+
+### 1. New Slide: [Decision Intelligence Framework]
+- **Goal**: Explain the "Brain" behind the system to demonstrate technical superiority.
+- **Content**: 
+  - Visual diagram of the data flow from Multi-modal sensors.
+  - Explanation of the AI algorithms:
+    - **TOPSIS**: Multi-criteria decision-making for optimal path selection.
+    - **GNN/DPOP**: Multi-agent coordination for bottleneck prediction.
+    - **Petri Net**: Scenario modeling for life-cycle management.
+- **Visuals**: A structured "AI Pipeline" flowchart.
+
+### 2. New Slide: [Global Standard & Regulation Compliance]
+- **Goal**: Highlight competitive differentiation by showing international readiness.
+- **Content**:
+  - **IMO MSC.1/Circ.1238**: Detailed mapping of how our system exceeds standard evacuation analysis requirements.
+  - **ISO 23611**: Compliance with maritime environmental monitoring standards.
+  - **NMEA 2000 / IEC 61162**: Ship-wide data bus integration and certification plan.
+- **Visuals**: Compliance badges or a "Standard-to-Feature" mapping table.
+
+### 3. [MODIFY] [presentation.html](file:///Users/seo/.gemini/antigravity/brain/5fa3caba-c837-49e5-8344-a4fa3ac58405/presentation.html)
+- **Slide 22 (Hardware Specs)**: 
+  - Replace generic descriptions with specific technical parameters.
+  - Example: LiDAR (32-ch, 200m range), Thermal (Resolution 640x480, <50mK), Edge Node (Jetson Orin based, 275 TOPS).
+- **Slide 29 (Emergency Scenario)**:
+  - Add a dedicated "Logical Flow" for **Reverse Direction Dynamic Guidance** (when a primary path is blocked by fire/smoke).
+
+## Verification Plan
+
+### Automated Tests
+- No automated tests required as this is an HTML presentation.
+
+### Manual Verification
+1. **Browser Review**: 
+   - Open `presentation.html` in Chrome/Safari.
+   - Verify that new slides (AI Framework, Compliance) are properly numbered and fit the 16:9 layout.
+   - Check if Slide 22 specs are updated correctly.
+2. **Visual Audit**:
+   - Ensure Mermaid diagrams in new slides render without syntax errors.
+   - Verify that font sizes remain consistent with existing "Ultra-Dense" styling.

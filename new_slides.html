@@ -1,0 +1,141 @@
+<!-- Slide: Table of Contents -->
+<div class="slide">
+    <header>
+        <h1>CONTENT. 목차 및 발표 구성</h1>
+        <span>Presentation Index & Business Roadmap Overview</span>
+    </header>
+    <div class="content-area" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+        <div class="flex-col" style="gap: 15px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">I</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">과제 개요 및 전략</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">II</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">시스템 아키텍처</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">III</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">핵심 기술 및 AI</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">IV</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">인프라 및 구축</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">V</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">사용자 서비스 및 SOP</span>
+            </div>
+        </div>
+        <div class="flex-col" style="gap: 15px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VI</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">경쟁 우위 및 인증</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VII</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">수행 계획 및 연계</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VIII</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">기대효과 및 비전</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span
+                    style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">IX</span>
+                <span style="font-size: 18px; font-weight: 800; color: #333;">성능 목표 (KPI)</span>
+            </div>
+        </div>
+    </div>
+    <div
+        style="margin-top: 40px; padding: 20px; background: #f1f8ff; border-radius: 12px; border-left: 5px solid var(--primary-blue);">
+        <p style="font-size: 16px; font-weight: 700; color: var(--primary-blue);">💡 I-SEDSS는 [수집 - 분석 - 전파 - 유도]로 이어지는
+            전 과정을 지능화하여 해상 안전의 새로운 패러다임을 제시하며, 본 발표는 시스템의 아키텍처부터 글로벌 확장성까지 9가지 단계의 상세 내용을 다룹니다.</p>
+    </div>
+    <div class="footer"><span>I-SEDSS Business Proposal</span><span>Table of Contents</span></div>
+</div>
+
+<!-- Slide 03-3: Explainable AI (XAI) & Trust Verification -->
+<div class="slide">
+    <header>
+        <h1>03-3. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
+        <span>Explainable AI (XAI) for Transparent Decision Support</span>
+    </header>
+    <div class="content-area" style="gap: 20px;">
+        <div class="flex-col flex-1" style="gap: 15px;">
+            <div class="card" style="border-left: 5px solid #d32f2f; background: #fff5f5;">
+                <h3 style="color: #d32f2f;">🧠 "왜 이 대피로인가?" - 추론 근거 제시</h3>
+                <p style="font-size: 13px; color:#333; line-height: 1.5;">사용자(승조원)가 AI의 판단을 신뢰할 수 있도록 <strong>SHAP /
+                        LIME</strong> 기법을 활용하여 경로 선정에 기여한 핵심 변수(화재 확산 속도, 인파 밀집도, 선체 경사)를 시각적으로 해설</p>
+            </div>
+            <div class="card" style="border-left: 5px solid #1976d2; background: #e3f2fd;">
+                <h3 style="color: #1976d2;">📝 Blackbox Logging & Accountability</h3>
+                <p style="font-size: 13px; color:#333; line-height: 1.5;">사고 후 법적 분석 및 책임 소재 규명을 위해 AI의 매 순간 판단 로그를
+                    <strong>VDR(Voyage Data Recorder)</strong>급 보안 프로토콜로 저장하여 추적성(Traceability) 확보</p>
+            </div>
+        </div>
+        <div class="flex-col flex-1"
+            style="background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
+            <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #d32f2f;">XAI Decision Logic
+            </h3>
+            <div class="mermaid" style="width: 100%;">
+                graph TD
+                Input[Multi-modal Sensing] --> Model{AI Core Engine}
+                Model --> Decision[Optimal Path]
+                Model --> Heatmap[Feature Heatmap]
+                Heatmap --> Reason[Visible Rationale: "Closed exit due to CO concentration"]
+                Reason --> Trust[Human Operator Trust]
+                style Heatmap fill:#ffcdd2,stroke:#d32f2f
+                style Reason fill:#e1f5fe,stroke:#0288d1
+            </div>
+        </div>
+    </div>
+    <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 17</span></div>
+</div>
+
+<!-- Slide 08-5: O&M Digital Loop & Sustainability -->
+<div class="slide">
+    <header>
+        <h1>08-5. 운영 및 유지보수(O&M) 디지털 루프 및 지속 가능성</h1>
+        <span>O&M Digital Loop & AI Continuous Learning Lifecycle</span>
+    </header>
+    <div class="content-area" style="gap: 20px;">
+        <div class="flex-col flex-1" style="gap: 15px;">
+            <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9;">
+                <h3 style="color: #2e7d32;">🔄 데이터 선순환 (Continuous Learning)</h3>
+                <p style="font-size: 13px; color:#333; line-height: 1.5;">실제 운항 중 발생하는 미세한 징후(Drift) 데이터를 수집하여 클라우드에서 AI
+                    모델을 재학습시키고, 다시 배포하는 <strong>MLOps 루프</strong> 완성</p>
+            </div>
+            <div class="card" style="border-left: 5px solid #ef6c00; background: #fff3e0;">
+                <h3 style="color: #ef6c00;">🛠️ 선제적 유지보수 (Predictive Maintenance)</h3>
+                <p style="font-size: 13px; color:#333; line-height: 1.5;">센서의 수명 및 정밀도 변화를 실시간 모니터링하여, 고장 발생 전 부품 교체 시점을
+                    알람으로 제공하는 <strong>PdM 시스템</strong> 통합</p>
+            </div>
+        </div>
+        <div class="flex-col flex-1"
+            style="background: #f0f7ff; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; color: #333;">
+            <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #1565c0;">O&M Lifecycle Loop
+            </h3>
+            <div class="mermaid" style="width: 100%;">
+                graph LR
+                Collect[Sea Trial Data] --> Analyze[Anomaly Detection]
+                Analyze --> Refine[Model Refinement]
+                Refine --> Deploy[Global OTA Deployment]
+                Deploy --> Collect
+                style Collect fill:#fff,stroke:#1565c0
+                style Refine fill:#c8e6c9,stroke:#2e7d32
+            </div>
+            <div style="margin-top: 15px; font-size: 11px; color: #666; text-align: center;">* 시스템 생애주기 내 성능 저하 방지 및 상시
+                최신 상태 유지</div>
+        </div>
+    </div>
+    <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 36</span></div>
+</div>

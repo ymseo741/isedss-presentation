@@ -1,0 +1,9 @@
+- [/] Generate visual assets
+    - [ ] Network Connectivity Concept (Ship, Satellite, LTE)
+    - [ ] Integrated Safety Dashboard UI (ODN)
+- [ ] Create HTML presentation slides
+    - [ ] Structure the content into 16:9 slides
+    - [ ] Implement responsive structure diagram using CSS/SVG
+    - [ ] Integrate generated assets
+    - [ ] Ensure white background and large typography
+- [ ] Verify presentation

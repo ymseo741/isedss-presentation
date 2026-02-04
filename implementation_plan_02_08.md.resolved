@@ -1,0 +1,38 @@
+# Implementation Plan for Slide 02 & Slide 08 Fixes
+
+## Objective
+1. Ensure the **통합 데이터 흐름 및 지능형 제어 체계** (Slide 02) diagram fits within the slide without being cut off.
+2. Resolve the **Syntax error in text** reported for the **기관별 업무 체계 및 프로젝트 연계** (Slide 08) Sankey chart.
+
+## Tasks
+### Slide 02 – Diagram Clipping
+- **Adjust container CSS**:
+  - Add `overflow: hidden;` and `justify-content: center; align-items: center;` to the parent `<div>`.
+  - Ensure the `.mermaid` element uses `display: flex` and limits its SVG size with `max-width: 100%; max-height: 100%;`.
+- **Increase max-height** if needed (e.g., `max-height: 500px`).
+- **Test rendering** in the browser to confirm the diagram is fully visible.
+
+### Slide 08 – Sankey Syntax Error
+- **Remove quoted strings** from the Sankey definition (Mermaid expects plain identifiers, not quoted strings).
+- **Use the `sankey-beta` syntax** with comma‑separated values:
+  ```mermaid
+  sankey-beta
+  Phase1,전남대학교,15
+  Phase1,해양수산연,20
+  ...
+  ```
+- **Validate** the diagram by reloading the page and checking the console for errors.
+
+## Verification Steps
+1. Open [presentation.html](file:///Users/seo/.gemini/antigravity/brain/5fa3caba-c837-49e5-8344-a4fa3ac58405/presentation.html) in a browser.
+2. Capture screenshots of Slide 02 and Slide 08.
+3. Open the browser console and ensure no Mermaid errors are logged.
+4. Confirm the diagram sizes and layout look correct.
+
+## Next Actions
+- Apply the CSS changes to the stylesheet (or inline styles) for Slide 02.
+- Update the Sankey block in [presentation.html](file:///Users/seo/.gemini/antigravity/brain/5fa3caba-c837-49e5-8344-a4fa3ac58405/presentation.html) with the corrected syntax.
+- Run a quick browser verification (screenshots + console check).
+
+---
+*Please review this plan. If any additional content changes are needed on these slides, let me know so I can incorporate them.*

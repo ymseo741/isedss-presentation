@@ -1,0 +1,24 @@
+## Phase 1: Initial Creation
+- [x] Generate initial visual assets
+- [x] Create basic HTML presentation structure
+
+## Phase 2: Enhancement (Current)
+- [x] Generate additional visual assets
+    - [x] Sensor and equipment connectivity diagram
+    - [x] Detailed system layer architecture
+- [x] Fix Mermaid diagram rendering issue (replaced with static image)
+- [x] Enlarge images in slides
+- [x] Add sensor/LiDAR equipment connectivity details
+- [x] Expand layer specification content significantly
+- [x] Densify all slides with business proposal content
+- [x] Verify enhanced presentation
+- [x] Refine Layout & Restore Diagram
+- [x] Detailed Content & Naming Refinement
+    - [x] Expand equipment list in specification table
+    - [x] Replace all abbreviations with full organization names
+    - [x] Add "Upward Collection vs Downward Control" explanation to Slide 3
+    - [x] Detail role/layer descriptions in Physical/Logical Architecture slide
+    - [x] Final layout check and 16:9 compliance
+- [/] Re-verify final presentation
+
+
