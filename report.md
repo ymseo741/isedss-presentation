@@ -1304,6 +1304,131 @@ flowchart LR
 > - **NMEA 2000 Gateway**: CAN Bus 항해 데이터를 TCP/IP로 변환하여 Master Node에 전달
 > - **담당 구분**: Edge Node(한빛안전기술)는 현장 센서 데이터 처리, Master Node(오든)는 항해 데이터 통합 및 관제
 
+#### 7.1.5 센서별 전원 공급 방안
+
+선박 내 전원 인프라 특성을 고려하여 각 센서 유형별 적합한 전원 공급 방식을 정의합니다.
+
+| 센서 유형 | 전원 방식 | 입력 전압 | 소비 전력 | 비고 |
+|:---|:---|:---|:---|:---|
+| **3D LiDAR** | PoE++ (IEEE 802.3bt) | DC 48V (PoE) | 15~25W | Type 4 PoE 필수 |
+| **열화상 카메라** | PoE+ (IEEE 802.3at) | DC 48V (PoE) | 12~15W | 또는 DC 24V 별도 공급 |
+| **연기 감지기** | DC 전용 또는 루프 전원 | DC 24V | 50~100mA | 기존 화재경보루프 연동 가능 |
+| **CCTV** | PoE+ (IEEE 802.3at) | DC 48V (PoE) | 10~15W | 표준 PoE 스위치 활용 |
+| **스마트 유도등** | DC 전용 + 배터리 | DC 24V | 5~10W | UPS 내장 (3시간 백업) |
+| **Edge Node** | AC 어댑터 또는 DC 직결 | AC 220V / DC 12~36V | 50~80W | Wide Input 지원 |
+| **NMEA 2000 센서** | NMEA Bus 전원 | DC 12V (버스) | 0.5~2W | CAN Bus 전원 공유 |
+| **RS-485 장비** | 별도 DC 전원 | DC 24V | 1~5W | 전원/데이터 분리 배선 |
+
+```mermaid
+flowchart TB
+    subgraph 전원["⚡ 선박 내 전원 공급 구조"]
+        direction TB
+        
+        subgraph 주전원["🔌 주 전원 (선박 분전반)"]
+            AC1["AC 220V/440V<br/>선박 주 전원"]
+        end
+        
+        subgraph 분배["📦 전원 분배"]
+            direction LR
+            PS1["PoE++ 스위치<br/>48V DC"]
+            PS2["DC 24V PSU<br/>(산업용)"]
+            PS3["NMEA 버스 전원<br/>DC 12V"]
+            UPS1["UPS 시스템<br/>무정전 백업"]
+        end
+        
+        subgraph 소비["🔋 전원 소비 장치"]
+            direction LR
+            D1["LiDAR, CCTV, 열화상<br/>(PoE 공급)"]
+            D2["연기감지기, 유도등<br/>(DC 24V)"]
+            D3["항해 센서<br/>(NMEA Bus)"]
+            D4["Edge Node, Master Node<br/>(UPS 백업)"]
+        end
+    end
+    
+    AC1 --> PS1 & PS2 & PS3 & UPS1
+    PS1 --> D1
+    PS2 --> D2
+    PS3 --> D3
+    UPS1 --> D4
+    
+    style 주전원 fill:#ffe3e3,stroke:#fa5252
+    style 분배 fill:#fff3bf,stroke:#f59f00
+    style 소비 fill:#d3f9d8,stroke:#2f9e44
+```
+
+> [!WARNING]
+> **전원 설계 시 고려사항:**
+> - 선박 전원의 불안정성(서지, 노이즈)을 고려한 **산업용 등급 PSU** 적용 필수
+> - 비상 상황 대비 Edge Node 및 유도등은 **최소 3시간 UPS 백업** 확보
+> - PoE 스위치는 **IEEE 802.3bt (Type 4, 90W)** 이상 지원 제품 선정
+
+#### 7.1.6 유선 네트워크 인프라 구축 계획
+
+> [!CAUTION]
+> 선박의 **강철 구조물로 인한 무선 신호 차단** 문제로, 핵심 센서 및 제어 장비는 반드시 유선 네트워크로 연결해야 합니다. Wi-Fi는 보조 수단으로만 활용합니다.
+
+##### 유선망 구축 원칙
+
+| 구분 | 규격 | 적용 구간 | 비고 |
+|:---|:---|:---|:---|
+| **백본 (Backbone)** | 광케이블 (Single Mode) | 데크 간 수직 배선 | 10Gbps, EMI 면역 |
+| **수평 배선** | Cat6A UTP (차폐형) | 데크 내 센서-스위치 | 1Gbps, PoE++ 지원 |
+| **RS-485 버스** | STP 2-pair (차폐) | 연기감지기, 유도등 | Daisy Chain 구성 |
+| **NMEA 2000** | DeviceNet Micro | 브릿지 항해 시스템 | CAN Bus 표준 |
+
+##### 네트워크 토폴로지
+
+```mermaid
+flowchart TB
+    subgraph 네트워크["🌐 선박 내 유선 네트워크 구조"]
+        direction TB
+        
+        subgraph 브릿지["🎛️ 브릿지 (Deck 5)"]
+            M["Master Node<br/>+ L3 Core Switch"]
+            N["NMEA 게이트웨이"]
+        end
+        
+        subgraph 백본["📡 광케이블 백본 (수직)"]
+            direction LR
+            F1["Fiber 10Gbps"]
+        end
+        
+        subgraph 데크별["📦 데크별 Edge Node + PoE 스위치"]
+            direction LR
+            E1["Deck 4: Edge + PoE SW"]
+            E2["Deck 3: Edge + PoE SW"]
+            E3["Deck 2: Edge + PoE SW"]
+            E4["Deck 1: Edge + PoE SW"]
+            E5["Deck 0: Edge + PoE SW"]
+        end
+        
+        subgraph 종단["🔌 센서 연결"]
+            direction LR
+            S1["Cat6A (PoE)<br/>LiDAR, 열화상, CCTV"]
+            S2["RS-485 Bus<br/>연기감지기, 유도등"]
+        end
+    end
+    
+    M --> F1
+    F1 --> E1 & E2 & E3 & E4 & E5
+    E1 & E2 & E3 & E4 & E5 --> S1 & S2
+    N --> M
+    
+    style M fill:#4dabf7,stroke:#1971c2,color:#fff
+    style 백본 fill:#e7f5ff,stroke:#1c7ed6
+    style 데크별 fill:#fff3bf,stroke:#f59f00
+```
+
+##### Wi-Fi 보조 활용 (제한적)
+
+| 구분 | 용도 | 장비 | 비고 |
+|:---|:---|:---|:---|
+| **승객 구역 AP** | 모바일 앱 연동 | Wi-Fi 6 (802.11ax) | 대피 안내 앱 전용 |
+| **갑판 AP** | 외부 작업 통신 | 산업용 옥외 AP | 방수/방염 등급 |
+
+> [!NOTE]
+> Wi-Fi는 **승객용 모바일 앱 연동**에만 활용하며, 핵심 센서 및 Edge Node 통신은 전량 유선으로 구성하여 **통신 신뢰성 99.99%** 확보 목표
+
 ---
 
 
