@@ -1234,7 +1234,78 @@ flowchart TB
 > [!NOTE]
 > 상기 수량은 새동백호 도면 분석 기반 추정치이며, 실측 조사 후 조정이 필요합니다.
 
+#### 7.1.4 센서별 통신 프로토콜 규격
+
+각 센서 유형별 데이터 전송 프로토콜을 명확히 정의하여, Edge Node 게이트웨이의 데이터 수합 방식을 표준화합니다.
+
+| 센서 유형 | 통신 프로토콜 | 물리 계층 | 데이터 포맷 | 게이트웨이 연동 방식 | 담당 기관 |
+|:---|:---|:---|:---|:---|:---|
+| **3D LiDAR** | Ethernet (UDP) | Cat6A / PoE++ | ROS PointCloud2 | Ethernet → Edge Node | 한빛안전기술 |
+| **열화상 카메라** | Modbus TCP | Cat6A / PoE+ | Radiometric JPEG | TCP/IP → Edge Node | 한빛안전기술 |
+| **연기 감지기** | Modbus RTU | RS-485 Daisy Chain | Binary (Address + Value) | RS-485 Gateway → Edge Node | 한빛안전기술 |
+| **CCTV** | RTSP/ONVIF | Cat6A / PoE+ | H.265/HEVC Stream | RTSP → Edge Node | 한빛안전기술 |
+| **스마트 유도등** | Modbus RTU | RS-485 | Binary Control | RS-485 Gateway → Edge Node | 한빛안전기술 |
+| **자이로 컴퍼스** | NMEA 2000 | CAN Bus | PGN 127250 | NMEA Gateway → Master Node | 오든 |
+| **경사계 (IMU)** | NMEA 2000 | CAN Bus | PGN 127257 | NMEA Gateway → Master Node | 오든 |
+| **GPS/GNSS** | NMEA 2000 | CAN Bus | PGN 129029 | NMEA Gateway → Master Node | 오든 |
+| **풍향/풍속계** | NMEA 2000 | CAN Bus | PGN 130306 | NMEA Gateway → Master Node | 오든 |
+
+```mermaid
+flowchart LR
+    subgraph 프로토콜["📡 센서 프로토콜 → 게이트웨이 통합 구조"]
+        direction TB
+        
+        subgraph RS485["🔌 RS-485 버스"]
+            direction TB
+            S1["연기 감지기<br/>Modbus RTU"]
+            S2["스마트 유도등<br/>Modbus RTU"]
+        end
+        
+        subgraph ETH["🌐 Ethernet (TCP/UDP)"]
+            direction TB
+            S3["3D LiDAR<br/>UDP/ROS"]
+            S4["열화상 카메라<br/>Modbus TCP"]
+            S5["CCTV<br/>RTSP/ONVIF"]
+        end
+        
+        subgraph NMEA["⚓ NMEA 2000 (CAN)"]
+            direction TB
+            S6["자이로 컴퍼스"]
+            S7["경사계/IMU"]
+            S8["GPS/GNSS"]
+            S9["풍향/풍속계"]
+        end
+        
+        subgraph GW["🔧 게이트웨이 레이어"]
+            G1["RS-485 → Ethernet Gateway"]
+            G2["Direct Ethernet"]
+            G3["NMEA 2000 → Ethernet Gateway"]
+        end
+        
+        subgraph NODES["💻 컴퓨팅 노드"]
+            E1["Edge Node (구역별)<br/>━━━━━━━━━━<br/>담당: 한빛안전기술"]
+            M1["Master Node (브릿지)<br/>━━━━━━━━━━<br/>담당: 오든"]
+        end
+    end
+    
+    RS485 --> G1 --> E1
+    ETH --> G2 --> E1
+    NMEA --> G3 --> M1
+    E1 --> M1
+    
+    style E1 fill:#fff3bf,stroke:#f59f00
+    style M1 fill:#4dabf7,stroke:#1971c2,color:#fff
+    style GW fill:#d3f9d8,stroke:#2f9e44
+```
+
+> [!IMPORTANT]
+> **프로토콜 게이트웨이 구성:**
+> - **RS-485 Gateway**: Modbus RTU 센서들을 Modbus TCP로 변환하여 Edge Node에 전달
+> - **NMEA 2000 Gateway**: CAN Bus 항해 데이터를 TCP/IP로 변환하여 Master Node에 전달
+> - **담당 구분**: Edge Node(한빛안전기술)는 현장 센서 데이터 처리, Master Node(오든)는 항해 데이터 통합 및 관제
+
 ---
+
 
 ### 2) 데이터 통신 규격
 
