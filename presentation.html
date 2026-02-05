@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
         :root {
             --primary-blue: #004a99;
@@ -29,7 +32,7 @@
 
         body {
             background-color: #f5f5f5;
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -282,6 +285,15 @@
             padding-top: 5px;
         }
 
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6) !important;
+            border: 1px solid rgba(0, 74, 153, 0.3) !important;
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            z-index: 2;
+        }
+
         .title-slide {
             justify-content: center;
             align-items: center;
@@ -339,6 +351,194 @@
             border: 1px solid #eee;
             border-radius: 8px;
         }
+
+        /* iPhone Mockup Styles - Compacted to fit 720px slide height */
+        .iphone-mockup {
+            width: 280px;
+            /* Reduced from 320px */
+            height: 540px;
+            /* Reduced from 600px */
+            background: #000;
+            border-radius: 36px;
+            padding: 10px;
+            position: relative;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            flex-shrink: 0;
+        }
+
+        .iphone-screen {
+            flex: 1;
+            background: #f2f2f7;
+            border-radius: 30px;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            scrollbar-width: none;
+        }
+
+        .iphone-screen::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dynamic-island {
+            position: sticky;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 30px;
+            background: #000;
+            border-radius: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ios-card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .sos-btn-float {
+            width: 64px;
+            height: 64px;
+            background: #ff3b30;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 900;
+            box-shadow: 0 8px 25px rgba(255, 59, 48, 0.4);
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            z-index: 200;
+            cursor: pointer;
+        }
+
+        .ios-nav {
+            height: 75px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 15px;
+            font-size: 11px;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 150;
+        }
+
+        /* Dashboard & Glassmorphism - Refined for fixed 720px height */
+        .dashboard-container {
+            background: #0a0e17;
+            border-radius: 20px;
+            padding: 15px 20px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .db-glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .db-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .db-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .db-val {
+            font-size: 22px;
+            font-weight: 700;
+            color: #00f2ff;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        .db-lab {
+            font-size: 10px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .risk-gauge-wrap {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .risk-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#00f2ff 270deg, #1e293b 0);
+            mask: radial-gradient(transparent 65%, black 66%);
+            -webkit-mask: radial-gradient(transparent 65%, black 66%);
+        }
+
+        .risk-data {
+            position: absolute;
+            text-align: center;
+        }
+
+        .risk-score {
+            font-size: 32px;
+            font-weight: 800;
+            color: #00f2ff;
+        }
+
+        .mermaid {
+            width: 100% !important;
+            height: 100% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            max-height: 100% !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -349,12 +549,10 @@
 
     <div class="slide title-slide">
         <div class="hero">
-            <h1>I-SEDSS</h1>
-            <h2>지능형 선박 화재 안전 지원 시스템<br>통합 연결성 및 아키텍처 구성도</h2>
+            <h1>지능형 선박 화재 안전 지원 시스템<br>사업계획서</h1>
+            <h2>통합 연결성 및 아키텍처 구성도</h2>
             <div class="orgs">
                 주관 : (주)오든 &nbsp; 공동 : (주)한빛안전기술 · 해양수산과학기술연구조합 · 전남대학교 · 한국건설생활환경시험연구원<br>
-                <span style="color: #ff9800; font-weight: 900; font-size: 24px;">Smart Maritime Safety Management
-                    Platform</span>
             </div>
         </div>
     </div>
@@ -371,49 +569,49 @@
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">I</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">과제 개요 및 전략</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">과제 개요 및 추진 배경 (01 ~ 08)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">II</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">시스템 아키텍처</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">프레임워크 및 아키텍처 (09 ~ 15)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">III</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">핵심 기술 및 AI</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">핵심 기술 및 AI 분석 (16 ~ 19)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">IV</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">인프라 및 구축</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">인프라 및 하드웨어 구축 (20 ~ 25)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: var(--primary-blue); color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">V</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">사용자 서비스 및 SOP</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">사용자 서비스 및 SOP (26 ~ 27)</span>
                 </div>
             </div>
             <div class="flex-col" style="gap: 15px;">
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VI</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">경쟁 우위 및 인증</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">리스크 관리 및 보안 (28 ~ 31)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VII</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">수행 계획 및 연계</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">개발 로드맵 및 운영 (32 ~ 36)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VIII</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">기대효과 및 비전</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">가시화 및 기대효과 (37 ~ 44)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">IX</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">성능 목표 (KPI)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">성과지표 및 KPI (45 ~ 47)</span>
                 </div>
             </div>
         </div>
@@ -421,21 +619,133 @@
             style="margin-top: 40px; padding: 20px; background: #f1f8ff; border-radius: 12px; border-left: 5px solid var(--primary-blue);">
             <p style="font-size: 16px; font-weight: 700; color: var(--primary-blue);">💡 I-SEDSS는 [수집 - 분석 - 전파 - 유도]로
                 이어지는
-                전 과정을 지능화하여 해상 안전의 새로운 패러다임을 제시하며, 본 발표는 시스템의 아키텍처부터 글로벌 확장성까지 9가지 단계의 상세 내용을 다룹니다.</p>
+                전 과정을 지능화하여 해상 안전의 새로운 패러다임을 제시하며, 본 발표는 시스템의 아키텍처부터 글로벌 확장성까지 48개의 단계별 상세 내용을 다룹니다.</p>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Table of Contents</span></div>
     </div>
 
     <!-- Slide 03-3: Explainable AI (XAI) & Trust Verification -->
 
+    <!-- Slide 01: Project Necessity (Why Now?) -->
+    <div class="slide" style="background: linear-gradient(135deg, #121212 0%, #300a0a 100%); color: white;">
+        <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.15; background-image: radial-gradient(#ff3333 1px, transparent 1px); background-size: 30px 30px;">
+        </div>
+        <header style="border-bottom-color: #ff5252;">
+            <h1 style="color: #ff5252; text-shadow: 0 0 15px rgba(255, 82, 82, 0.4);">01. 왜 지금 I-SEDSS인가?</h1>
+            <span style="color: #ffcdd2; opacity: 0.8;">The Critical Necessity & Market Pain Points</span>
+        </header>
+        <div class="content-area"
+            style="flex-direction: column; gap: 40px; align-items: center; justify-content: center; padding-top: 20px;">
+            <div style="text-align: center; z-index: 1;">
+                <h2 style="font-size: 34px; font-weight: 900; line-height: 1.4; color: #fff; border: none; padding: 0;">
+                    <span style="color: #ff5252; background: rgba(255,82,82,0.1); padding: 0 10px;">골든타임 소실</span>과
+                    <span style="color: #ff5252; background: rgba(255,82,82,0.1); padding: 0 10px;">데이터
+                        부재</span>가<br>참사를 키우고
+                    있습니다.
+                </h2>
+                <div style="height: 4px; width: 120px; background: #ff5252; margin: 20px auto;"></div>
+                <p style="color: #ef9a9a; font-size: 18px; font-weight: 500; font-style: italic;">“폐쇄된 강철 미로 속 화재, 육상보다
+                    10배 더 치명적인 대응 환경”</p>
+            </div>
+
+            <div style="display: flex; gap: 20px; width: 100%; z-index: 1;">
+                <!-- Card 1 -->
+                <div
+                    style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 82, 82, 0.3); border-top: 4px solid #ff5252; border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 28px; margin-bottom: 12px;">⏳</div>
+                    <h3 style="color: #ff5252; font-size: 18px; margin-bottom: 10px; font-weight: 800;">초동 대응의 한계</h3>
+                    <p style="font-size: 14px; color: #e0e0e0; line-height: 1.5;">
+                        화재 인지 후 대응까지 <strong>평균 30분</strong> 지연.<br>
+                        주관적 경험에 의존하는 보고 체계로는 초기 진압 실패 필연적.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 82, 82, 0.3); border-top: 4px solid #ff5252; border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 28px; margin-bottom: 12px;">🙈</div>
+                    <h3 style="color: #ff5252; font-size: 18px; margin-bottom: 10px; font-weight: 800;">데이터 블라인드</h3>
+                    <p style="font-size: 14px; color: #e0e0e0; line-height: 1.5;">
+                        복잡한 선내 구조로 CCTV 사각지대 존재.<br>
+                        농연 발생 시 <strong>내부 고립자 및 화원 위치 파악 불가</strong>.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 82, 82, 0.3); border-top: 4px solid #ff5252; border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 28px; margin-bottom: 12px;">🤯</div>
+                    <h3 style="color: #ff5252; font-size: 18px; margin-bottom: 10px; font-weight: 800;">대피 경로의 경직성</h3>
+                    <p style="font-size: 14px; color: #e0e0e0; line-height: 1.5;">
+                        고정된 안내 표지판의 한계.<br>
+                        패닉 상태의 승객이 <strong>위험 구역으로 유입</strong>되는 2차 사고 다발.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer" style="border-top-color: rgba(255,255,255,0.1);">
+            <span style="color: rgba(255,255,255,0.4);">I-SEDSS Business Proposal</span>
+            <span style="color: rgba(255,255,255,0.4);">Page 01</span>
+        </div>
+    </div>
+
+    <!-- Slide 02: 기존 선박 사고 대응의 한계 및 문제점 (Current Issues) -->
     <div class="slide">
         <header>
-            <h1>01. 시스템 패러다임 변화 (As-Is → To-Be)</h1>
+            <h1>02. 기존 선박 재난 대응 인프라의 한계</h1>
+            <span>Legacy Maritime Safety Systems & Response Gaps</span>
+        </header>
+        <div class="content-area">
+            <div class="flex-col flex-1" style="gap: 15px;">
+                <div class="card" style="border-left: 5px solid #d32f2f;">
+                    <h3 style="color: #d32f2f;">🚨 수동 감지 및 인지 지연</h3>
+                    <ul style="font-size: 12.5px;">
+                        <li>화재 발생 시 연기 탐지기 작동 후 <strong>사람의 육안 확인</strong> 필수</li>
+                        <li>폐쇄된 구획 내 화재 시 브릿지 도달까지 5~10분 지연</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 5px solid #d32f2f;">
+                    <h3 style="color: #d32f2f;">📡 정보 단절 (Information Silo)</h3>
+                    <ul style="font-size: 12.5px;">
+                        <li>선박 내 항해 데이터와 안전 센서 데이터의 <strong>상호 연동 부재</strong></li>
+                        <li>사고 현장 상황이 구조자/기관에만 파편적으로 전달</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-col flex-1"
+                style="background: #fafafa; border-radius: 15px; border: 1px solid #eee; display: flex; flex-direction: column; overflow: hidden; height: 100%; min-height: 0;">
+                <div
+                    style="flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 20px; box-sizing: border-box; overflow: hidden;">
+                    <div class="mermaid">
+                        graph TD
+                        A[재난 발생] --> B[수동 신고/탐지]
+                        B --> C{선원 현장 확인}
+                        C -->|확인 실패| D[대응 실패/대형사고]
+                        C -->|확인 성공| E[브릿지 보고/전파]
+                        E --> F[인적 판단 유도]
+                        F --> G[대피 지연]
+                        style D fill:#ffcdd2,stroke:#d32f2f
+                        style G fill:#ffcdd2,stroke:#d32f2f
+                        style B fill:#fff9c4,stroke:#fbc02d
+                    </div>
+                </div>
+                <div
+                    style="padding: 12px; font-size: 13px; text-align: center; color: #d32f2f; font-weight: 700; background: rgba(255,255,255,0.9); border-top: 1px solid #eee; flex-shrink: 0;">
+                    기존 시스템: "인지 -> 확인 -> 보고 -> 판단"의 병목 현상
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 02</span></div>
+    </div>
+
+    <!-- Slide 01: System Paradigm Change -->
+    <div class="slide">
+        <header>
+            <h1>03. 시스템 패러다임 변화 (As-Is → To-Be)</h1>
             <span>Innovative Evacuation & Decision Support Strategy</span>
         </header>
         <div class="content-area" style="gap: 20px; padding: 10px 30px;">
             <div
-                style="flex: 1; background: #fafafa; padding: 20px; border-radius: 15px; border: 1px solid #ddd; position: relative; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
+                style="flex: 1; background: #fafafa; padding: 20px; border-radius: 15px; border: 1px solid #eee; position: relative; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
                 <div style="text-align: center; margin-bottom: 15px;">
                     <span
                         style="background: #666; color: white; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 14px; letter-spacing: 1px;">PREVIOUS
@@ -516,7 +826,7 @@
             </div>
         </div>
         <div
-            style="margin: 5px 40px; padding: 10px 20px; background: white; border-radius: 10px; border-left: 5px solid #004a99; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            style="margin-top: 5px; padding: 10px 20px; background: white; border-radius: 10px; border-left: 5px solid #004a99; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
             <div
                 style="font-weight: 900; color: #004a99; font-size: 18px; border-right: 1px solid #eee; padding-right: 20px;">
                 혁신 모듈</div>
@@ -532,14 +842,475 @@
                     #위성기반_글로벌_초연계</div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 01</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 03</span></div>
+    </div>
+
+    <!-- Slide 04: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint - No Photo) -->
+    <div class="slide"
+        style="background: linear-gradient(145deg, #f0f4f8 0%, #e1e8ed 100%); color: #333; position: relative; overflow: hidden;">
+        <header style="border-bottom-color: #004a99; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+            <h1 style="color: #004a99;">04. I-SEDSS 지능형 통합 시스템 구성도 (Blueprint)</h1>
+            <span style="color: #555;">Integrated Intelligence Blueprint: Sensing to Response</span>
+        </header>
+        <div
+            style="position: relative; z-index: 2; height: calc(100% - 100px); width: 100%; display: flex; flex-direction: column; padding: 20px 40px;">
+            <!-- Top Header & Logos -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div
+                        style="background: white; padding: 5px 15px; border-radius: 4px; font-weight: 900; color: #004a99; font-size: 24px;">
+                        ODN</div>
+                    <div style="color: #333; border-left: 2px solid rgba(0,0,0,0.1); padding-left: 20px;">
+                        <div style="font-size: 20px; font-weight: 800; color: #004a99;">I-SEDSS</div>
+                        <div style="font-size: 12px; opacity: 0.8;">Intelligent Ship Evacuation & Decision Support
+                            System</div>
+                    </div>
+                </div>
+                <div style="text-align: right; color: #333;">
+                    <div style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px;">전체 시스템 기술 구성도</div>
+                    <div style="font-size: 14px; color: #004a99; text-transform: uppercase;">Technical System Blueprint
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div
+                style="flex: 1; display: grid; grid-template-columns: 1.2fr 1.5fr 1.2fr; gap: 20px; align-items: center; min-height: 0;">
+
+                <!-- Left Column: Sensing -->
+                <div class="glass-panel">
+                    <div
+                        style="color: #004a99; font-weight: 900; border-bottom: 2px solid #004a99; padding-bottom: 5px; margin-bottom: 10px; font-size: 18px;">
+                        [1. 지능형 정밀 탐지]</div>
+                    <div style="background: rgba(0,0,0,0.03); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <h4 style="color: #333; font-size: 14px; margin-bottom: 8px;">• Omni-Sensing 인프라</h4>
+                        <ul style="color: #555; font-size: 12px; list-style: none; line-height: 1.6;">
+                            <li>- 고주파 LiDAR (10Hz) 공간 스캔</li>
+                            <li>- Multi-GAS (CO/H2/VOC) 격자형 노드</li>
+                            <li>- 비냉각식 열화상 정밀 그리드</li>
+                            <li>- 선박 내 위치 보정 비콘 체계</li>
+                        </ul>
+                    </div>
+                    <div style="font-size: 11px; color: #004a99; font-style: italic;">Sensing Data Sampling: 10Hz ~
+                        100Hz Optimal Range</div>
+                </div>
+
+                <!-- Middle Column: Edge-AI & Connection lines -->
+                <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                    <div class="glass-panel"
+                        style="background: rgba(0, 74, 153, 0.6) !important; border: 1px solid #004a99 !important; border-radius: 16px; padding: 20px; width: 100%; text-align: center; box-shadow: 0 0 30px rgba(0, 74, 153, 0.2);">
+                        <div
+                            style="background: #004a99; color: #fff; font-weight: 900; padding: 3px 12px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-size: 14px;">
+                            EDGE AI ENGINE</div>
+                        <h4 style="color: white; font-size: 18px; margin-bottom: 8px;">NVIDIA Jetson ORIN</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px;">
+                                <div style="color: #90caf9; font-size: 11px; font-weight: 800;">데이터 전처리</div>
+                                <div style="color: white; font-size: 12px;">Kalman Filter</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px;">
+                                <div style="color: #90caf9; font-size: 11px; font-weight: 800;">화재 전이 예측</div>
+                                <div style="color: white; font-size: 12px;">XAI-CNN</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="width: 4px; height: 20px; background: linear-gradient(to bottom, #004a99, #42a5f5); border-radius: 2px;">
+                    </div>
+
+                    <div class="glass-panel"
+                        style="background: rgba(0, 74, 153, 0.6) !important; border: 1px solid #004a99 !important; border-radius: 16px; padding: 20px; width: 100%; text-align: center;">
+                        <div
+                            style="background: #004a99; color: #fff; font-weight: 900; padding: 3px 12px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-size: 14px;">
+                            DYNAMIC DECISION</div>
+                        <h4 style="color: white; font-size: 18px; margin-bottom: 8px;">A* 기반 대피 경로 최적화</h4>
+                        <div style="color: #ddd; font-size: 12px;">실시간 화위도 및 보행 장애물 연동</div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Cloud & Sync -->
+                <div class="glass-panel">
+                    <div
+                        style="color: #004a99; font-weight: 900; border-bottom: 2px solid #004a99; padding-bottom: 5px; margin-bottom: 10px; font-size: 18px;">
+                        [3. 글로벌 통합 관제]</div>
+                    <div style="background: rgba(0,0,0,0.03); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <h4 style="color: #333; font-size: 14px; margin-bottom: 8px;">• Starlink 초연계 통신</h4>
+                        <table style="width: 100%; border-collapse: collapse; color: #555; font-size: 11px;">
+                            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <td style="padding: 5px 0;">통합 DB</td>
+                                <td style="text-align: right; color: #004a99;">PostgreSQL / Redis</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <td style="padding: 5px 0;">동기화 지연</td>
+                                <td style="text-align: right; color: #004a99;">&lt; 500ms (Delta Sync)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <td style="padding: 5px 0;">객체 반영</td>
+                                <td style="text-align: right; color: #004a99;">Digital Twin Mirroring</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0;">대외 연계</td>
+                                <td style="text-align: right; color: #004a99;">VTS / 육상 종합 상황실</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Detail Bar -->
+            <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex-shrink: 0;">
+                <div
+                    style="background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); padding: 12px; border-radius: 8px; display: flex; gap: 15px; align-items: center;">
+                    <div
+                        style="background: #e65100; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900;">
+                        !</div>
+                    <div>
+                        <div style="color: #e65100; font-size: 13px; font-weight: 900;">능동형 대응체계 가동</div>
+                        <div style="color: #555; font-size: 11px; opacity: 0.8;">화재 전이 예측 모델에 따른 소방 연계 및 자동 대피 안내</div>
+                    </div>
+                </div>
+                <div
+                    style="background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); padding: 12px; border-radius: 8px; display: flex; justify-content: space-around; align-items: center;">
+                    <div style="text-align: center;">
+                        <div style="color: #004a99; font-size: 14px; font-weight: 900;">Real-time</div>
+                        <div style="color: #555; font-size: 10px; opacity: 0.6;">Sampling</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="color: #004a99; font-size: 14px; font-weight: 900;">Reliable</div>
+                        <div style="color: #555; font-size: 10px; opacity: 0.6;">AI Analytics</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="color: #004a99; font-size: 14px; font-weight: 900;">Seamless</div>
+                        <div style="color: #555; font-size: 10px; opacity: 0.6;">Connectivity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" style="border-top-color: rgba(0,0,0,0.05); background: rgba(255,255,255,0.5);">
+            <span>I-SEDSS Business Proposal</span>
+            <span style="font-weight: 700;">Page 04</span>
+        </div>
+    </div>
+
+    <!-- Slide 04-1: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint - Photo Vers.) -->
+    <div class="slide" style="background: #000; color: #fff; position: relative; overflow: hidden;">
+        <!-- Background Photo with Overlay -->
+        <img src="C:/Users/ODN/.gemini/antigravity/brain/c05185b5-c019-45b1-ae11-d39f487c4308/maritime_blueprint_bg_1770252832625.png"
+            style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; opacity: 0.5;">
+        <div
+            style="position: absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);">
+        </div>
+
+        <header
+            style="border-bottom-color: #4fc3f7; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); position: relative; z-index: 5;">
+            <h1 style="color: #4fc3f7;">04-1. I-SEDSS 지능형 통합 시스템 구성도 (Photo)</h1>
+            <span style="color: #ccc;">Integrated Intelligence Blueprint: Sensing to Response</span>
+        </header>
+
+        <div
+            style="position: relative; z-index: 5; height: calc(100% - 130px); width: 100%; display: flex; flex-direction: column; padding: 20px 40px; justify-content: space-between;">
+            <!-- Top Header -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div
+                        style="background: #fff; padding: 5px 15px; border-radius: 4px; font-weight: 900; color: #004a99; font-size: 24px;">
+                        ODN</div>
+                    <div style="color: #fff; border-left: 2px solid rgba(255,255,255,0.3); padding-left: 20px;">
+                        <div style="font-size: 20px; font-weight: 800; color: #4fc3f7;">I-SEDSS</div>
+                        <div style="font-size: 12px; opacity: 0.8;">Integrated Safety Blueprint</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area (Glass Panels) -->
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; align-items: stretch; flex: 1; margin: 20px 0;">
+
+                <!-- Sensing Box -->
+                <div
+                    style="background: rgba(0,0,0,0.6); border: 1px solid rgba(79, 195, 247, 0.4); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="color: #4fc3f7; font-weight: 900; border-bottom: 2px solid #4fc3f7; padding-bottom: 5px; margin-bottom: 15px; font-size: 18px;">
+                        [1. 정밀 탐지]</div>
+                    <p style="color: #fff; font-size: 13px; margin-bottom: 10px; font-weight: 700;">Omni-Sensing Nodes
+                    </p>
+                    <ul style="color: #ddd; font-size: 12px; list-style: square; padding-left: 15px; line-height: 1.8;">
+                        <li>고주파 LiDAR (10Hz)</li>
+                        <li>Multi-GAS 그리드</li>
+                        <li>비냉각식 열화상 센서</li>
+                        <li>선내 위치 보정 비콘</li>
+                    </ul>
+                </div>
+
+                <!-- AI Hub -->
+                <div
+                    style="background: rgba(1, 87, 155, 0.7); border: 1px solid #4fc3f7; border-radius: 12px; padding: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 0 40px rgba(79, 195, 247, 0.2);">
+                    <div
+                        style="background: #4fc3f7; color: #000; font-weight: 900; padding: 4px 15px; border-radius: 4px; font-size: 14px;">
+                        EDGE AI CORE</div>
+                    <div style="text-align: center;">
+                        <h4 style="color: #fff; font-size: 20px; margin-bottom: 5px;">NVIDIA ORIN</h4>
+                        <p style="color: #4fc3f7; font-size: 12px; font-weight: 700;">Path Optimization Engine</p>
+                    </div>
+                    <div style="width: 100%; height: 2px; background: rgba(255,255,255,0.2);"></div>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <div
+                            style="flex:1; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px; text-align: center;">
+                            <span style="color: #4fc3f7; font-size: 10px; display: block;">RESPONSE</span>
+                            <span style="color: #fff; font-size: 12px; font-weight: 700;">&lt; 500ms</span>
+                        </div>
+                        <div
+                            style="flex:1; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px; text-align: center;">
+                            <span style="color: #4fc3f7; font-size: 10px; display: block;">ACCURACY</span>
+                            <span style="color: #fff; font-size: 12px; font-weight: 700;">99.9%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Box -->
+                <div
+                    style="background: rgba(0,0,0,0.6); border: 1px solid rgba(79, 195, 247, 0.4); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="color: #4fc3f7; font-weight: 900; border-bottom: 2px solid #4fc3f7; padding-bottom: 5px; margin-bottom: 15px; font-size: 18px;">
+                        [3. 통합 관제]</div>
+                    <p style="color: #fff; font-size: 13px; margin-bottom: 10px; font-weight: 700;">Starlink
+                        Hyper-Connect</p>
+                    <ul style="color: #ddd; font-size: 12px; list-style: square; padding-left: 15px; line-height: 1.8;">
+                        <li>VTS / 육상 종합상황실 연동</li>
+                        <li>Digital Twin Mirroring</li>
+                        <li>Hybrid WAN (LTE/Sat)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Detail Bar -->
+            <div
+                style="display: flex; gap: 20px; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="flex: 1; display: flex; gap: 15px; align-items: center;">
+                    <div style="color: #ff5252; font-size: 24px;">⚠</div>
+                    <div style="color: #fff; font-size: 12px;"><strong>Active Response:</strong> AI 화재 전이 시계열 예측 기반 능동형
+                        대피 유도 알고리즘 가중치 실시간 반영</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" style="border-top-color: rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
+            <span style="color: #888;">I-SEDSS Business Proposal</span>
+            <span style="color: #ccc; font-weight: 700;">Page 04-1</span>
+        </div>
+    </div>
+
+    <!-- Slide 05: Consortium Organization -->
+    <div class="slide">
+        <header>
+            <h1>05. 기관별 추진 체계 및 컨소시엄 구성</h1>
+            <span>Consortium Roles: ODN (Lead) + Hanbit (AI) + Assoc (Infra) + CNU (Ship) + KCL (Cert)</span>
+        </header>
+        <div class="content-area" style="flex-direction: column; gap: 10px;">
+            <!-- Hub & Spoke Ecosystem Map -->
+            <div
+                style="flex: 2; position: relative; background: #fff; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; height: 400px;">
+
+                <!-- Center Hub -->
+                <div
+                    style="width: 140px; height: 140px; background: #004a99; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 2; box-shadow: 0 10px 25px rgba(0, 74, 153, 0.3);">
+                    <div style="color: white; font-weight: 900; font-size: 14px;">(주)오든</div>
+                    <div style="color: #90caf9; font-size: 11px; margin-top: 5px;">Control Tower</div>
+                </div>
+
+                <!-- Spokes (Tech) -->
+                <div
+                    style="position: absolute; top: 15%; left: 15%; width: 180px; background: #fff5f5; border: 2px solid #c62828; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
+                    <div style="font-weight: 800; color: #c62828; font-size: 12px;">(주)한빛안전기술</div>
+                    <div style="font-size: 10px; color: #555; margin-top: 4px;">AI Core & Edge</div>
+                </div>
+
+                <div
+                    style="position: absolute; top: 15%; right: 15%; width: 180px; background: #fffde7; border: 2px solid #fbc02d; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
+                    <div style="font-weight: 800; color: #fbc02d; font-size: 12px;">해양수산과학기술연구조합</div>
+                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Infra & Deployment</div>
+                </div>
+
+                <!-- Spokes (Domain) -->
+                <div
+                    style="position: absolute; bottom: 15%; left: 15%; width: 180px; background: #f1f8e9; border: 2px solid #2e7d32; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
+                    <div style="font-weight: 800; color: #2e7d32; font-size: 12px;">전남대학교</div>
+                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Ship Digital Twin</div>
+                </div>
+
+                <div
+                    style="position: absolute; bottom: 15%; right: 15%; width: 180px; background: #f3e5f5; border: 2px solid #7b1fa2; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
+                    <div style="font-weight: 800; color: #7b1fa2; font-size: 12px;">KCL</div>
+                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Certification (V&V)</div>
+                </div>
+
+                <!-- Connecting Lines (Visualized with SVG) -->
+                <svg
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+                    <line x1="50%" y1="50%" x2="25%" y2="25%" stroke="#ddd" stroke-width="2" />
+                    <line x1="50%" y1="50%" x2="75%" y2="25%" stroke="#ddd" stroke-width="2" />
+                    <line x1="50%" y1="50%" x2="25%" y2="75%" stroke="#ddd" stroke-width="2" />
+                    <line x1="50%" y1="50%" x2="75%" y2="75%" stroke="#ddd" stroke-width="2" />
+                </svg>
+            </div>
+
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07-1</span></div>
+    </div>
+
+    <!-- Slide 06: Lead Org (ODN) -->
+    <div class="slide">
+        <header>
+            <h1>06. 주관기관 소개: (주)오든 (ODN)</h1>
+            <span>Smart Maritime Platform Leader (Supervisor)</span>
+        </header>
+        <div class="content-area" style="gap: 30px;">
+            <div class="flex-col"
+                style="flex: 1; align-items: center; justify-content: center; background: #fdfdfd; border-right: 1px solid #eee;">
+                <div
+                    style="background: #004a99; color: white; width: 120px; height: 120px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0, 74, 153, 0.2);">
+                    ODN</div>
+                <h3 style="color: #004a99; margin-bottom: 10px;">(주)오든</h3>
+                <p style="text-align: center; color: #666; font-size: 13px;">"해양 데이터의 가치를 연결하는<br>스마트 오션 플랫폼 기업"</p>
+                <div style="margin-top: 30px; width: 100%;">
+                    <div
+                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 8px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
+                        Smart Buoy Technology</div>
+                    <div
+                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 8px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
+                        AI Ocean Platform</div>
+                    <div
+                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
+                        Marine IoT Network</div>
+                </div>
+            </div>
+            <div class="flex-col" style="flex: 2; gap: 20px;">
+                <div class="card" style="border-left: 5px solid #004a99;">
+                    <h3 style="color: #004a99;">📌 I-SEDSS Contribution</h3>
+                    <ul style="font-size: 13px; line-height: 1.6;">
+                        <li><strong>Project Control Tower</strong>: 해양수산부 과제 총괄 관리 및 5개 기관 성과 지표 관리</li>
+                        <li><strong>Platform Dev</strong>: 통합 관제 시스템 및 사용자(승조원) UX/UI 어플리케이션 개발</li>
+                        <li><strong>System Integration</strong>: 이기종 센서 데이터 및 AI 엔진 추론 결과의 최종 시각화 구현</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 5px solid #555;">
+                    <h3 style="color: #333;">🏆 Major Track Record</h3>
+                    <ul style="font-size: 13px; line-height: 1.6;">
+                        <li><strong>스마트 양식 클러스터</strong>: IoT 기반 수질 모니터링 시스템 구축 (2024)</li>
+                        <li><strong>해양교통안전공단</strong>: 선박 운항 데이터 분석 플랫폼 고도화 용역 (2023)</li>
+                        <li><strong>특허 보유</strong>: '해상 부표를 이용한 데이터 수집 장치' 외 12건 등록</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 06</span></div>
+    </div>
+
+    <!-- Slide 07: Partner 1 & 2 (Tech) -->
+    <div class="slide">
+        <header>
+            <h1>07. 공동연구기관 소개 (1/2): 기술 개발 파트너</h1>
+            <span>Core Technology Partners: AI & Infrastructure</span>
+        </header>
+        <div class="content-area" style="flex-direction: column; gap: 20px;">
+            <!-- Hanbit -->
+            <div
+                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                <div
+                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
+                    <div style="font-size: 18px; font-weight: 900; color: #c62828;">(주)한빛안전기술</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 5px;">AI & Edge Computing</div>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 15px; color: #c62828; margin-bottom: 8px;">핵심 역할: 지능형 AI 엔진 및 엣지 하드웨어</h3>
+                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
+                        <li><strong>AI Vision</strong>: YOLOv8-Maritime 화재 탐지 모델</li>
+                        <li><strong>Edge Optimization</strong>: NVIDIA Jetson Orin 최적화</li>
+                        <li><strong>Path Finding</strong>: 다중 변수 A* 알고리즘 개발</li>
+                        <li><strong>Embedded Sys</strong>: 센서 노드 임베디드 보드 설계</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Research Assoc -->
+            <div
+                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                <div
+                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
+                    <div style="font-size: 16px; font-weight: 900; color: #fbc02d; text-align: center;">해양수산과학기술<br>연구조합
+                    </div>
+                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Network & Infra</div>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 15px; color: #fbc02d; margin-bottom: 8px;">핵심 역할: 현장 인프라 및 네트워크 구축</h3>
+                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
+                        <li><strong>Sensor Grid</strong>: 선내 특수 환경 센서 선정/배치</li>
+                        <li><strong>Wireless Mesh</strong>: 철벽 투과형 Wi-Fi 솔루션</li>
+                        <li><strong>Hardware Install</strong>: 방수/방진(IP67) 하우징 시공</li>
+                        <li><strong>Maintenance</strong>: 초기 장비 안정화 및 유지보수</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07</span></div>
+    </div>
+
+    <!-- Slide 08: Partner 3 & 4 (Domain) -->
+    <div class="slide">
+        <header>
+            <h1>08. 공동연구기관 소개 (2/2): 도메인 및 검증 파트너</h1>
+            <span>Domain Expertise & Certification Partners</span>
+        </header>
+        <div class="content-area" style="flex-direction: column; gap: 20px;">
+            <!-- CNU -->
+            <div
+                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                <div
+                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
+                    <div style="font-size: 18px; font-weight: 900; color: #2e7d32;">전남대학교</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Marine Domain Lab</div>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 15px; color: #2e7d32; margin-bottom: 8px;">핵심 역할: 실증 선박 및 디지털 트윈 베이스</h3>
+                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
+                        <li><strong>Testbed Ship</strong>: 실습선(새동백호) 공간 제공</li>
+                        <li><strong>3D Modeling</strong>: 선체 BIM/CAD 정밀 모델링</li>
+                        <li><strong>Scenario Data</strong>: 실제 훈련 시나리오 데이터 확보</li>
+                        <li><strong>Operation Review</strong>: 항해사 관점의 시스템 사용성 평가</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KCL -->
+            <div
+                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                <div
+                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
+                    <div style="font-size: 18px; font-weight: 900; color: #7b1fa2;">KCL</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Testing & Cert</div>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 15px; color: #7b1fa2; margin-bottom: 8px;">핵심 역할: 공인 시험 인증 및 표준화</h3>
+                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
+                        <li><strong>V&V System</strong>: AI 신뢰성 검증 체계 수립</li>
+                        <li><strong>Official Report</strong>: TRL 달성 공인 시험 성적서 발행</li>
+                        <li><strong>Standardization</strong>: 국가 지능형 선박 표준 가이드라인</li>
+                        <li><strong>Reliability Test</strong>: 극한 환경 내구성 테스트 수행</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 08</span></div>
     </div>
 
     <!-- Quantitative Indicators & CTE -->
 
     <div class="slide">
         <header>
-            <h1>01-1. I-SEDSS 가치 창출 프레임워크</h1>
+            <h1>09. I-SEDSS 가치 창출 프레임워크</h1>
             <span>Smart Ship Safety Project</span>
         </header>
         <div class="content-area">
@@ -569,14 +1340,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 02</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 09</span></div>
     </div>
 
     <!-- Official Project Info & TRL Goal -->
 
     <div class="slide">
         <header>
-            <h1>01-2. Decision Intelligence Framework</h1>
+            <h1>10. Decision Intelligence Framework</h1>
             <span>Multi-modal Decision Intelligence & Path Optimization Framework</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -599,30 +1370,34 @@
                 </div>
             </div>
             <div class="flex-col"
-                style="flex: 1.2; background: #fff; border: 1px solid #ddd; border-top: 4px solid #004a99; border-radius: 8px; padding: 15px; max-height: 420px; display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="font-size: 15px; margin-bottom: 10px; text-align: center; color: #004a99;">Intelligence Logic
-                    Flow</h3>
-                <div class="mermaid" style="width: 100%; max-height: 350px;">
-                    graph TD
-                    Data[Multi-modal Data Stream] --> Fusion{D-S Fusion Engine}
-                    Fusion --> Map[Dynamic Threat Map]
-                    Map --> Path[TOPSIS Path Scoring]
-                    Path --> Dist[DPOP Multi-agent Distribution]
-                    Dist --> Guide[Real-time Smart Guidance]
-                    style Fusion fill:#e3f2fd,stroke:#004a99
-                    style Path fill:#f1f8e9,stroke:#2e7d32
-                    style Guide fill:#fff3e0,stroke:#e65100
+                style="flex: 1.2; background: #fff; border: 1px solid #ddd; border-top: 4px solid #004a99; border-radius: 8px; padding: 0; display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden;">
+                <h3
+                    style="font-size: 16px; padding: 15px 15px 5px; text-align: center; color: #004a99; flex-shrink: 0;">
+                    Intelligence Logic Flow</h3>
+                <div
+                    style="flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 20px; box-sizing: border-box; overflow: hidden;">
+                    <div class="mermaid">
+                        graph TD
+                        Data[Multi-modal Data Stream] --> Fusion{D-S Fusion Engine}
+                        Fusion --> Map[Dynamic Threat Map]
+                        Map --> Path[TOPSIS Path Scoring]
+                        Path --> Dist[DPOP Multi-agent Distribution]
+                        Dist --> Guide[Real-time Smart Guidance]
+                        style Fusion fill:#e3f2fd,stroke:#004a99
+                        style Path fill:#f1f8e9,stroke:#2e7d32
+                        style Guide fill:#fff3e0,stroke:#e65100
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 03</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
     </div>
 
     <!-- Slide 01-5: Synthetic Data & AI Training Pipeline -->
 
     <div class="slide">
         <header>
-            <h1>01-3. Synthetic Data & AI Training Pipeline</h1>
+            <h1>11. Synthetic Data & AI Training Pipeline</h1>
             <span>High-Fidelity AI Training via FDS & Digital Twin Simulation</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -659,30 +1434,32 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 04</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 11</span></div>
     </div>
 
     <!-- Slide: Internal/External Network Integration -->
 
     <div class="slide">
         <header>
-            <h1>02. 통합 네트워크 아키텍처</h1>
+            <h1>12. 통합 네트워크 아키텍처</h1>
             <span>Unified Internal & External Network Architecture</span>
         </header>
         <div class="content-area">
-            <div class="flex-col flex-1">
-                <div class="card">
-                    <h3>🔒 내부망 (Ship LAN) - 관제 시스템 연결</h3>
-                    <ul>
+            <div class="flex-col flex-1" style="gap: 15px;">
+                <div class="card"
+                    style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+                    <h3 style="margin-bottom: 12px; font-size: 18px;">🔒 내부망 (Ship LAN) - 관제 시스템 연결</h3>
+                    <ul style="font-size: 14px; line-height: 1.6;">
                         <li><strong>선내 Wi-Fi 6 Mesh</strong>: 승조원 단말 ↔ 관제서버 직접 통신</li>
                         <li><strong>Safety VLAN</strong>: 화재 알림/대피 유도 전용 트래픽 분리</li>
                         <li><strong>유선 백본</strong>: CAT.7 기가비트 (센서/카메라 수집)</li>
                         <li><strong>Edge Gateway</strong>: 로컬 AI 추론, 외부망 단절 시 자체 운영</li>
                     </ul>
                 </div>
-                <div class="card card-red">
-                    <h3>🌐 외부망 (WAN) - 인터넷 & 육상 관제</h3>
-                    <ul>
+                <div class="card card-red"
+                    style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+                    <h3 style="margin-bottom: 12px; font-size: 18px;">🌐 외부망 (WAN) - 인터넷 & 육상 관제</h3>
+                    <ul style="font-size: 14px; line-height: 1.6;">
                         <li><strong>Starlink Maritime</strong>: 고속 위성 인터넷 (최대 220Mbps)</li>
                         <li><strong>LTE-A/5G</strong>: 연안 해역 셀룰러 통신</li>
                         <li><strong>자동 Failover</strong>: 위성 ↔ LTE 실시간 전환</li>
@@ -746,14 +1523,14 @@
                 <strong style="color: #ef6c00;">✅ 육상 관제 시나리오</strong>: 외부망(LTE/위성) 통해 VPN 접속 → 실시간 모니터링/제어
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 05</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 12</span></div>
     </div>
 
     <!-- Slide 3: Internal Ship network & System Configuration -->
 
     <div class="slide">
         <header>
-            <h1>02-1. 시스템 물리 및 논리 계층 아키텍처</h1>
+            <h1>13. 시스템 물리 및 논리 계층 아키텍처</h1>
             <span>Layered Architecture & Role Definition</span>
         </header>
         <div class="content-area">
@@ -880,14 +1657,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 06</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 13</span></div>
     </div>
 
     <!-- Slide 11: Data Process & DB Design (Design 3) -->
 
     <div class="slide">
         <header>
-            <h1>02-2. 시스템 아키텍처 및 소프트웨어 스택</h1>
+            <h1>14. 시스템 아키텍처 및 소프트웨어 스택</h1>
             <span>Full-Stack Technology Inventory & Scalability</span>
         </header>
         <div class="content-area" style="flex-direction: column;">
@@ -926,68 +1703,65 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 14</span></div>
     </div>
 
     <!-- Slide 28: Global Vision & Scalability -->
 
     <div class="slide">
         <header>
-            <h1>02-3. 데이터 처리 프로세스 및 저장소 설계</h1>
-            <span>Data Pipeline & Storage Architecture</span>
+            <h1>15. 데이터 Lifecycle 및 하이브리드 저장소 설계</h1>
+            <span>Data Pipeline & Multi-modal Storage Architecture</span>
         </header>
-        <div class="content-area">
-            <div class="flex-col flex-1">
-                <div class="card">
-                    <h3>⏱️ 샘플링 및 처리 전략</h3>
-                    <ul style="font-size: 12px;">
-                        <li><strong>LiDAR</strong>: 10Hz 초고속 스캔 데이터 실시간 추적</li>
-                        <li><strong>Env Sensors</strong>: 이벤트 발생 시 10Hz 버스트 수집</li>
-                        <li><strong>Video</strong>: AI 분석 후 주요 이벤트 샷 저장</li>
+        <div class="content-area" style="gap: 15px;">
+            <div class="flex-col" style="flex: 0.8; gap: 10px;">
+                <div class="card" style="padding: 10px; border-left: 5px solid #1a237e;">
+                    <h3 style="font-size: 14px;">⛓️ 3단계 데이터 처리 파이프라인</h3>
+                    <ul style="font-size: 11px; line-height: 1.4;">
+                        <li><strong>Stage 1 (Edge)</strong>: LiDAR Voxel Filtering, NMEA Protocol 변환, 로컬 객체 추론 (YOLO)
+                        </li>
+                        <li><strong>Stage 2 (Sync)</strong>: 위성/LTE 대역폭 최적화(Delta Sync), 긴급 데이터 QoS 우선순위 할당</li>
+                        <li><strong>Stage 3 (Core)</strong>: 멀티모달 데이터 퓨전, 실증 선박 디지털 트윈 동기화, SOP 시나리오 엔진 연동</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <h3>💾 저장소 하이브리드 구성</h3>
-                    <ul style="font-size: 12px;">
-                        <li><strong>InfluxDB</strong>: 시계열 센서값 저장</li>
-                        <li><strong>PostgreSQL</strong>: 장치 메타데이터 관리</li>
-                        <li><strong>Redis</strong>: 실시간 세션 및 즉각 전파</li>
+                <div class="card" style="padding: 10px; border-left: 5px solid #2e7d32;">
+                    <h3 style="font-size: 14px;">💾 하이브리드 저장소 역할 정의</h3>
+                    <ul style="font-size: 11px; line-height: 1.4;">
+                        <li><strong>Redis (Flash)</strong>: 실시간 인원 위치 추적, 선박 자세(Heading) 데이터, 긴급 알림 세션 관리</li>
+                        <li><strong>InfluxDB (Time-series)</strong>: 10~100Hz 센서 로우 데이터, 환경 변화 이력, 사고 상황 블랙박스 재생용</li>
+                        <li><strong>PostgreSQL (Relational)</strong>: 선체 BIM 메타데이터, 사용자 권한, 표준 행동 지침(SOP) 라이브러리</li>
                     </ul>
                 </div>
             </div>
-            <div class="flex-col flex-1">
+            <div class="flex-col" style="flex: 1.2;">
                 <div
-                    style="background: #fff; border: 1px solid #1a237e; border-radius: 8px; flex: 1; padding: 10px; overflow: hidden;">
-                    <div class="mermaid" style="transform: scale(0.8); transform-origin: top center;">
-                        erDiagram
-                        VESSEL ||--|{ ZONE : contains
-                        ZONE ||--|{ SENSOR_NODE : installed_in
-                        SENSOR_NODE ||--o{ DATA_LOG : generates
-                        ALARM_EVENT }|--|| ACTION_LOG : results_in
-                        VESSEL {
-                        string imo_no PK
-                        string name
-                        }
-                        SENSOR_NODE {
-                        uuid node_id PK
-                        string type
-                        }
-                        DATA_LOG {
-                        timestamp ts PK
-                        float value
-                        }
+                    style="background: #fff; border: 1px solid #1a237e; border-radius: 8px; flex: 1; padding: 10px; display: flex; flex-direction: column; justify-content: center;">
+                    <h4 style="font-size: 12px; text-align: center; color: #1a237e; margin-bottom: 10px;">Data Lifecycle
+                        Flow Diagram</h4>
+                    <div class="mermaid" style="transform: scale(0.95); transform-origin: center;">
+                        graph LR
+                        S[Sensors] -->|Modbus| E(Edge Gateway)
+                        E -->|Filter| AI{Edge AI}
+                        AI -->|Delta| SYNC[Sync]
+                        SYNC -->|MQTT| CLOUD((Cloud Core))
+                        CLOUD --> R[(Redis)]
+                        CLOUD --> I[(InfluxDB)]
+                        CLOUD --> P[(PostgreSQL)]
+                        style E fill:#e3f2fd,stroke:#1565c0
+                        style CLOUD fill:#f1f8e9,stroke:#2e7d32
+                        style SYNC fill:#fff3e0,stroke:#e65100
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 08</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
     </div>
 
     <!-- Slide 12: Core Strategic Technologies (Algorithm 1) -->
 
     <div class="slide">
         <header>
-            <h1>03. I-SEDSS 4대 핵심 전략 기술</h1>
+            <h1>16. I-SEDSS 4대 핵심 전략 기술</h1>
             <span>Core Strategic Advantages & Technical Implementation</span>
         </header>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; flex: 1;">
@@ -1024,14 +1798,14 @@
                 </ul>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 09</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 16</span></div>
     </div>
 
     <!-- Slide 13: AI Fire Detection (Algorithm 2) -->
 
     <div class="slide">
         <header>
-            <h1>03-1. AI 화재 감지 및 센서 퓨전 기술</h1>
+            <h1>17. AI 화재 감지 및 센서 퓨전 기술</h1>
             <span>Advanced Deep Learning & Decision Model</span>
         </header>
         <div class="content-area">
@@ -1062,14 +1836,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 17</span></div>
     </div>
 
     <!-- Slide 14: LiDAR Density Analysis (Algorithm 3) -->
 
     <div class="slide">
         <header>
-            <h1>03-2. LiDAR 기반 실시간 밀집도 및 인원 분석</h1>
+            <h1>18. LiDAR 기반 실시간 밀집도 및 인원 분석</h1>
             <span>Point Cloud Processing & Dynamic Flow Control</span>
         </header>
         <div class="content-area">
@@ -1100,14 +1874,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 11</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 18</span></div>
     </div>
 
     <!-- Slide 15: Equipment Specification Table (Hardware 1) -->
 
     <div class="slide">
         <header>
-            <h1>03-3. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
+            <h1>19. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
             <span>Explainable AI (XAI) for Transparent Decision Support</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -1217,14 +1991,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 12</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 19</span></div>
     </div>
 
     <!-- Slide 08-5: O&M Digital Loop & Sustainability -->
 
     <div class="slide">
         <header>
-            <h1>04. 실증 선박(새동백호) 센서 및 엣지 노드 배치 안</h1>
+            <h1>20. 실증 선박(새동백호) 센서 및 엣지 노드 배치 안</h1>
             <span>Infrastructure Deployment Strategy on Sae-Dongbaek</span>
         </header>
         <div class="content-area" style="flex-direction: column; gap: 15px;">
@@ -1291,27 +2065,27 @@
 
                 <!-- 정밀 보정된 센서 마커 (Top View) -->
                 <div
-                    style="position: absolute; top: 50%; left: 86%; width: 8px; height: 8px; background: #2196f3; border-radius: 50%; box-shadow: 0 0 8px #2196f3;">
-                </div> <!-- 조타실 -->
+                    style="position: absolute; top: 50%; left: 60%; width: 8px; height: 8px; background: #2196f3; border-radius: 50%; box-shadow: 0 0 8px #2196f3;">
+                </div> <!-- 조타실 (Bridge - Front) -->
                 <div
-                    style="position: absolute; top: 52%; left: 73%; width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; box-shadow: 0 0 8px #00bcd4;">
-                </div> <!-- 거주구역 통로 -->
+                    style="position: absolute; top: 52%; left: 50%; width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; box-shadow: 0 0 8px #00bcd4;">
+                </div> <!-- 거주구역 통로 (Living Quarter - Mid-Front) -->
                 <div
-                    style="position: absolute; top: 48%; left: 58%; width: 8px; height: 8px; background: #ff5252; border-radius: 50%; box-shadow: 0 0 8px #ff5252;">
-                </div> <!-- 엔진 구역 -->
+                    style="position: absolute; top: 48%; left: 41%; width: 8px; height: 8px; background: #ff5252; border-radius: 50%; box-shadow: 0 0 8px #ff5252;">
+                </div> <!-- 엔진 구역 (Engine - Mid-Rear) -->
                 <div
-                    style="position: absolute; top: 55%; left: 35%; width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 8px #ffeb3b;">
-                </div> <!-- 선미 측 -->
+                    style="position: absolute; top: 55%; left: 34%; width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 8px #ffeb3b;">
+                </div> <!-- 선미 측 (Stern - Rear) -->
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 13</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 20</span></div>
     </div>
 
     <!-- Slide 18-1: Hardware Technical Specifications -->
 
     <div class="slide">
         <header>
-            <h1>04-1. 주요 하드웨어 상세 제원 및 엣지 노드 성능</h1>
+            <h1>21. 주요 하드웨어 상세 제원 및 엣지 노드 성능</h1>
             <span>Detailed Hardware Specifications & Edge Intelligence Metrics</span>
         </header>
         <div class="content-area" style="flex-direction: column; gap: 15px;">
@@ -1350,14 +2124,14 @@
                 💡 모든 장비는 해상 환경 표준 규격(IEC 60945)을 준수하며, 엣지 노드 중심 분산 연산으로 무중단 안전 환경을 제공합니다.
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 14</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 21</span></div>
     </div>
 
     <!-- Slide 32: Performance Targets & Verification (Page 19) -->
 
     <div class="slide">
         <header>
-            <h1>04-2. 제품 기반 상세 장비 구축 및 계층별 역할</h1>
+            <h1>22. 제품 기반 상세 장비 구축 및 계층별 역할</h1>
             <span>Detailed Hardware Specification & Agency Roles</span>
         </header>
         <div style="flex: 1; display: flex; flex-direction: column;">
@@ -1379,7 +2153,7 @@
                     background: #eee;
                 }
             </style>
-            <table class="product-table" style="flex: 1;">
+            <table class="product-table" style="width:100%;border-collapse:collapse;">
                 <thead>
                     <tr>
                         <th style="width: 10%;">계층</th>
@@ -1452,14 +2226,14 @@
                     구축</strong>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 15</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 22</span></div>
     </div>
 
     <!-- Slide 16: Device detailed Spec (Hardware 2) -->
 
     <div class="slide">
         <header>
-            <h1>04-3. 엣지 디바이스 및 센서 노드 상세 사양</h1>
+            <h1>23. 엣지 디바이스 및 센서 노드 상세 사양</h1>
             <span>Edge Device & Sensor Hardware Full Specifications</span>
         </header>
         <div class="content-area">
@@ -1495,14 +2269,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 16</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 23</span></div>
     </div>
 
     <!-- Slide 8: Project Gantt Chart (Timeline) -->
 
     <div class="slide">
         <header>
-            <h1>04-4. NMEA 2000 / Modbus 센서 구성 및 배치</h1>
+            <h1>24. NMEA 2000 / Modbus 센서 구성 및 배치</h1>
             <span>Industrial Protocol Sensor Placement & Wiring</span>
         </header>
         <div class="content-area" style="flex-direction: column;">
@@ -1676,14 +2450,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 17</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 24</span></div>
     </div>
 
     <!-- Slide: CNU Digital Twin Support -->
 
     <div class="slide">
         <header>
-            <h1>04-5. 전남대학교 디지털 트윈 지원 체계</h1>
+            <h1>25. 전남대학교 디지털 트윈 지원 체계</h1>
             <span>Chonnam National University Digital Twin Infrastructure</span>
         </header>
         <div class="content-area">
@@ -1736,49 +2510,143 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 18</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25</span></div>
     </div>
 
     <!-- Slide 09: Integrated Data Flow (Design 1) -->
 
     <div class="slide">
         <header>
-            <h1>05. 승조원 전용 모바일 터미널 (UX/UI)</h1>
+            <h1>26. 승조원 전용 모바일 터미널 (UX/UI)</h1>
             <span>Crew Interface & Real-time Evacuation Guide</span>
         </header>
         <div class="content-area">
-            <div
-                style="flex: 1; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <img src="./maritime_safety_mobile_app_ui_1770216652214.png" alt="Mobile App UI"
-                    style="height: 100%; object-fit: contain;">
+            <!-- iPhone Mockup Column -->
+            <div class="flex-1" style="display: flex; justify-content: center; align-items: center;">
+                <div class="iphone-mockup">
+                    <div class="iphone-screen">
+                        <div class="dynamic-island">
+                            <div
+                                style="width: 8px; height: 8px; background: #00ff9d; border-radius: 50%; box-shadow: 0 0 8px #00ff9d;">
+                            </div>
+                        </div>
+
+                        <!-- App Header -->
+                        <div style="padding: 40px 20px 20px; background: #fff; border-bottom: 1px solid #eee;">
+                            <div style="font-size: 12px; color: #888; font-weight: 700;">SAE DONG BAEK</div>
+                            <h2 style="border:none; padding:0; margin:0; font-size: 24px;">I-SEDSS Mobile</h2>
+                        </div>
+
+                        <!-- App Content -->
+                        <div style="padding: 20px; flex: 1;">
+                            <!-- Safety Status Card -->
+                            <div class="ios-card"
+                                style="background: linear-gradient(135deg, #1c1c1e, #2c2c2e); color: white;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <span style="font-size: 13px; opacity: 0.8;">Safety Index</span>
+                                    <span class="stat-badge"
+                                        style="background: rgba(0, 242, 255, 0.2); color: #00f2ff;">Excellent</span>
+                                </div>
+                                <div style="font-size: 32px; font-weight: 800;">92 <span
+                                        style="font-size: 14px; opacity: 0.6;">/ 100</span></div>
+                                <div
+                                    style="margin-top: 10px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                                    <div
+                                        style="width: 92%; height: 100%; background: #00f2ff; border-radius: 3px; box-shadow: 0 0 10px #00f2ff;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Actions -->
+                            <div class="ios-card">
+                                <div style="font-size: 14px; font-weight: 800; margin-bottom: 12px;">Quick Access</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div
+                                        style="background: #f8f9fa; padding: 12px; border-radius: 12px; font-size: 11px; text-align: center;">
+                                        <div style="font-size: 20px; margin-bottom: 5px;">📍</div> 위치 확인
+                                    </div>
+                                    <div
+                                        style="background: #f8f9fa; padding: 12px; border-radius: 12px; font-size: 11px; text-align: center;">
+                                        <div style="font-size: 20px; margin-bottom: 5px;">📜</div> 대피 메뉴얼
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Emergency Banner -->
+                            <div class="ios-card"
+                                style="border: 2px solid #ff3b30; background: rgba(255, 59, 48, 0.05);">
+                                <div style="display: flex; align-items: center; gap: 10px; color: #ff3b30;">
+                                    <span style="font-size: 20px;">⚠️</span>
+                                    <span style="font-weight: 800; font-size: 13px;">긴급 대기 정보</span>
+                                </div>
+                                <p style="font-size: 11px; margin-top: 5px; color: #444;">현재 구역은 안전합니다. 상시 위치 추적 중.</p>
+                            </div>
+                        </div>
+
+                        <!-- SOS Button -->
+                        <div class="sos-btn-float">SOS</div>
+
+                        <!-- Tab Bar -->
+                        <div class="ios-nav">
+                            <div style="text-align: center; color: #007aff;">
+                                <div style="font-size: 18px;">🏠</div>Home
+                            </div>
+                            <div style="text-align: center; color: #8e8e93;">
+                                <div style="font-size: 18px;">🛡️</div>Safety
+                            </div>
+                            <div style="text-align: center; color: #8e8e93;">
+                                <div style="font-size: 18px;">💬</div>Chat
+                            </div>
+                            <div style="text-align: center; color: #8e8e93;">
+                                <div style="font-size: 18px;">👤</div>Profile
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex-col flex-1" style="justify-content: center;">
-                <div class="card" style="border-left: 5px solid #4caf50;">
-                    <h3>📍 개인 맞춤형 대피 가이드</h3>
-                    <ul style="font-size: 13px;">
-                        <li><strong>내 위치 기반(LBS)</strong>: 3D 도면 위 현재 위치 실시간 매핑</li>
-                        <li><strong>최적 경로 시각화</strong>: AI가 계산한 '가장 안전한' 경로 점멸 유도</li>
-                        <li><strong>위험 구역 자동 표시</strong>: 화염, 연기 확산 지역 실시간 업데이트</li>
+
+            <!-- Features Column -->
+            <div class="flex-col flex-1" style="justify-content: center; gap: 10px;">
+                <div class="card" style="border-left: 5px solid #4fc3f7; background: #f0faff; padding: 12px;">
+                    <h3
+                        style="color: #0277bd; display: flex; align-items: center; gap: 10px; font-size: 18px; margin-bottom: 5px;">
+                        📱 개인형 능동 도우미
+                    </h3>
+                    <ul style="font-size: 13px; line-height: 1.4;">
+                        <li><strong>RTLS 기반 위치 매핑</strong>: 블루투스 비콘 기반 정밀 실내 측위</li>
+                        <li><strong>최적 대피 경로 (AI Dynamic)</strong>: 사고 위치별 변경 경로 푸시</li>
+                        <li><strong>AR 내비게이션 지원</strong>: 카메라를 통한 직관적 탈출 방향 유도</li>
                     </ul>
                 </div>
-                <div class="card" style="border-left: 5px solid #2196f3;">
-                    <h3>📢 입체적 상황 전파</h3>
-                    <ul style="font-size: 13px;">
-                        <li><strong>Haptic Alerts</strong>: 위급 상황 시 강한 진동 알림</li>
-                        <li><strong>Voice Guide</strong>: 눈을 뜨기 힘든 농연 상황용 음성 안내</li>
-                        <li><strong>Mustering System</strong>: 집결지 도착 시 자동 인원 체크 (NFC/BT)</li>
+                <div class="card" style="border-left: 5px solid #ff3b30; background: #fff5f5; padding: 12px;">
+                    <h3 style="color: #c62828; font-size: 18px; margin-bottom: 5px;">🚨 긴급 재난 전파 시스템</h3>
+                    <ul style="font-size: 13px; line-height: 1.4;">
+                        <li><strong>One-Touch SOS</strong>: 버튼 하나로 관리자 및 구조기관 자동 신고</li>
+                        <li><strong>생존자 히트맵</strong>: 관리자 대시보드와 연동된 실시간 POB 현황</li>
+                        <li><strong>오프라인 메쉬 통신</strong>: 위성/LTE 단절 시 단말간 직접 통신 지원</li>
                     </ul>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;">
+                    <div style="background: #e3f2fd; padding: 10px; border-radius: 8px; text-align: center;">
+                        <div style="font-weight: 800; color: #1565c0; font-size: 18px;">0.5s</div>
+                        <div style="font-size: 10px;">위치 갱신 주기</div>
+                    </div>
+                    <div style="background: #ffebee; padding: 10px; border-radius: 8px; text-align: center;">
+                        <div style="font-weight: 800; color: #c62828; font-size: 18px;">99.9%</div>
+                        <div style="font-size: 10px;">알림 도달 성공률</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 19</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 26</span></div>
     </div>
 
     <!-- Slide 13-1: Maritime Cyber-Physical Security -->
 
     <div class="slide">
         <header>
-            <h1>05-1. 긴급 재난 시나리오 및 디지털 SOP 워크플로우</h1>
+            <h1>27. 긴급 재난 시나리오 및 디지털 SOP 워크플로우</h1>
             <span>Scenario-based SOP & Automated Emergency Response</span>
         </header>
         <div class="content-area" style="gap: 10px; align-items: stretch;">
@@ -1855,14 +2723,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 20</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 22</span></div>
     </div>
 
     <!-- Slide 30: Cost-Benefit Analysis & ROI -->
 
     <div class="slide">
         <header>
-            <h1>05-2. 극한 상황 대응력 및 리스크 관리 전략</h1>
+            <h1>28. 극한 상황 대응력 및 리스크 관리 전략</h1>
             <span>Fault Tolerance & Self-Healing Architecture</span>
         </header>
         <div class="content-area">
@@ -1902,14 +2770,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 21</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 28</span></div>
     </div>
 
     <!-- Slide 27: Software Stack -->
 
     <div class="slide">
         <header>
-            <h1>05-3. 해상 사이버-물리 보안(Cyber-Physical Security) 강화</h1>
+            <h1>29. 해상 사이버-물리 보안(Cyber-Physical Security) 강화</h1>
             <span>Maritime Hardware Root of Trust & Secure Data Bus</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -1927,10 +2795,11 @@
                 </div>
             </div>
             <div class="flex-col flex-1"
-                style="background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #d32f2f;">Security Defense
+                style="background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                <h3 style="font-size: 18px; margin-bottom: 25px; text-align: center; color: #d32f2f;">Security Defense
                     Layers</h3>
-                <div class="mermaid" style="width: 100%;">
+                <div class="mermaid"
+                    style="width: 100%; flex: 1; display: flex; align-items: center; justify-content: center;">
                     graph TD
                     Sensor[In-ship Sensors] -->|mTLS| Edge[Secure Edge Node]
                     Edge -->|Encrypted VPN| Cloud[Shore Command]
@@ -1946,14 +2815,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 22</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 29</span></div>
     </div>
 
     <!-- Slide 26: Risk Mitigation & Reliability -->
 
     <div class="slide">
         <header>
-            <h1>06. 기술적 차별성 및 시장 우위성 비교</h1>
+            <h1>30. 기술적 차별성 및 시장 우위성 비교</h1>
             <span>Competitive Edge & Technical Superiority</span>
         </header>
         <div class="content-area" style="flex-direction: column;">
@@ -2019,14 +2888,14 @@
                 💡 I-SEDSS는 [이기종 센서 지능화]와 [표준 항해 데이터 연동]을 통해 미래 자율운항 선박의 안전 기술 표준을 제시합니다.
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 23</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 30</span></div>
     </div>
 
     <!-- Slide 11-1: Global Standard & Regulation Compliance -->
 
     <div class="slide">
         <header>
-            <h1>06-1. 글로벌 표준 대응 및 국제 규격 준수성</h1>
+            <h1>31. 글로벌 표준 대응 및 국제 규격 준수성</h1>
             <span>International Maritime Standards & Regulatory Compliance Plan</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -2084,216 +2953,16 @@
                 </table>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 24</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 31</span></div>
     </div>
 
-    <!-- Slide 25: Mobile App UX/UI -->
+
+
+
 
     <div class="slide">
         <header>
-            <h1>07. 기관별 업무 체계 및 프로젝트 연계</h1>
-            <span>Agency Workflows & Domain Integration</span>
-        </header>
-        <div class="content-area" style="flex-direction: column; gap: 10px;">
-            <!-- Hub & Spoke Ecosystem Map -->
-            <div
-                style="flex: 2; position: relative; background: #fff; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; height: 400px;">
-
-                <!-- Center Hub -->
-                <div
-                    style="width: 140px; height: 140px; background: #004a99; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 2; box-shadow: 0 10px 25px rgba(0, 74, 153, 0.3);">
-                    <div style="color: white; font-weight: 900; font-size: 14px;">(주)오든</div>
-                    <div style="color: #90caf9; font-size: 11px; margin-top: 5px;">Control Tower</div>
-                </div>
-
-                <!-- Spokes (Tech) -->
-                <div
-                    style="position: absolute; top: 15%; left: 15%; width: 180px; background: #fff5f5; border: 2px solid #c62828; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
-                    <div style="font-weight: 800; color: #c62828; font-size: 12px;">(주)한빛안전기술</div>
-                    <div style="font-size: 10px; color: #555; margin-top: 4px;">AI Core & Edge</div>
-                </div>
-
-                <div
-                    style="position: absolute; top: 15%; right: 15%; width: 180px; background: #fffde7; border: 2px solid #fbc02d; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
-                    <div style="font-weight: 800; color: #fbc02d; font-size: 12px;">해양수산과학기술연구조합</div>
-                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Infra & Deployment</div>
-                </div>
-
-                <!-- Spokes (Domain) -->
-                <div
-                    style="position: absolute; bottom: 15%; left: 15%; width: 180px; background: #f1f8e9; border: 2px solid #2e7d32; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
-                    <div style="font-weight: 800; color: #2e7d32; font-size: 12px;">전남대학교</div>
-                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Ship Digital Twin</div>
-                </div>
-
-                <div
-                    style="position: absolute; bottom: 15%; right: 15%; width: 180px; background: #f3e5f5; border: 2px solid #7b1fa2; border-radius: 8px; padding: 10px; text-align: center; z-index: 1;">
-                    <div style="font-weight: 800; color: #7b1fa2; font-size: 12px;">KCL</div>
-                    <div style="font-size: 10px; color: #555; margin-top: 4px;">Certification (V&V)</div>
-                </div>
-
-                <!-- Connecting Lines (Visualized with SVG) -->
-                <svg
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
-                    <line x1="50%" y1="50%" x2="25%" y2="25%" stroke="#ddd" stroke-width="2" />
-                    <line x1="50%" y1="50%" x2="75%" y2="25%" stroke="#ddd" stroke-width="2" />
-                    <line x1="50%" y1="50%" x2="25%" y2="75%" stroke="#ddd" stroke-width="2" />
-                    <line x1="50%" y1="50%" x2="75%" y2="75%" stroke="#ddd" stroke-width="2" />
-                </svg>
-            </div>
-
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25</span></div>
-    </div>
-
-    <!-- Slide 07-A: Lead Org (ODN) -->
-    <div class="slide">
-        <header>
-            <h1>07-A. 주관기관 소개: (주)오든 (ODN)</h1>
-            <span>Smart Maritime Platform Leader (Supervisor)</span>
-        </header>
-        <div class="content-area" style="gap: 30px;">
-            <div class="flex-col"
-                style="flex: 1; align-items: center; justify-content: center; background: #fdfdfd; border-right: 1px solid #eee;">
-                <div
-                    style="background: #004a99; color: white; width: 120px; height: 120px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0, 74, 153, 0.2);">
-                    ODN</div>
-                <h3 style="color: #004a99; margin-bottom: 10px;">(주)오든</h3>
-                <p style="text-align: center; color: #666; font-size: 13px;">"해양 데이터의 가치를 연결하는<br>스마트 오션 플랫폼 기업"</p>
-                <div style="margin-top: 30px; width: 100%;">
-                    <div
-                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 8px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
-                        Smart Buoy Technology</div>
-                    <div
-                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-bottom: 8px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
-                        AI Ocean Platform</div>
-                    <div
-                        style="background: #e3f2fd; padding: 10px; border-radius: 6px; text-align: center; font-size: 12px; font-weight: 700; color: #1565c0;">
-                        Marine IoT Network</div>
-                </div>
-            </div>
-            <div class="flex-col" style="flex: 2; gap: 20px;">
-                <div class="card" style="border-left: 5px solid #004a99;">
-                    <h3 style="color: #004a99;">📌 I-SEDSS Contribution</h3>
-                    <ul style="font-size: 13px; line-height: 1.6;">
-                        <li><strong>Project Control Tower</strong>: 해양수산부 과제 총괄 관리 및 5개 기관 성과 지표 관리</li>
-                        <li><strong>Platform Dev</strong>: 통합 관제 시스템 및 사용자(승조원) UX/UI 어플리케이션 개발</li>
-                        <li><strong>System Integration</strong>: 이기종 센서 데이터 및 AI 엔진 추론 결과의 최종 시각화 구현</li>
-                    </ul>
-                </div>
-                <div class="card" style="border-left: 5px solid #555;">
-                    <h3 style="color: #333;">🏆 Major Track Record</h3>
-                    <ul style="font-size: 13px; line-height: 1.6;">
-                        <li><strong>스마트 양식 클러스터</strong>: IoT 기반 수질 모니터링 시스템 구축 (2024)</li>
-                        <li><strong>해양교통안전공단</strong>: 선박 운항 데이터 분석 플랫폼 고도화 용역 (2023)</li>
-                        <li><strong>특허 보유</strong>: '해상 부표를 이용한 데이터 수집 장치' 외 12건 등록</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25-A</span></div>
-    </div>
-
-    <!-- Slide 07-B: Partner 1 & 2 (Tech) -->
-    <div class="slide">
-        <header>
-            <h1>07-B. 공동연구기관 소개 (1/2): 기술 개발 파트너</h1>
-            <span>Core Technology Partners: AI & Infrastructure</span>
-        </header>
-        <div class="content-area" style="flex-direction: column; gap: 20px;">
-            <!-- Hanbit -->
-            <div
-                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-                <div
-                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
-                    <div style="font-size: 18px; font-weight: 900; color: #c62828;">(주)한빛안전기술</div>
-                    <div style="font-size: 11px; color: #999; margin-top: 5px;">AI & Edge Computing</div>
-                </div>
-                <div style="flex: 1;">
-                    <h3 style="font-size: 15px; color: #c62828; margin-bottom: 8px;">핵심 역할: 지능형 AI 엔진 및 엣지 하드웨어</h3>
-                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
-                        <li><strong>AI Vision</strong>: YOLOv8-Maritime 화재 탐지 모델</li>
-                        <li><strong>Edge Optimization</strong>: NVIDIA Jetson Orin 최적화</li>
-                        <li><strong>Path Finding</strong>: 다중 변수 A* 알고리즘 개발</li>
-                        <li><strong>Embedded Sys</strong>: 센서 노드 임베디드 보드 설계</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Research Assoc -->
-            <div
-                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-                <div
-                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
-                    <div style="font-size: 16px; font-weight: 900; color: #fbc02d; text-align: center;">해양수산과학기술<br>연구조합
-                    </div>
-                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Network & Infra</div>
-                </div>
-                <div style="flex: 1;">
-                    <h3 style="font-size: 15px; color: #fbc02d; margin-bottom: 8px;">핵심 역할: 현장 인프라 및 네트워크 구축</h3>
-                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
-                        <li><strong>Sensor Grid</strong>: 선내 특수 환경 센서 선정/배치</li>
-                        <li><strong>Wireless Mesh</strong>: 철벽 투과형 Wi-Fi 솔루션</li>
-                        <li><strong>Hardware Install</strong>: 방수/방진(IP67) 하우징 시공</li>
-                        <li><strong>Maintenance</strong>: 초기 장비 안정화 및 유지보수</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25-B</span></div>
-    </div>
-
-    <!-- Slide 07-C: Partner 3 & 4 (Domain) -->
-    <div class="slide">
-        <header>
-            <h1>07-C. 공동연구기관 소개 (2/2): 도메인 및 검증 파트너</h1>
-            <span>Domain Expertise & Certification Partners</span>
-        </header>
-        <div class="content-area" style="flex-direction: column; gap: 20px;">
-            <!-- CNU -->
-            <div
-                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-                <div
-                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
-                    <div style="font-size: 18px; font-weight: 900; color: #2e7d32;">전남대학교</div>
-                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Marine Domain Lab</div>
-                </div>
-                <div style="flex: 1;">
-                    <h3 style="font-size: 15px; color: #2e7d32; margin-bottom: 8px;">핵심 역할: 실증 선박 및 디지털 트윈 베이스</h3>
-                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
-                        <li><strong>Testbed Ship</strong>: 실습선(새동백호) 공간 제공</li>
-                        <li><strong>3D Modeling</strong>: 선체 BIM/CAD 정밀 모델링</li>
-                        <li><strong>Scenario Data</strong>: 실제 훈련 시나리오 데이터 확보</li>
-                        <li><strong>Operation Review</strong>: 항해사 관점의 시스템 사용성 평가</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- KCL -->
-            <div
-                style="flex: 1; display: flex; gap: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-                <div
-                    style="width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #eee; padding-right: 20px;">
-                    <div style="font-size: 18px; font-weight: 900; color: #7b1fa2;">KCL</div>
-                    <div style="font-size: 11px; color: #999; margin-top: 5px;">Testing & Cert</div>
-                </div>
-                <div style="flex: 1;">
-                    <h3 style="font-size: 15px; color: #7b1fa2; margin-bottom: 8px;">핵심 역할: 공인 시험 인증 및 표준화</h3>
-                    <ul style="font-size: 12px; line-height: 1.5; columns: 2;">
-                        <li><strong>V&V System</strong>: AI 신뢰성 검증 체계 수립</li>
-                        <li><strong>Official Report</strong>: TRL 달성 공인 시험 성적서 발행</li>
-                        <li><strong>Standardization</strong>: 국가 지능형 선박 표준 가이드라인</li>
-                        <li><strong>Reliability Test</strong>: 극한 환경 내구성 테스트 수행</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25-C</span></div>
-    </div>
-
-    <div class="slide">
-        <header>
-            <h1>07-1. 프로젝트 마일스톤 및 수행 로드맵 (Gantt)</h1>
+            <h1>32. 프로젝트 마일스톤 및 수행 로드맵 (Gantt)</h1>
             <span>Project Timeline & Milestone (Gantt Chart)</span>
         </header>
         <div class="content-area" style="flex-direction: column;">
@@ -2426,14 +3095,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 26</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 32</span></div>
     </div>
 
     <!-- Slide 18: Visual Development Roadmap (Timeline Chart) -->
 
     <div class="slide">
         <header>
-            <h1>07-2. 단계별 개발 로드맵 시각화 (Timeline Chart)</h1>
+            <h1>33. 단계별 개발 로드맵 시각화 (Timeline Chart)</h1>
             <span>TRL 4 → TRL 7 단계별 고도화 전략 (2026-2028)</span>
         </header>
         <div class="content-area" style="flex-direction: column; padding: 15px;">
@@ -2511,14 +3180,14 @@
                 <span>2028.12 (실선 실증 및 TRL 7 달성)</span>
             </div>
         </div> <!-- content-area End -->
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 27</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 33</span></div>
     </div> <!-- Slide End -->
 
     <!-- Slide 19: 1st Year Roadmap -->
 
     <div class="slide">
         <header>
-            <h1>07-3. 1차년도: AI 대피경로 탐색 및 기초 시스템 구축</h1>
+            <h1>34. 1차년도: AI 대피경로 탐색 및 기초 시스템 구축</h1>
             <span>Year 1: Static Dataset & Scenario Design</span>
         </header>
         <div class="content-area">
@@ -2554,14 +3223,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 28</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 34</span></div>
     </div>
 
     <!-- Slide 20: 2nd Year Roadmap -->
 
     <div class="slide">
         <header>
-            <h1>07-4. 2차년도: 실시간 대피경로 재탐색 모델 고도화</h1>
+            <h1>35. 2차년도: 실시간 대피경로 재탐색 모델 고도화</h1>
             <span>Year 2: Dynamic Dataset & Responsive AI</span>
         </header>
         <div class="content-area">
@@ -2597,14 +3266,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 29</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 35</span></div>
     </div>
 
     <!-- Slide 21: 3rd Year Roadmap -->
 
     <div class="slide">
         <header>
-            <h1>07-5. 3차년도: 선박 실증 및 지능형 SOP 확정</h1>
+            <h1>36. 3차년도: 선박 실증 및 지능형 SOP 확정</h1>
             <span>Year 3: Real-world Validation & SOP Finalization</span>
         </header>
         <div class="content-area">
@@ -2640,139 +3309,160 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 30</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 36</span></div>
     </div>
 
     <!-- Slide 22: Real-world Visualization & Expected Effects -->
 
 
     <!-- Slide: Integrated Control Dashboard (Live UI) -->
-    <div class="slide">
-        <header>
-            <h1>08-A. 통합 관제 대시보드 (Live UI Preview)</h1>
-            <span>Smart Integrated Safety Dashboard Interface</span>
-        </header>
-        <div class="content-area"
-            style="flex-direction: column; background: #1a1a1a; padding: 20px; border-radius: 12px; overflow: hidden; color: white; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
-            <!-- Top Status Bar -->
-            <div
-                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
-                <div style="font-weight: 700; color: #4fc3f7; font-size: 14px;">I-SEDSS MONITORING SYSTEM v1.0</div>
-                <div style="display: flex; gap: 15px; font-size: 11px;">
-                    <div style="display: flex; align-items: center; gap: 6px;"><span
-                            style="width: 8px; height: 8px; background: #00e676; border-radius: 50%; display: block; box-shadow: 0 0 5px #00e676;"></span><span>SYSTEM
-                            ONLINE</span></div>
-                    <div style="display: flex; align-items: center; gap: 6px;"><span
-                            style="width: 8px; height: 8px; background: #00e676; border-radius: 50%; display: block; box-shadow: 0 0 5px #00e676;"></span><span>NETWORK
-                            STABLE</span></div>
-                    <div style="color: #bbb;">2026-05-24 14:32:05 UTC</div>
+    <div class="slide" style="background: #0a0e17; padding: 0; display: flex; flex-direction: column;">
+        <div class="dashboard-container" style="flex: 1; overflow: hidden;">
+            <header style="border-bottom: 2px solid #1e293b; margin-bottom: 0; padding-bottom: 15px; flex-shrink: 0;">
+                <h1 style="color: #fff; font-size: 28px;">37. 통합 관제 대시보드 (Live UI Preview)</h1>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span
+                            style="width: 10px; height: 10px; background: #00ff9d; border-radius: 50%; box-shadow: 0 0 10px #00ff9d;"></span>
+                        <span style="font-size: 12px; font-weight: 600; color: #94a3b8;">SYSTEM ONLINE</span>
+                    </div>
+                    <span style="font-size: 12px; color: #64748b;">2026-05-24 14:32:05 UTC</span>
+                </div>
+            </header>
+
+            <div class="db-stat-grid">
+                <div class="db-glass db-stat-item">
+                    <span class="db-lab">선박 속도</span>
+                    <span class="db-val">12.4 <small style="font-size: 14px; opacity: 0.6;">knots</small></span>
+                </div>
+                <div class="db-glass db-stat-item">
+                    <span class="db-lab">엔진 RPM</span>
+                    <span class="db-val">1,840</span>
+                </div>
+                <div class="db-glass db-stat-item">
+                    <span class="db-lab">현재 기수</span>
+                    <span class="db-val">245°</span>
+                </div>
+                <div class="db-glass db-stat-item">
+                    <span class="db-lab">연료 잔량</span>
+                    <span class="db-val">84%</span>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 15px; flex: 1;">
-                <!-- Left Panel: Ship Sensor Data -->
-                <div style="width: 250px; display: flex; flex-direction: column; gap: 10px;">
-                    <div
-                        style="background: #262626; padding: 10px; border-radius: 6px; border-left: 3px solid #00bcd4;">
-                        <div style="font-size: 10px; color: #888; margin-bottom: 5px;">SHIP ATTITUDE (IMU)</div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <div style="font-size: 11px;">PITCH</div>
-                            <div style="color: #4fc3f7; font-weight: 700;">+1.2°</div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <div style="font-size: 11px;">ROLL</div>
-                            <div style="color: #4fc3f7; font-weight: 700;">-0.5°</div>
+            <div style="display: flex; gap: 25px; flex: 1;">
+                <!-- Risk Analysis Panel -->
+                <div class="db-glass"
+                    style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+                    <h3
+                        style="color: #fff; border: none; padding: 0; font-size: 16px; width: 100%; text-align: left; opacity: 0.8;">
+                        현재 안전 등급 (AI 지수)</h3>
+                    <div class="risk-gauge-wrap">
+                        <div class="risk-circle"></div>
+                        <div class="risk-data">
+                            <div class="risk-score">92</div>
+                            <div style="font-size: 12px; font-weight: 700; color: #00ff9d; letter-spacing: 2px;">SECURE
+                            </div>
                         </div>
                     </div>
-                    <div
-                        style="background: #262626; padding: 10px; border-radius: 6px; border-left: 3px solid #ff5252;">
-                        <div style="font-size: 10px; color: #888; margin-bottom: 5px;">ACTIVE ALERTS</div>
-                        <div
-                            style="background: rgba(255, 82, 82, 0.1); color: #ff5252; padding: 6px; font-size: 10px; border-radius: 4px; margin-bottom: 5px; font-weight: 700;">
-                            ⚠ FIRE DETECTED (ZONE 3)
+                    <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 10px 0;"></div>
+                    <div style="display: flex; justify-content: space-around; width: 100%;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 11px; color: #94a3b8;">Fire Risk</div>
+                            <div style="font-weight: 700; color: #00ff9d;">LOW</div>
                         </div>
-                        <div
-                            style="background: rgba(255, 152, 0, 0.1); color: #ff9800; padding: 6px; font-size: 10px; border-radius: 4px;">
-                            ⚠ CROWD DENSITY HIGH
+                        <div style="text-align: center;">
+                            <div style="font-size: 11px; color: #94a3b8;">Flood Risk</div>
+                            <div style="font-weight: 700; color: #00ff9d;">MINIMAL</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Center Panel: 3D Visualization Placeholder -->
-                <div
-                    style="flex: 1; background: #000; border: 1px solid #333; border-radius: 6px; position: relative; overflow: hidden;">
+                <!-- Digital Twin / Map Panel -->
+                <div class="db-glass" style="flex: 2; position: relative; overflow: hidden; padding: 0;">
+                    <img src="./sedss_visualization_v2_png_1770214813225.png"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
                     <div
-                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #333; font-weight: 900; font-size: 40px; text-align: center; opacity: 0.3;">
-                        3D DIGITAL TWIN<br>LIVE VIEW
+                        style="position: absolute; inset: 0; background: radial-gradient(circle at center, transparent 30%, #0a0e17 100%); pointer-events: none;">
                     </div>
-                    <!-- Markers -->
-                    <div
-                        style="position: absolute; top: 30%; left: 40%; width: 12px; height: 12px; background: #ff5252; border-radius: 50%; box-shadow: 0 0 15px #ff5252; animation: blink 1s infinite;">
-                    </div>
-                    <div
-                        style="position: absolute; top: 30%; left: 40%; padding: 4px 8px; background: rgba(0,0,0,0.7); color: white; font-size: 10px; border-radius: 4px; transform: translate(15px, -50%); border: 1px solid #ff5252;">
-                        Fire Detected (98%)
+
+                    <!-- Floating Indicators -->
+                    <div style="position: absolute; top: 30%; left: 40%;">
+                        <div
+                            style="width: 12px; height: 12px; background: #00f2ff; border-radius: 50%; box-shadow: 0 0 15px #00f2ff;">
+                        </div>
+                        <div
+                            style="position: absolute; top: -35px; left: 20px; background: rgba(0,0,0,0.8); border: 1px solid #00f2ff; padding: 5px 10px; border-radius: 4px; font-size: 10px; white-space: nowrap;">
+                            POB Level 1: 42 Personnel
+                        </div>
                     </div>
 
                     <div
-                        style="position: absolute; top: 60%; left: 60%; width: 8px; height: 8px; background: #00e676; border-radius: 50%; box-shadow: 0 0 10px #00e676;">
+                        style="position: absolute; bottom: 20px; left: 20px; display: flex; flex-direction: column; gap: 5px;">
+                        <span style="font-size: 10px; font-weight: 700; color: #00f2ff;">3D DIGITAL TWIN OVERLAY</span>
+                        <span style="font-size: 10px; color: #94a3b8;">Sae Dong Baek Live Stream Active</span>
                     </div>
-                    <div
-                        style="position: absolute; top: 60%; left: 60%; padding: 4px 8px; background: rgba(0,0,0,0.7); color: white; font-size: 10px; border-radius: 4px; transform: translate(15px, -50%); border: 1px solid #00e676;">
-                        Start Point
-                    </div>
-
-                    <!-- Path Line (Simulated) -->
-                    <svg style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none;">
-                        <path d="M 500 400 Q 400 300 330 200" stroke="#00e676" stroke-width="3" fill="none"
-                            stroke-dasharray="5,5" />
-                    </svg>
                 </div>
 
-                <!-- Right Panel: Evacuation Status -->
-                <div style="width: 200px; display: flex; flex-direction: column; gap: 10px;">
-                    <div
-                        style="background: #262626; padding: 10px; border-radius: 6px; border-left: 3px solid #00e676;">
-                        <div style="font-size: 10px; color: #888; margin-bottom: 5px;">ROUTE STATUS</div>
-                        <div style="margin-bottom: 8px;">
-                            <div style="font-size: 11px; color: #fff;">Route A (Main)</div>
-                            <div style="font-size: 10px; color: #ff5252;">⛔ BLOCKED (Smoke)</div>
+                <!-- Personnel Distribution -->
+                <div class="db-glass" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                    <h3
+                        style="color: #fff; border: none; padding: 0; font-size: 14px; opacity: 0.8; margin-bottom: 5px;">
+                        구역별 정원 현황</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div>
+                            <div
+                                style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+                                <span>Main Deck (A)</span>
+                                <span style="font-weight: 700; color: #00ff9d;">18 / 60</span>
+                            </div>
+                            <div style="height: 4px; background: #1e293b; border-radius: 2px;">
+                                <div style="width: 30%; height: 100%; background: #00ff9d; border-radius: 2px;"></div>
+                            </div>
                         </div>
                         <div>
-                            <div style="font-size: 11px; color: #fff;">Route B (Emerg)</div>
-                            <div style="font-size: 10px; color: #00e676;">✅ OPTIMAL (Safe)</div>
+                            <div
+                                style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+                                <span>Engine Room</span>
+                                <span style="font-weight: 700; color: #00ff9d;">4 / 8</span>
+                            </div>
+                            <div style="height: 4px; background: #1e293b; border-radius: 2px;">
+                                <div style="width: 50%; height: 100%; background: #00ff9d; border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div
+                                style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+                                <span>Passenger Area</span>
+                                <span style="font-weight: 700; color: #ff3b30;">124 / 150</span>
+                            </div>
+                            <div style="height: 4px; background: #1e293b; border-radius: 2px;">
+                                <div
+                                    style="width: 82%; height: 100%; background: #ff3b30; border-radius: 2px; box-shadow: 0 0 10px rgba(255, 59, 48, 0.4);">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button
-                        style="background: #d32f2f; color: white; border: none; padding: 10px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; margin-top: auto;">
-                        BROADCAST EVACUATION
-                    </button>
+
+                    <div style="margin-top: auto;">
+                        <button
+                            style="width: 100%; background: #00f2ff; color: #0a0e17; border: none; padding: 10px; border-radius: 6px; font-weight: 800; font-size: 12px; cursor: pointer;">
+                            DETAIL VIEW
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <style>
-                @keyframes blink {
-                    0% {
-                        opacity: 1;
-                    }
-
-                    50% {
-                        opacity: 0.3;
-                    }
-
-                    100% {
-                        opacity: 1;
-                    }
-                }
-            </style>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 38-A</span></div>
+        <div class="footer"
+            style="border-top: 1px solid rgba(255,255,255,0.1); color: #475569; position: relative; bottom: 0; left: 0; right: 0; padding: 10px 25px; margin: 0; background: #0a0e17;">
+            <span>I-SEDSS Business Proposal</span>
+            <span>Page 37</span>
+        </div>
     </div>
 
     <!-- Slide 08: Real-world Visualization & Expected Effects -->
     <div class="slide">
         <header>
-            <h1>08. 실물 가시화 예시 및 전략적 기대 효과</h1>
+            <h1>38. 실물 가시화 예시 및 전략적 기대 효과</h1>
             <span>Premium System Visualization & Socio-Economic Impact</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -2815,14 +3505,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 31</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 38</span></div>
     </div>
 
     <!-- Slide 23: Agency Workflow & Integration -->
 
     <div class="slide">
         <header>
-            <h1>08-1. 통합 데이터 흐름 및 지능형 제어 체계</h1>
+            <h1>39. 통합 데이터 흐름 및 지능형 제어 체계</h1>
             <span>Integrated Data & Active Control Flow</span>
         </header>
         <div style="flex: 2; display: flex; flex-direction: column; overflow: hidden; justify-content: center;">
@@ -2887,7 +3577,7 @@
                 <p style="font-size: 13px; line-height: 1.4;">단순 모니터링을 넘어 시스템이 물리 장치를 직접 통제</p>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 32</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 39</span></div>
     </div>
 
     <!-- Slide 10: Layered Architecture (Design 2) -->
@@ -2896,7 +3586,7 @@
     <!-- Slide: Golden Time Comparison -->
     <div class="slide">
         <header>
-            <h1>08-B. 골든타임 단축 효과 비교 (Time-to-Response)</h1>
+            <h1>40. 골든타임 단축 효과 비교 (Time-to-Response)</h1>
             <span>Quantitative Response Time Analysis: As-Is vs To-Be</span>
         </header>
         <div class="content-area" style="flex-direction: column; justify-content: center; gap: 40px;">
@@ -2946,12 +3636,12 @@
                 </div>
 
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 39-B</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 40</span></div>
         </div>
 
         <div class="slide">
             <header>
-                <h1>08-2. 경제적 파급효과 및 투자 대비 성과 (ROI)</h1>
+                <h1>41. 경제적 파급효과 및 투자 대비 성과 (ROI)</h1>
                 <span>Cost-Benefit Analysis & Socio-Economic Value</span>
             </header>
             <div class="content-area" style="flex-direction: column;">
@@ -2993,14 +3683,14 @@
                     </div>
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 33</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 41</span></div>
         </div>
 
         <!-- Slide 31: Sensor Deployment Plan (Page 18) -->
 
         <div class="slide">
             <header>
-                <h1>08-3. 글로벌 비전 및 사업 확장 로드맵</h1>
+                <h1>42. 글로벌 비전 및 사업 확장 로드맵</h1>
                 <span>Global Scalability & Strategic Vision 2030</span>
             </header>
             <div class="content-area">
@@ -3033,14 +3723,14 @@
                     </div>
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 34</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 42</span></div>
         </div>
 
         <!-- Slide 15-1: Global OTA & Remote Operations -->
 
         <div class="slide">
             <header>
-                <h1>08-4. 글로벌 OTA 및 원격 운영 체계</h1>
+                <h1>43. 글로벌 OTA 및 원격 운영 체계</h1>
                 <span>Worldwide Fleet Management & Seamless AI Updates via Starlink</span>
             </header>
             <div class="content-area" style="gap: 20px;">
@@ -3075,14 +3765,14 @@
                     </div>
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 35</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 43</span></div>
         </div>
 
         <!-- Slide 29: Emergency Scenario & SOP Workflow -->
 
         <div class="slide">
             <header>
-                <h1>08-5. 운영 및 유지보수(O&M) 디지털 루프 및 지속 가능성</h1>
+                <h1>44. 운영 및 유지보수(O&M) 디지털 루프 및 지속 가능성</h1>
                 <span>O&M Digital Loop & AI Continuous Learning Lifecycle</span>
             </header>
             <div class="content-area" style="gap: 20px;">
@@ -3121,12 +3811,12 @@
                         최신 상태 유지</div>
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 36</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 44</span></div>
         </div>
 
         <div class="slide">
             <header>
-                <h1>09. 정량적 핵심 지표 및 핵심 기술요소(CTE)</h1>
+                <h1>45. 정량적 핵심 지표 및 핵심 기술요소(CTE)</h1>
                 <span>Performance Indicators for Success & Final Deliverables</span>
             </header>
             <div class="content-area" style="flex-direction: column;">
@@ -3224,14 +3914,14 @@
                     </table>
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 37</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 45</span></div>
         </div>
 
         <!-- Slide 01-4: Decision Intelligence Framework -->
 
         <div class="slide">
             <header>
-                <h1>09-1. 정량적 성능 목표 및 검증 방법 체계</h1>
+                <h1>46. 정량적 성능 목표 및 검증 방법 체계</h1>
                 <span>Quantitative Performance Targets & Verification Framework</span>
             </header>
             <div class="content-area" style="overflow-y: auto;">
@@ -3367,14 +4057,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 38</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 46</span></div>
         </div>
 
         <!-- Slide 33: Project Performance Indicators & Targets (Page 20) -->
 
         <div class="slide">
             <header>
-                <h1>10. 성과지표 및 목표치 달성 계획</h1>
+                <h1>47. 성과지표 및 목표치 달성 계획</h1>
                 <span>Project Performance Indicators & Milestone Targets</span>
             </header>
             <div class="content-area" style="flex-direction: column; gap: 15px;">
@@ -3514,7 +4204,7 @@
                     ※ 국가연구개발과제 특성 및 TRL(기술성숙도) 단계별 연구 산출물의 정량적 목표치를 근거로 함.
                 </div>
             </div>
-            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 39</span></div>
+            <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 47</span></div>
         </div>
         <!-- FINAL SLIDE -->
         <div class="slide"
@@ -3539,12 +4229,17 @@
                 startOnLoad: true,
                 theme: 'default',
                 securityLevel: 'loose',
+                fontFamily: 'Noto Sans KR',
                 flowchart: {
                     useMaxWidth: true,
                     htmlLabels: true,
                     curve: 'basis',
                     padding: 10
                 }
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Infographic-based system overview ready
             });
         </script>
 </body>
