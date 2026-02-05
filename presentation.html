@@ -596,22 +596,22 @@
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VI</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">리스크 관리 및 보안 (29 ~ 32)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">리스크 관리 및 보안 (33 ~ 36)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VII</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">개발 로드맵 및 운영 (33 ~ 37)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">개발 로드맵 및 운영 (37 ~ 41)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">VIII</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">가시화 및 기대효과 (38 ~ 45)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">가시화 및 기대효과 (42 ~ 49)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span
                         style="background: #666; color: white; padding: 5px 12px; border-radius: 4px; font-weight: 900; width: 45px; text-align: center;">IX</span>
-                    <span style="font-size: 18px; font-weight: 800; color: #333;">성과지표 및 KPI (46 ~ 48)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: #333;">성과지표 및 KPI (50 ~ 52)</span>
                 </div>
             </div>
         </div>
@@ -619,7 +619,7 @@
             style="margin-top: 40px; padding: 20px; background: #f1f8ff; border-radius: 12px; border-left: 5px solid var(--primary-blue);">
             <p style="font-size: 16px; font-weight: 700; color: var(--primary-blue);">💡 I-SEDSS는 [수집 - 분석 - 전파 - 유도]로
                 이어지는
-                전 과정을 지능화하여 해상 안전의 새로운 패러다임을 제시하며, 본 발표는 시스템의 아키텍처부터 글로벌 확장성까지 48개의 단계별 상세 내용을 다룹니다.</p>
+                전 과정을 지능화하여 해상 안전의 새로운 패러다임을 제시하며, 본 발표는 시스템의 아키텍처부터 글로벌 확장성까지 52개의 단계별 상세 내용을 다룹니다.</p>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Table of Contents</span></div>
     </div>
@@ -688,168 +688,507 @@
         </div>
     </div>
 
-    <!-- Slide 02: 기존 선박 사고 대응의 한계 및 문제점 (Current Issues) -->
-    <div class="slide">
-        <header>
-            <h1>02. 기존 선박 재난 대응 인프라의 한계</h1>
-            <span>Legacy Maritime Safety Systems & Response Gaps</span>
+    <!-- Slide 02: 왜 지금 I-SEDSS인가? (Refined) -->
+    <div class="slide"
+        style="background: linear-gradient(135deg, #001f4d 0%, #004a99 100%); color: white; position: relative;">
+        <header style="border-bottom-color: rgba(255,255,255,0.2);">
+            <h1>02. 왜 지금 I-SEDSS인가?</h1>
+            <span style="color:#ffcdd2;opacity:0.8">The Critical Necessity & Market Pain Points</span>
         </header>
-        <div class="content-area">
-            <div class="flex-col flex-1" style="gap: 15px;">
-                <div class="card" style="border-left: 5px solid #d32f2f;">
-                    <h3 style="color: #d32f2f;">🚨 수동 감지 및 인지 지연</h3>
-                    <ul style="font-size: 12.5px;">
-                        <li>화재 발생 시 연기 탐지기 작동 후 <strong>사람의 육안 확인</strong> 필수</li>
-                        <li>폐쇄된 구획 내 화재 시 브릿지 도달까지 5~10분 지연</li>
-                    </ul>
+        <div class="content-area"
+            style="flex-direction:column;gap:30px;align-items:center;justify-content:center;padding-top:20px">
+            <div style="text-align:center;z-index:1;max-width:900px">
+                <h2
+                    style="font-size:28px;font-weight:800;line-height:1.4;color:#fff;margin-bottom:20px;border-left:none;padding-left:0">
+                    <span style="font-size:32px">🚢</span> 세월호 참사(2014)의 뼈아픈 교훈
+                </h2>
+                <div
+                    style="background:rgba(255,82,82,0.1);border-left:5px solid #ff5252;padding:20px;text-align:left;border-radius:8px">
+                    <p style="font-size:18px;color:#fff;margin-bottom:15px;line-height:1.6">
+                        304명의 희생자를 낸 참사의 본질은 <strong style="color:#ff8a80;border-bottom:2px solid #ff8a80">"판단
+                            지연"</strong>과 <strong style="color:#ff8a80;border-bottom:2px solid #ff8a80">"정보
+                            부재"</strong>였습니다.
+                    </p>
+                    <p style="font-size:16px;color:#ffcdd2;font-style:italic;margin-bottom:0">
+                        "가만히 있으라"는 방송 대신, AI가 실시간 선체 거동을 분석해 최적 대피 경로를 제시했다면 결과는 달랐을 것입니다.
+                    </p>
                 </div>
-                <div class="card" style="border-left: 5px solid #d32f2f;">
-                    <h3 style="color: #d32f2f;">📡 정보 단절 (Information Silo)</h3>
-                    <ul style="font-size: 12.5px;">
-                        <li>선박 내 항해 데이터와 안전 센서 데이터의 <strong>상호 연동 부재</strong></li>
-                        <li>사고 현장 상황이 구조자/기관에만 파편적으로 전달</li>
-                    </ul>
+                <div
+                    style="margin-top:20px;font-size:14px;color:#ef9a9a;background:rgba(0,0,0,0.3);padding:8px 15px;border-radius:20px;display:inline-block">
+                    💡 IMO 통계: 해양 사고의 80% 이상이 인적 과실(Human Error) 및 상황 판단 오류에 의해 발생
                 </div>
             </div>
-            <div class="flex-col flex-1"
-                style="background: #fafafa; border-radius: 15px; border: 1px solid #eee; display: flex; flex-direction: column; overflow: hidden; height: 100%; min-height: 0;">
+
+            <div style="display:flex;gap:20px;width:100%;z-index:1">
                 <div
-                    style="flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 20px; box-sizing: border-box; overflow: hidden;">
-                    <div class="mermaid">
-                        graph TD
-                        A[재난 발생] --> B[수동 신고/탐지]
-                        B --> C{선원 현장 확인}
-                        C -->|확인 실패| D[대응 실패/대형사고]
-                        C -->|확인 성공| E[브릿지 보고/전파]
-                        E --> F[인적 판단 유도]
-                        F --> G[대피 지연]
-                        style D fill:#ffcdd2,stroke:#d32f2f
-                        style G fill:#ffcdd2,stroke:#d32f2f
-                        style B fill:#fff9c4,stroke:#fbc02d
-                    </div>
+                    style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,82,82,0.3);border-top:4px solid #ff5252;border-radius:12px;padding:20px;backdrop-filter:blur(10px);display:flex;flex-direction:column">
+                    <h3 style="color:#ff5252;font-size:20px;margin-bottom:10px;font-weight:800">인적 판단 한계 극복</h3>
+                    <p style="font-size:15px;color:#e0e0e0;line-height:1.6;flex:1">
+                        패닉 상태의 승조원을 대신해 냉철한 데이터 기반 알고리즘이 의사결정을 보좌합니다.
+                    </p>
                 </div>
                 <div
-                    style="padding: 12px; font-size: 13px; text-align: center; color: #d32f2f; font-weight: 700; background: rgba(255,255,255,0.9); border-top: 1px solid #eee; flex-shrink: 0;">
-                    기존 시스템: "인지 -> 확인 -> 보고 -> 판단"의 병목 현상
+                    style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,82,82,0.3);border-top:4px solid #ff5252;border-radius:12px;padding:20px;backdrop-filter:blur(10px);display:flex;flex-direction:column">
+                    <h3 style="color:#ff5252;font-size:20px;margin-bottom:10px;font-weight:800">사각지대 없는 감시</h3>
+                    <p style="font-size:15px;color:#e0e0e0;line-height:1.6;flex:1">
+                        24시간 쉬지 않는 AI가 센서 데이터를 융합해 보이지 않는 화원과 침수를 즉시 포착합니다.
+                    </p>
+                </div>
+                <div
+                    style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,82,82,0.3);border-top:4px solid #ff5252;border-radius:12px;padding:20px;backdrop-filter:blur(10px);display:flex;flex-direction:column">
+                    <h3 style="color:#ff5252;font-size:20px;margin-bottom:10px;font-weight:800">동적 가이드라인</h3>
+                    <p style="font-size:15px;color:#e0e0e0;line-height:1.6;flex:1">
+                        고정된 표지판을 넘어, 상황에 맞게 매초 변하는 '살아있는 대피로'를 제공합니다.
+                    </p>
                 </div>
             </div>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 02</span></div>
     </div>
 
-    <!-- Slide 01: System Paradigm Change -->
-    <div class="slide">
+    <!-- Slide 03: 기존 대피 체계의 한계 (Refined) -->
+    <div class="slide" style="background:#f8f9fa">
         <header>
-            <h1>03. 시스템 패러다임 변화 (As-Is → To-Be)</h1>
-            <span>Innovative Evacuation & Decision Support Strategy</span>
+            <h1 style="color:#ff5252;text-shadow:0 0 15px rgba(255,82,82,0.4)">03. 기존 대피 체계의 한계: ‘골든타임’을 놓치는 이유</h1>
+            <span style="color:#666">Current System Limitations vs. I-SEDSS Innovations</span>
         </header>
-        <div class="content-area" style="gap: 20px; padding: 10px 30px;">
-            <div
-                style="flex: 1; background: #fafafa; padding: 20px; border-radius: 15px; border: 1px solid #eee; position: relative; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
-                <div style="text-align: center; margin-bottom: 15px;">
-                    <span
-                        style="background: #666; color: white; padding: 6px 20px; border-radius: 20px; font-weight: 800; font-size: 14px; letter-spacing: 1px;">PREVIOUS
-                        (As-Is) : 수동적 대응</span>
+        <div class="content-area" style="display:flex;gap:25px;align-items:stretch">
+            <div style="flex:2;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="card" style="border-top:5px solid #666;display:flex;flex-direction:column;height:100%">
+                    <div style="font-size:24px;margin-bottom:8px">👁️🗨️</div>
+                    <h3 style="font-size:19px;color:#333;margin-bottom:8px">감지의 지연 (Sensing)</h3>
+                    <p style="font-size:14px;color:#666;flex:1;min-height:60px">기존 시스템은 사람이 직접 화재를 목격하거나 연기를 감지할 때까지 대기가
+                        필요하며, 이는 이미 화재가 진행된 후임</p>
+                    <div
+                        style="margin-top:15px;padding:12px;background:#fff5f5;border-radius:8px;font-size:13px;border-left:4px solid #ff5252">
+                        <strong style="color:#d32f2f">I-SEDSS 해결:</strong><br>멀티모달 AI 센서로 비가시 영역 초기 징후 즉시 포착
+                    </div>
                 </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: #333;">❌ 인적 판단 및 경험 의존</div>
-                        <div style="font-size: 14px; color: #666; margin-top: 3px; padding-left: 24px;">- 승조원의 주관적 경험에만
-                            의존하여 초동 대응 골든타임 소실</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: #333;">❌ 분절된 파편화 인프라</div>
-                        <div style="font-size: 14px; color: #666; margin-top: 3px; padding-left: 24px;">- 감지기, 유도등, 관제가
-                            개별 동작하여 재난 상황 통합 인지 불가</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: #333;">❌ 박제된 정적 대피 경로</div>
-                        <div style="font-size: 14px; color: #666; margin-top: 3px; padding-left: 24px;">- 사고 위치나 연기 확산을
-                            반영하지 못하는 고정식 대피 안내</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: #333;">❌ 해상 통신 인프라 한계</div>
-                        <div style="font-size: 14px; color: #666; margin-top: 3px; padding-left: 24px;">- 원거리 항해 시 육상 관제
-                            및 외부 기관과의 실시간 데이터 단절</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: #333;">❌ 사후 기록용 데이터 관리</div>
-                        <div style="font-size: 14px; color: #666; margin-top: 3px; padding-left: 24px;">- 데이터가 대응이 아닌 사고
-                            후 원인 규명용(Blackbox)으로만 유휴</div>
-                    </li>
-                </ul>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                <div
-                    style="width: 44px; height: 44px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; box-shadow: 0 4px 12px rgba(0,74,153,0.3); z-index: 2;">
-                    ▶</div>
-            </div>
-            <div
-                style="flex: 1; background: #f0f7ff; padding: 20px; border-radius: 15px; border: 2px solid var(--primary-blue); position: relative; box-shadow: 0 12px 25px rgba(0,74,153,0.1); display: flex; flex-direction: column;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <span
-                        style="background: var(--primary-blue); color: white; padding: 8px 25px; border-radius: 25px; font-weight: 800; font-size: 16px; letter-spacing: 1px;">INNOVATIVE
-                        (To-Be) : AI 능동 시스템</span>
+                <div class="card" style="border-top:5px solid #666;display:flex;flex-direction:column;height:100%">
+                    <div style="font-size:24px;margin-bottom:8px">📢</div>
+                    <h3 style="font-size:19px;color:#333;margin-bottom:8px">전파의 병목 (Broadcasting)</h3>
+                    <p style="font-size:14px;color:#666;flex:1;min-height:60px">현장 확인 후 계선 보고(현장→사관→선장)의 수동적 체계로 인해 평균
+                        5-10분의 대응 시간 지체 발생</p>
+                    <div
+                        style="margin-top:15px;padding:12px;background:#fff5f5;border-radius:8px;font-size:13px;border-left:4px solid #ff5252">
+                        <strong style="color:#d32f2f">I-SEDSS 해결:</strong><br>전 승조원 동시 즉시 알림 및 SOP 기반 자동 지시 하달
+                    </div>
                 </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: var(--primary-blue);">✅ AI 기반 능동 의사결정
-                        </div>
-                        <div style="font-size: 14px; color: #4b6584; margin-top: 4px; padding-left: 24px;">- 멀티모달 AI가 사고
-                            확산을 예측하고 최적 대응 시나리오 즉시 제시</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: var(--primary-blue);">✅ 지능형 통합 제어 플랫폼
-                        </div>
-                        <div style="font-size: 14px; color: #4b6584; margin-top: 4px; padding-left: 24px;">-
-                            [탐지-분석-전파-유도]를 단일 가치 사슬로 묶어 시스템 시너지 극대화</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: var(--primary-blue);">✅ 실시간 가변형 동적 유도
-                        </div>
-                        <div style="font-size: 14px; color: #4b6584; margin-top: 4px; padding-left: 24px;">- 사고 및 인파 밀집
-                            지역을 실시간 회피하는 능동적 대피로 생성</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: var(--primary-blue);">✅ Global 초연계 네트워크
-                        </div>
-                        <div style="font-size: 14px; color: #4b6584; margin-top: 4px; padding-left: 24px;">-
-                            Starlink+LTE 하이브리드 통신으로 전 세계 해역 24시간 실시간 관제</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 18px; font-weight: 800; color: var(--primary-blue);">✅ 디지털 트윈 기반 예방/대응
-                        </div>
-                        <div style="font-size: 14px; color: #4b6584; margin-top: 4px; padding-left: 24px;">- 3D 가상 선박 모델
-                            연동을 통해 사고 징후 사전 포착 및 정밀 대응</div>
-                    </li>
-                </ul>
+                <div class="card" style="border-top:5px solid #666;display:flex;flex-direction:column;height:100%">
+                    <div style="font-size:24px;margin-bottom:8px">🚦</div>
+                    <h3 style="font-size:19px;color:#333;margin-bottom:8px">유도의 경직 (Guidance)</h3>
+                    <p style="font-size:14px;color:#666;flex:1;min-height:60px">사고 위치와 관계없이 고정된 대피 경로(축광형 표지)는 화재 지점으로
+                        사람을 유인할 위험이 높음</p>
+                    <div
+                        style="margin-top:15px;padding:12px;background:#fff5f5;border-radius:8px;font-size:13px;border-left:4px solid #ff5252">
+                        <strong style="color:#d32f2f">I-SEDSS 해결:</strong><br>실시간 위험 회피형 능동 경로 최적화 및 스마트 사이니지
+                    </div>
+                </div>
+                <div class="card" style="border-top:5px solid #666;display:flex;flex-direction:column;height:100%">
+                    <div style="font-size:24px;margin-bottom:8px">🏗️</div>
+                    <h3 style="font-size:19px;color:#333;margin-bottom:8px">집단의 혼란 (Chaos)</h3>
+                    <p style="font-size:14px;color:#666;flex:1;min-height:60px">실시간 인원 파악 불가능으로 중복 수색이나 위험 구역 잔류자 방치 등
+                        비효율적 인명 구조 활동</p>
+                    <div
+                        style="margin-top:15px;padding:12px;background:#fff5f5;border-radius:8px;font-size:13px;border-left:4px solid #ff5252">
+                        <strong style="color:#d32f2f">I-SEDSS 해결:</strong><br>LiDAR 기반 실시간 POB 현황 및 구역별 인원 밀집도 분석
+                    </div>
+                </div>
             </div>
-        </div>
-        <div
-            style="margin-top: 5px; padding: 10px 20px; background: white; border-radius: 10px; border-left: 5px solid #004a99; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-            <div
-                style="font-weight: 900; color: #004a99; font-size: 18px; border-right: 1px solid #eee; padding-right: 20px;">
-                혁신 모듈</div>
-            <div style="display: flex; gap: 12px; flex: 1;">
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+                <div class="card"
+                    style="background:#1a1a1a;color:white;border:none;padding:25px;flex:1;display:flex;flex-direction:column;justify-content:center">
+                    <h3 style="color:#ff5252;font-size:20px;margin-bottom:15px">⏱️ Golden Time Limit</h3>
+                    <div style="display:flex;flex-direction:column;gap:15px">
+                        <div>
+                            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px">
+                                <span>기존 대피 체계</span> <span style="color:#ff5252;font-weight:800">70% Loss</span>
+                            </div>
+                            <div style="height:12px;background:rgba(255,255,255,0.1);border-radius:6px;overflow:hidden">
+                                <div style="width:85%;height:100%;background:#666"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px">
+                                <span>I-SEDSS 지능형 체계</span> <span style="color:#2196f3;font-weight:800">+300%
+                                    Margin</span>
+                            </div>
+                            <div style="height:12px;background:rgba(255,255,255,0.1);border-radius:6px;overflow:hidden">
+                                <div style="width:25%;height:100%;background:#2196f3;box-shadow:0 0 10px #2196f3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top:25px;font-size:14px;color:#aaa;line-height:1.6"> 초기 인지-전파-유도의 지능화를 통해, 사고 발생 후
+                        <strong>'생존 결정적 시간(Golden Time)'</strong> 내 모든 승조원의 안전 퇴선을 보장합니다.
+                    </p>
+                </div>
                 <div
-                    style="background: #e3f2fd; color: #004a99; padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 700;">
-                    #실시간_경로_재탐색</div>
-                <div
-                    style="background: #e3f2fd; color: #004a99; padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 700;">
-                    #3D_디지털트윈_전시</div>
-                <div
-                    style="background: #e3f2fd; color: #004a99; padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 700;">
-                    #위성기반_글로벌_초연계</div>
+                    style="padding:12px;background:#fff;border:1px dashed #ccc;border-radius:12px;font-size:13.5px;color:#333">
+                    <div style="font-weight:800;color:#d32f2f;margin-bottom:10px">⚠️ 위기 시 판단 오류율 60% 감소</div> "패닉 상황에서의
+                    선박 구조 숙지도 부족을 AI가 보정하여 안전한 최단 경로로 자동 유도시킵니다."
+                </div>
             </div>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 03</span></div>
     </div>
 
-    <!-- Slide 04: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint - No Photo) -->
+    <!-- Slide 04: 기존 선박 재난 대응 인프라의 한계 (Refined) -->
+    <div class="slide">
+        <header>
+            <h1>04. 기존 선박 재난 대응 인프라의 한계</h1>
+            <span>Legacy Maritime Safety Systems & Response Gaps</span>
+        </header>
+        <div class="content-area" style="display:flex">
+            <div class="flex-col flex-1" style="gap:15px">
+                <div class="card" style="border-left:5px solid #d32f2f">
+                    <h3 style="color:#d32f2f">🚨 수동 감지 및 인지 지연</h3>
+                    <ul style="font-size:12.5px">
+                        <li>화재 발생 시 연기 탐지기 작동 후 <strong>사람의 육안 확인</strong> 필수</li>
+                        <li>폐쇄된 구획 내 화재 시 브릿지 도달까지 5~10분 지연</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left:5px solid #d32f2f">
+                    <h3 style="color:#d32f2f">📡 정보 단절 (Information Silo)</h3>
+                    <ul style="font-size:12.5px">
+                        <li>선박 내 항해 데이터와 안전 센서 데이터의 <strong>상호 연동 부재</strong></li>
+                        <li>사고 현장 상황이 구조자/기관에만 파편적으로 전달</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-col flex-1"
+                style="background:#fafafa;border-radius:15px;border:1px solid #eee;display:flex;flex-direction:column;overflow:hidden;height:100%;min-height:0">
+                <div
+                    style="flex:1;width:100%;display:flex;align-items:center;justify-content:center;min-height:0;padding:20px;box-sizing:border-box;overflow:hidden">
+                    <div
+                        style='display:flex;flex-direction:column;align-items:center;width:100%;padding:20px;font-family:"Pretendard",sans-serif'>
+                        <div
+                            style="background:white;border:2px solid #333;padding:10px 20px;border-radius:8px;font-weight:700;color:#333;box-shadow:0 4px 6px rgba(0,0,0,0.1)">
+                            재난 발생 </div>
+                        <div style="color:#666;font-size:20px;line-height:1">↓</div>
+                        <div
+                            style="background:#fff9c4;border:2px solid #fbc02d;padding:10px 20px;border-radius:8px;font-weight:700;color:#333;box-shadow:0 4px 6px rgba(0,0,0,0.1)">
+                            수동 신고/탐지 </div>
+                        <div style="color:#666;font-size:20px;line-height:1">↓</div>
+                        <div
+                            style="background:white;border:2px solid #333;padding:10px 20px;border-radius:20px;font-weight:700;color:#333;box-shadow:0 4px 6px rgba(0,0,0,0.1);position:relative;z-index:2">
+                            선원 현장 확인? </div>
+                        <div
+                            style="display:flex;width:100%;justify-content:center;gap:40px;margin-top:-10px;padding-top:30px;position:relative">
+                            <div style="display:flex;flex-direction:column;align-items:center;flex:1;max-width:160px">
+                                <div
+                                    style="border-left:2px dashed #999;height:20px;width:50%;border-bottom:2px dashed #999;position:absolute;top:15px;left:50%;transform:translateX(-100%);z-index:1">
+                                </div>
+                                <div
+                                    style="background:white;color:#d32f2f;font-size:11px;font-weight:800;margin-bottom:5px;background:rgba(255,255,255,0.8);z-index:2;padding:2px 5px;border-radius:4px">
+                                    지연/실패</div>
+                                <div style="color:#d32f2f;font-size:18px;line-height:1">↓</div>
+                                <div
+                                    style="background:#ffcdd2;border:2px solid #d32f2f;padding:10px 15px;border-radius:8px;font-weight:700;color:#d32f2f;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.05);width:100%">
+                                    대응 실패<br>대형 사고 </div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:center;flex:1;max-width:160px">
+                                <div
+                                    style="border-right:2px solid #666;height:20px;width:50%;border-bottom:2px solid #666;position:absolute;top:15px;right:50%;transform:translateX(100%);z-index:1">
+                                </div>
+                                <div
+                                    style="background:white;color:#2e7d32;font-size:11px;font-weight:800;margin-bottom:5px;background:rgba(255,255,255,0.8);z-index:2;padding:2px 5px;border-radius:4px">
+                                    확인 성공</div>
+                                <div style="color:#666;font-size:18px;line-height:1">↓</div>
+                                <div
+                                    style="background:white;border:2px solid #333;padding:10px 15px;border-radius:8px;font-weight:700;color:#333;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.05);width:100%;margin-bottom:5px">
+                                    브릿지 보고/전파 </div>
+                                <div style="color:#666;font-size:18px;line-height:1">↓</div>
+                                <div
+                                    style="background:white;border:2px solid #333;padding:10px 15px;border-radius:8px;font-weight:700;color:#333;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.05);width:100%;margin-bottom:5px">
+                                    인적 판단 유도 </div>
+                                <div style="color:#d32f2f;font-size:18px;line-height:1">↓</div>
+                                <div
+                                    style="background:#ffcdd2;border:2px solid #d32f2f;padding:10px 15px;border-radius:8px;font-weight:700;color:#d32f2f;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.05);width:100%">
+                                    대피 지연 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    style="padding:12px;font-size:13px;text-align:center;color:#d32f2f;font-weight:700;background:rgba(255,255,255,0.9);border-top:1px solid #eee;flex-shrink:0">
+                    기존 시스템: "인지 -> 확인 -> 보고 -> 판단"의 병목 현상 </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 04</span></div>
+    </div>
+
+    <!-- Slide 05: 시스템 패러다임 변화 (Refined) -->
+    <div class="slide" style="background:#f4f7fa">
+        <header>
+            <h1>05. 시스템 패러다임 변화 (As-Is → To-Be)</h1>
+            <span style="color:#666">Regulatory Compliance & Future-Proofing Strategy</span>
+        </header>
+        <div class="content-area" style="flex-direction:column;gap:20px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+                <div class="card" style="border-top-color:#004a99">
+                    <h3 style="color:#004a99;font-size:18px">🇰🇷 국내 정책: K-해양안전 도약</h3>
+                    <ul style="font-size:13px;line-height:1.6">
+                        <li><strong>제3차 해사안전관리 기본계획:</strong> '스마트 해사안전인프라' 구축 명시</li>
+                        <li><strong>바다 내비게이션(e-Nav):</strong> 항해 데이터의 디지털 전환 가속화</li>
+                        <li><strong>자율운항선박 기술개발:</strong> AI 기반 안전 확보를 위한 규제 샌드박스 운영</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top-color:#ef6c00">
+                    <h3 style="color:#ef6c00;font-size:18px">🌐 국제 규제: IMO/EU 표준 강화</h3>
+                    <ul style="font-size:13px;line-height:1.6">
+                        <li><strong>SOLAS Ch.III 개정 논의:</strong> 구명 설비의 지능형 유지관리 및 안내</li>
+                        <li><strong>IMO MSC.1/Circ.1533:</strong> 피난 분석 기준 고도화 (AI 시뮬레이션 권고)</li>
+                        <li><strong>EU SafePASS Project:</strong> 범유럽 차원의 스마트 피난 시스템 솔루션 개발 중</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="background:#fff;border:1px solid #dee2e6;border-radius:12px;padding:20px">
+                <h4 style="font-size:15px;color:#333;margin-bottom:15px;text-align:center">📈 핵심 규제 대응 매트릭스</h4>
+                <table style="font-size:12.5px;margin-bottom:0">
+                    <thead style="background:#f8f9fa">
+                        <tr>
+                            <th>규제 항목</th>
+                            <th>기존 대응 (Limited)</th>
+                            <th>I-SEDSS 대응 (Core)</th>
+                            <th>기대 효과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>초기 화재 탐지</td>
+                            <td>연동형 감지기 (단순 알람)</td>
+                            <td>AI 비전 및 멀티 센서 융합</td>
+                            <td>탐지 시간 60% 단축</td>
+                        </tr>
+                        <tr>
+                            <td>대피 경로 안내</td>
+                            <td>고정식 축광 표지판</td>
+                            <td>실시간 동적 경로 최적화</td>
+                            <td>탈출 성공률 90% 상회</td>
+                        </tr>
+                        <tr>
+                            <td>인원 파악(POB)</td>
+                            <td>수동 명부 및 집결 확인</td>
+                            <td>LiDAR 기반 자동 인원 계수</td>
+                            <td>집결 누락 0% 목표</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 05</span></div>
+    </div>
+
+    <!-- Slide 06: 국내외 정책 동향 및 규제 대응 (Refined) -->
+    <div class="slide">
+        <header>
+            <h1>06. 국내외 정책 동향 및 규제 대응</h1>
+            <span style="color:#666">Innovative Evacuation & Decision Support Strategy</span>
+        </header>
+        <div class="content-area" style="display:flex;flex-direction:column;gap:25px;padding-top:10px">
+            <div style="display:grid;grid-template-columns:1fr 0.2fr 1.2fr;align-items:center;gap:15px">
+                <div style="background:#f1f3f5;padding:25px;border-radius:20px;text-align:center">
+                    <div style="font-size:13px;color:#495057;font-weight:800;margin-bottom:15px">AS-IS</div>
+                    <div style="font-size:18px;font-weight:900;color:#868e96;line-height:1.4">수동적 대응 체계<br>(Passive
+                        Safety)</div>
+                </div>
+                <div style="font-size:32px;color:#adb5bd;text-align:center">➡️</div>
+                <div
+                    style="background:#e7f5ff;border:2px solid #228be6;padding:25px;border-radius:20px;text-align:center;box-shadow:0 10px 20px rgba(34,139,230,0.1)">
+                    <div style="font-size:13px;color:#228be6;font-weight:800;margin-bottom:15px">TO-BE</div>
+                    <div style="font-size:20px;font-weight:900;color:#1864ab;line-height:1.4">AI 기반 능동형 통합
+                        시스템<br>(Active & Intelligent)</div>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;flex:1">
+                <div class="card" style="border-top:5px solid #ff8787;background:#fff5f5">
+                    <h4 style="color:#e03131;margin-bottom:12px;font-size:16px">1. 정적(Static) → 동적(Dynamic)</h4>
+                    <p style="font-size:13px;color:#495057">고착화된 대피 시나리오에서 벗어나, <strong>화재/침수 확산 경로를 매초 단위로
+                            재계산</strong>하여 안전한 길을 즉시 생성합니다.</p>
+                </div>
+                <div class="card" style="border-top:5px solid #74c0fc;background:#f3f9ff">
+                    <h4 style="color:#1971c2;margin-bottom:12px;font-size:16px">2. 단절(Silo) → 통합(Unified)</h4>
+                    <p style="font-size:13px;color:#495057">개별 센서의 경보를 넘어, <strong>선내 네트워크-육상 관제-개별 승객 모바일</strong>을 하나의
+                        디지털 트윈으로 연결합니다.</p>
+                </div>
+                <div class="card" style="border-top:5px solid #63e6be;background:#f4fcf9">
+                    <h4 style="color:#099268;margin-bottom:12px;font-size:16px">3. 인적(Human) → 데이터(Data)</h4>
+                    <p style="font-size:13px;color:#495057">선원 개개인의 판단 편차를 <strong>표준 SOP 기반 AI 알고리즘</strong>으로 보정하여 상황
+                        발생 1분 내 최적 지침을 하달합니다.</p>
+                </div>
+            </div>
+            <div
+                style="background:#f8f9fa;border-radius:15px;padding:15px;text-align:center;font-size:14px;color:#495057;border:1px dashed #ced4da">
+                "I-SEDSS는 단순한 장비 도입이 아닌, <strong>해양 안전의 철학을 '반응'에서 '예측'으로 바꾸는 패러다임 변화</strong>입니다."
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 06</span></div>
+    </div>
+
+    <!-- Slide 07: 해양 재난의 경제적 손실 규모 (User Provided) -->
+    <div class="slide">
+        <header>
+            <h1>07. 해양 재난의 경제적 손실 규모</h1>
+            <span>Scaling the Impact: Why Prevention is the Best Investment</span>
+        </header>
+        <div class="content-area" style="display:flex;gap:25px;align-items:stretch">
+            <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+                <div class="card" style="background:#fff5f5;border-left:5px solid #d32f2f;padding:25px">
+                    <h2
+                        style="font-size:20px;font-weight:800;color:#b71c1c;margin-bottom:15px;border-left:none;padding-left:0">
+                        대표 사례: 사회적 비용의 규모</h2>
+                    <div style="font-size:38px;font-weight:900;color:#d32f2f;margin-bottom:5px">1.1조 원+</div>
+                    <div style="font-size:14px;color:#c62828;margin-bottom:15px"><strong>세월호 참사 추산 사회적 비용</strong></div>
+                    <p style="font-size:13.5px;color:#555;line-height:1.6">
+                        선박의 물리적 가치를 수천 배 상회하는 인명 구조, 배상, 사회적 갈등 및 국가적 신뢰 하락 비용 발생. 해양 사고는 단순한 재산 피해가 아닌 <strong>국가 시스템의
+                            리스크</strong>입니다.
+                    </p>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+                    <div class="card" style="padding:15px;text-align:center;border-bottom:3px solid #666">
+                        <div style="font-size:11px;color:#888;margin-bottom:5px">연평균 사고 건수</div>
+                        <div style="font-size:22px;font-weight:800;color:#333">2,800건+</div>
+                    </div>
+                    <div class="card" style="padding:15px;text-align:center;border-bottom:3px solid #ff5252">
+                        <div style="font-size:11px;color:#888;margin-bottom:5px">생산 유발 손실액</div>
+                        <div style="font-size:22px;font-weight:800;color:#d32f2f">약 1.4조</div>
+                    </div>
+                </div>
+                <div
+                    style="background:#e3f2fd;padding:15px;border-radius:12px;font-size:13px;color:#1565c0;border:1px solid #bbdefb">
+                    <strong>💡 I-SEDSS의 가치:</strong> "초기 인지 성공 시, 위와 같은 기하급수적 사회적 비용의 <strong>85% 이상</strong>을 예방 및 절감
+                    가능"
+                </div>
+            </div>
+            <div
+                style="flex:1.2;background:linear-gradient(to bottom,#e3f2fd 0%,#bbdefb 30%,#1565c0 100%);border-radius:20px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding-top:40px;border:1px solid rgba(0,0,0,0.1)">
+                <div
+                    style="width:120px;height:80px;background:white;clip-path:polygon(50% 0%,0% 100%,100% 100%);box-shadow:0 5px 15px rgba(0,0,0,0.1);display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;z-index:2">
+                    <span style="font-size:10px;font-weight:800;color:#1565c0;text-align:center">Visible:<br>Ship &
+                        Cargo</span>
+                </div>
+                <div style="width:100%;height:2px;background:rgba(255,255,255,0.5);margin-top:5px;position:relative">
+                    <div style="position:absolute;right:20px;top:-20px;color:white;font-size:11px;font-weight:800">
+                        Submerged Costs (90%+)</div>
+                </div>
+                <div
+                    style="width:280px;height:240px;background:rgba(255,255,255,0.15);clip-path:polygon(10% 0%,90% 0%,100% 40%,80% 90%,50% 100%,20% 90%,0% 40%);margin-top:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding:20px">
+                    <div style="text-align:center;color:white">
+                        <div style="font-size:13px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)">환경 복구 비용</div>
+                        <div style="font-size:10px;opacity:0.8">유류 유출 및 생태계 파괴 복구</div>
+                    </div>
+                    <div style="text-align:center;color:white">
+                        <div style="font-size:13px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)">인명 구조 및 의료비
+                        </div>
+                        <div style="font-size:10px;opacity:0.8">장기적 심리 치료 및 배상</div>
+                    </div>
+                    <div style="text-align:center;color:white">
+                        <div style="font-size:13px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)">공급망 중단 손실
+                        </div>
+                        <div style="font-size:10px;opacity:0.8">항만 폐쇄 및 물류 지연 비용</div>
+                    </div>
+                    <div style="text-align:center;color:white">
+                        <div style="font-size:13px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)">사회적 신뢰 상실
+                        </div>
+                        <div style="font-size:10px;opacity:0.8">행정력 낭비 및 법적 분쟁</div>
+                    </div>
+                </div>
+                <div style="position:absolute;bottom:15px;color:rgba(255,255,255,0.6);font-size:9px">* 해양교통안전공단(KOMSA) 및
+                    선주배상책임보험(P&I) 내부 통계 참고</div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07</span></div>
+    </div>
+
+    <!-- Slide 08: SOLAS/IMO 기반 10종 핵심 재난 시나리오 (Re-numbered) -->
+    <div class="slide">
+        <header>
+            <h1>07. SOLAS/IMO 기반 10종 핵심 재난 시나리오</h1>
+            <span>Standard Disaster Scenarios for AI Training & Validation</span>
+        </header>
+        <div class="content-area">
+            <table style="font-size: 11px;">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>시나리오 구분</th>
+                        <th>주요 내용 및 환경 변수</th>
+                        <th>관련 근거</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">S1</td>
+                        <td style="font-weight: 700;">주간 공용구역 화재</td>
+                        <td>식당, 라운지 등 다수 인원 밀집 구역 화재</td>
+                        <td>IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S2</td>
+                        <td style="font-weight: 700;">야간 객실구역 화재</td>
+                        <td>취침 시간대 복도 및 객실 내 화재 발생</td>
+                        <td>IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S3</td>
+                        <td style="font-weight: 700;">기관실 대형 화재</td>
+                        <td>메인 엔진 화재 및 비상 발전기 가동 상황</td>
+                        <td>SOLAS II-2 Reg. 10</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S4</td>
+                        <td style="font-weight: 700;">주간 선체 충돌/침수</td>
+                        <td>충돌로 인한 수밀 격벽 파손 및 침수 발생</td>
+                        <td>IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S5</td>
+                        <td style="font-weight: 700;">야간 선체 충돌/침수</td>
+                        <td>야간 항해 중 우현 충돌 및 순차적 침수</td>
+                        <td>IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S6</td>
+                        <td style="font-weight: 700;">선박 좌초 및 경사</td>
+                        <td>암초 충돌로 인한 하부 파손 및 급격한 경사</td>
+                        <td>SOLAS Ch.II-1</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S7</td>
+                        <td style="font-weight: 700;">태풍 및 악천후</td>
+                        <td>강풍/파랑에 따른 비정상 롤링 및 갑판 통제</td>
+                        <td>ISM Code SOP</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S8</td>
+                        <td style="font-weight: 700;">주방/조리실 화재</td>
+                        <td>유류 화재 발생 및 덕트를 통한 확산</td>
+                        <td>SOLAS II-2 Reg. 9</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S9</td>
+                        <td style="font-weight: 700;">대규모 유류 유출</td>
+                        <td>연료 탱크 파손 및 유증기 폭발 위험</td>
+                        <td>MARPOL Annex I</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">S10</td>
+                        <td style="font-weight: 700;">복합 재난 (Worst)</td>
+                        <td>충돌 후 화재 및 침수 동시 발생 상황</td>
+                        <td>IMO/SOLAS 통합</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07</span></div>
+    </div>
+
+
+    <!-- Slide 09: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint) -->
     <div class="slide"
         style="background: linear-gradient(145deg, #f0f4f8 0%, #e1e8ed 100%); color: #333; position: relative; overflow: hidden;">
         <header style="border-bottom-color: #004a99; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
-            <h1 style="color: #004a99;">04. I-SEDSS 지능형 통합 시스템 구성도 (Blueprint)</h1>
+            <h1 style="color: #004a99;">09. I-SEDSS 지능형 통합 시스템 구성도 (Blueprint)</h1>
             <span style="color: #555;">Integrated Intelligence Blueprint: Sensing to Response</span>
         </header>
         <div
@@ -991,11 +1330,11 @@
 
         <div class="footer" style="border-top-color: rgba(0,0,0,0.05); background: rgba(255,255,255,0.5);">
             <span>I-SEDSS Business Proposal</span>
-            <span style="font-weight: 700;">Page 04</span>
+            <span style="font-weight: 700;">Page 09</span>
         </div>
     </div>
 
-    <!-- Slide 04-1: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint - Photo Vers.) -->
+    <!-- Slide 10: I-SEDSS 지능형 통합 시스템 구성도 (Blueprint - Photo Vers.) -->
     <div class="slide" style="background: #000; color: #fff; position: relative; overflow: hidden;">
         <!-- Background Photo with Overlay -->
         <img src="./maritime_blueprint_bg_1770252832625.png"
@@ -1006,7 +1345,7 @@
 
         <header
             style="border-bottom-color: #4fc3f7; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); position: relative; z-index: 5;">
-            <h1 style="color: #4fc3f7;">05. I-SEDSS 지능형 통합 시스템 구성도 (Photo)</h1>
+            <h1 style="color: #4fc3f7;">10. I-SEDSS 지능형 통합 시스템 구성도 (Photo)</h1>
             <span style="color: #ccc;">Integrated Intelligence Blueprint: Sensing to Response</span>
         </header>
 
@@ -1099,7 +1438,7 @@
 
         <div class="footer" style="border-top-color: rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
             <span style="color: #888;">I-SEDSS Business Proposal</span>
-            <span style="color: #ccc; font-weight: 700;">Page 05</span>
+            <span style="color: #ccc; font-weight: 700;">Page 09</span>
         </div>
     </div>
 
@@ -1158,7 +1497,7 @@
             </div>
 
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 06</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
     </div>
 
     <!-- Slide 06: Lead Org (ODN) -->
@@ -1206,7 +1545,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 07</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 11</span></div>
     </div>
 
     <!-- Slide 07: Partner 1 & 2 (Tech) -->
@@ -1255,7 +1594,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 08</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 12</span></div>
     </div>
 
     <!-- Slide 08: Partner 3 & 4 (Domain) -->
@@ -1303,7 +1642,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 09</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 13</span></div>
     </div>
 
     <!-- Quantitative Indicators & CTE -->
@@ -1340,7 +1679,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 14</span></div>
     </div>
 
     <!-- Official Project Info & TRL Goal -->
@@ -1390,7 +1729,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 11</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 15</span></div>
     </div>
 
     <!-- Slide 01-5: Synthetic Data & AI Training Pipeline -->
