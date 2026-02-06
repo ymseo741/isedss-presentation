@@ -1554,40 +1554,103 @@
             <h1>12. SOLAS/IMO 기반 10종 핵심 재난 시나리오</h1>
             <span>Comprehensive Disaster Scenarios & Response Protocols</span>
         </header>
-        <div class="content-area" style="flex-direction: column; gap: 20px;">
-            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 5px solid #ef6c00;">
-                <h3 style="color: #ef6c00; margin-bottom: 10px; font-size: 16px;">🔥 주요 화재 시나리오 (Fire Scenarios)</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        <strong style="color: #d32f2f;">Scenario A: 기관실 유류 화재</strong>
-                        <p style="font-size: 11px; margin-top: 5px; color: #666;">연료 누유로 인한 급격한 확산, 고열 발생. (Class B
-                            Fire)</p>
-                    </div>
-                    <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        <strong style="color: #d32f2f;">Scenario B: 화물창 전기 화재</strong>
-                        <p style="font-size: 11px; margin-top: 5px; color: #666;">배터리 폭발 및 유독 가스 다량 발생. (Class C Fire)
-                        </p>
-                    </div>
-                    <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        <strong style="color: #d32f2f;">Scenario C: 거주구역 일반 화재</strong>
-                        <p style="font-size: 11px; margin-top: 5px; color: #666;">승조원 부주의, 복잡한 통로 내 연기 확산. (Class A
-                            Fire)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1565c0;">
-                <h3 style="color: #1565c0; margin-bottom: 10px; font-size: 16px;">🌊 복합 재난 시나리오 (Complex Scenarios)</h3>
-                <ul style="font-size: 12px; line-height: 1.6; color: #333;">
-                    <li><strong>침수 동반</strong>: 화재 진압수 및 파공으로 인한 선체 기울기(Listing) 발생 상황</li>
-                    <li><strong>다중 발화</strong>: 폭발로 인한 동시 다발적 화재 발생 및 대피로 차단</li>
-                    <li><strong>통신 두절</strong>: 메인 전원 상실로 인한 암흑 상황 및 선내 방송 불가</li>
-                </ul>
-            </div>
-
-            <div style="text-align: right; font-size: 11px; color: #888;">
-                * I-SEDSS는 위 10종 시나리오에 대한 <strong>디지털 SOP (Standard Operating Procedure)</strong>를 탑재하여 자동 대응합니다.
-            </div>
+        <div class="content-area" style="flex-direction: column; gap: 5px; padding-top: 2px;">
+            <table style="font-size: 13px; width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th
+                            style="padding: 6px; border: 1px solid #dee2e6; color: #495057; width: 60px; text-align: center;">
+                            No.</th>
+                        <th style="padding: 6px; border: 1px solid #dee2e6; color: #495057; width: 140px;">시나리오 구분
+                        </th>
+                        <th style="padding: 6px; border: 1px solid #dee2e6; color: #495057;">주요 내용 및 환경 변수</th>
+                        <th style="padding: 6px; border: 1px solid #dee2e6; color: #495057; width: 150px;">관련 근거</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #d32f2f;">
+                            S1</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">주간 공용구역 화재</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">식당, 라운지 등 다수 인원 밀집 구역 화재 (Day Case)</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr style="background: #fff5f5;">
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #d32f2f;">
+                            S2</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">야간 객실구역 화재</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">취침 시간대 복도 및 객실 내 화재 발생 (Night Case)</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">IMO MSC.1/Circ.1533</td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #d32f2f;">
+                            S3</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">기관실 대형 화재</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">메인 엔진 화재로 인한 비상 발전기 가동 및 정전 상황</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">SOLAS II-2 Reg. 10</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #1976d2;">
+                            S4</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">주간 선체 충돌/침수</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">타선 충돌로 인한 좌현 수밀 격벽 파손 및 침수 발생</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">IMO MSC.1/Circ.1533
+                        </td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #1976d2;">
+                            S5</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">야간 선체 충돌/침수</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">야간 항해 중 우현 충돌에 따른 구획별 순차적 침수</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">IMO MSC.1/Circ.1533
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #f57f17;">
+                            S6</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">선박 좌초 및 경사</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">암초 충돌로 인한 선체 하부 파손 및 급격한 경사(Heel)</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">SOLAS Ch.II-1</td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #555;">
+                            S7</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">태풍 및 악천후</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">강풍 및 파랑에 따른 비정상적 롤링 및 외부 갑판 통제</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">ISM Code SOP</td>
+                    </tr>
+                    <tr style="background: #fff5f5;">
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #d32f2f;">
+                            S8</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">주방/조리실 화재</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">조리 시 유류 화재 발생 및 덕트를 통한 타 구역 확산</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">SOLAS II-2 Reg. 9</td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding: 5px; border: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #388e3c;">
+                            S9</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; font-weight: bold;">대규모 유류 유출</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6;">연료 탱크 파손으로 인한 유출 및 유증기 폭발 위험</td>
+                        <td style="padding: 5px; border: 1px solid #dee2e6; color: #666;">MARPOL Annex I</td>
+                    </tr>
+                    <tr style="background: #212529; color: white;">
+                        <td style="padding: 5px; border: 1px solid #495057; text-align: center; font-weight: bold;">S10
+                        </td>
+                        <td style="padding: 5px; border: 1px solid #495057; font-weight: bold;">복합 재난 (최악 조건)</td>
+                        <td style="padding: 5px; border: 1px solid #495057;">충돌 후 화재 및 침수 동시 발생 (Complex Disaster)</td>
+                        <td style="padding: 5px; border: 1px solid #495057; color: #adb5bd;">IMO/SOLAS 통합</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 12</span></div>
     </div>
