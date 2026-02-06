@@ -2555,32 +2555,14 @@
             <h1>25. 데이터 Lifecycle 및 하이브리드 저장소 설계</h1>
             <span>Data Pipeline & Multi-modal Storage Architecture</span>
         </header>
-        <div class="content-area" style="gap: 15px;">
-            <div class="flex-col" style="flex: 0.8; gap: 10px;">
-                <div class="card" style="padding: 10px; border-left: 5px solid #1a237e;">
-                    <h3 style="font-size: 14px;">⛓️ 3단계 데이터 처리 파이프라인</h3>
-                    <ul style="font-size: 11px; line-height: 1.4;">
-                        <li><strong>Stage 1 (Edge)</strong>: LiDAR Voxel Filtering, NMEA Protocol 변환, 로컬 객체 추론 (YOLO)
-                        </li>
-                        <li><strong>Stage 2 (Sync)</strong>: 위성/LTE 대역폭 최적화(Delta Sync), 긴급 데이터 QoS 우선순위 할당</li>
-                        <li><strong>Stage 3 (Core)</strong>: 멀티모달 데이터 퓨전, 실증 선박 디지털 트윈 동기화, SOP 시나리오 엔진 연동</li>
-                    </ul>
-                </div>
-                <div class="card" style="padding: 10px; border-left: 5px solid #2e7d32;">
-                    <h3 style="font-size: 14px;">💾 하이브리드 저장소 역할 정의</h3>
-                    <ul style="font-size: 11px; line-height: 1.4;">
-                        <li><strong>Redis (Flash)</strong>: 실시간 인원 위치 추적, 선박 자세(Heading) 데이터, 긴급 알림 세션 관리</li>
-                        <li><strong>InfluxDB (Time-series)</strong>: 10~100Hz 센서 로우 데이터, 환경 변화 이력, 사고 상황 블랙박스 재생용</li>
-                        <li><strong>PostgreSQL (Relational)</strong>: 선체 BIM 메타데이터, 사용자 권한, 표준 행동 지침(SOP) 라이브러리</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="flex-col" style="flex: 1.2;">
+        <div class="content-area" style="gap: 15px; flex-direction: column;">
+            <div class="flex-col" style="flex: 1.5; min-height: 0;">
                 <div
                     style="background: #fff; border: 1px solid #1a237e; border-radius: 8px; flex: 1; padding: 10px; display: flex; flex-direction: column; justify-content: center;">
-                    <h4 style="font-size: 12px; text-align: center; color: #1a237e; margin-bottom: 10px;">Data Lifecycle
+                    <h4 style="font-size: 14px; text-align: center; color: #1a237e; margin-bottom: 15px;">Data Lifecycle
                         Flow Diagram</h4>
-                    <div class="mermaid" style="transform: scale(0.95); transform-origin: center;">
+                    <div class="mermaid"
+                        style="transform: scale(1); transform-origin: center; width: 100%; display: flex; justify-content: center;">
                         graph LR
                         S[Sensors] -->|Modbus| E(Edge Gateway)
                         E -->|Filter| AI{Edge AI}
@@ -2593,6 +2575,27 @@
                         style CLOUD fill:#f1f8e9,stroke:#2e7d32
                         style SYNC fill:#fff3e0,stroke:#e65100
                     </div>
+                </div>
+            </div>
+            <div class="flex-col" style="flex: 1; gap: 15px; flex-direction: row;">
+                <div class="card"
+                    style="padding: 15px; border-left: 5px solid #1a237e; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-size: 15px; margin-bottom: 8px;">⛓️ 3단계 데이터 처리 파이프라인</h3>
+                    <ul style="font-size: 12px; line-height: 1.5;">
+                        <li><strong>Stage 1 (Edge)</strong>: LiDAR Voxel Filtering, NMEA Protocol 변환, 로컬 객체 추론 (YOLO)
+                        </li>
+                        <li><strong>Stage 2 (Sync)</strong>: 위성/LTE 대역폭 최적화(Delta Sync), 긴급 데이터 QoS 우선순위 할당</li>
+                        <li><strong>Stage 3 (Core)</strong>: 멀티모달 데이터 퓨전, 실증 선박 디지털 트윈 동기화, SOP 시나리오 엔진 연동</li>
+                    </ul>
+                </div>
+                <div class="card"
+                    style="padding: 15px; border-left: 5px solid #2e7d32; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-size: 15px; margin-bottom: 8px;">💾 하이브리드 저장소 역할 정의</h3>
+                    <ul style="font-size: 12px; line-height: 1.5;">
+                        <li><strong>Redis (Flash)</strong>: 실시간 인원 위치 추적, 선박 자세(Heading) 데이터, 긴급 알림 세션 관리</li>
+                        <li><strong>InfluxDB (Time-series)</strong>: 10~100Hz 센서 로우 데이터, 환경 변화 이력, 사고 상황 블랙박스 재생용</li>
+                        <li><strong>PostgreSQL (Relational)</strong>: 선체 BIM 메타데이터, 사용자 권한, 표준 행동 지침(SOP) 라이브러리</li>
+                    </ul>
                 </div>
             </div>
         </div>
