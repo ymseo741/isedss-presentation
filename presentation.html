@@ -580,7 +580,7 @@
                         </div>
                         <span
                             style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">01
-                            - 12</span>
+                            - 11</span>
                     </div>
                     <div
                         style="display: flex; align-items: center; gap: 20px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 20px;">
@@ -592,8 +592,8 @@
                             </div>
                         </div>
                         <span
-                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">13
-                            - 22</span>
+                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">12
+                            - 21</span>
                     </div>
                 </div>
                 <!-- Right Column -->
@@ -608,8 +608,8 @@
                                 Security</div>
                         </div>
                         <span
-                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">23
-                            - 40</span>
+                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">22
+                            - 39</span>
                     </div>
                     <div
                         style="display: flex; align-items: center; gap: 20px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 20px;">
@@ -621,8 +621,8 @@
                                 Creation</div>
                         </div>
                         <span
-                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">41
-                            - 54</span>
+                            style="margin-left: auto; font-family: 'Courier New', monospace; font-weight: 700; color: #475569; font-size: 18px;">40
+                            - 53</span>
                     </div>
                 </div>
             </div>
@@ -1525,138 +1525,177 @@
         </div>
     </div>
 
-    <!-- Slide 11: I-SEDSS 핵심 가공 가치 사슬 (Value Chain) -->
+    <!-- Slide 11: Sensor & Edge Node Deployment (Moved Deployment) -->
     <div class="slide">
         <header>
-            <h1>11. I-SEDSS 핵심 가공 가치 사슬 (Value Chain)</h1>
-            <span>Seamless Integration: Sensing to Guidance</span>
+            <h1>11. 실증 선박(새동백호) 센서 및 엣지 노드 배치 안</h1>
+            <span>Infrastructure Deployment Strategy on Sae-Dongbaek</span>
         </header>
-        <div class="content-area" style="gap: 15px; padding-top: 10px;">
-            <div style="display: flex; width: 100%; gap: 10px; height: 100%;">
-                <!-- SENSING -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+        <div class="content-area" style="flex-direction: column; gap: 15px;">
+            <div style="display: flex; gap: 20px; flex: 1;">
+                <!-- Main Ship Perspective -->
+                <div
+                    style="flex: 1.5; background: #fff; border: 1px solid #eee; border-radius: 8px; position: relative; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                     <div
-                        style="background: #e3f2fd; border: 2px solid #1565c0; border-radius: 12px; padding: 15px; flex: 1; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 8px;">📡</div>
-                        <h4 style="color: #1565c0; font-size: 15px; margin-bottom: 8px;">Sensing</h4>
-                        <p style="font-size: 11px; color: #444; line-height: 1.4;">298개 복합 센서 노드<br>LiDAR + 열화상
-                            퓨전<br>실시간 환경 데이터 수집</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; color: #1565c0; font-size: 20px;">➔</div>
-                <!-- ANALYSIS -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                    <div
-                        style="background: #f1f8e9; border: 2px solid #2e7d32; border-radius: 12px; padding: 15px; flex: 1; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 8px;">🧠</div>
-                        <h4 style="color: #2e7d32; font-size: 15px; margin-bottom: 8px;">Analysis</h4>
-                        <p style="font-size: 11px; color: #444; line-height: 1.4;">Edge AI 상황 인지<br>XAI 의사결정 지원<br>동적 경로
-                            최적화 (A*)</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; color: #2e7d32; font-size: 20px;">➔</div>
-                <!-- NOTIFY -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                    <div
-                        style="background: #fff3e0; border: 2px solid #ef6c00; border-radius: 12px; padding: 15px; flex: 1; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 8px;">📲</div>
-                        <h4 style="color: #ef6c00; font-size: 15px; margin-bottom: 8px;">Notify</h4>
-                        <p style="font-size: 11px; color: #444; line-height: 1.4;">Starlink 위성 통신<br>5G/LTE
-                            하이브리드<br>Delta OTA 알고리즘 업데이트</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; color: #ef6c00; font-size: 20px;">➔</div>
-                <!-- GUIDANCE -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                    <div
-                        style="background: #fce4ec; border: 2px solid #c2185b; border-radius: 12px; padding: 15px; flex: 1; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 8px;">🔦</div>
-                        <h4 style="color: #c2185b; font-size: 15px; margin-bottom: 8px;">Guidance</h4>
-                        <p style="font-size: 11px; color: #444; line-height: 1.4;">지능형 LED 사이니지<br>승조원 전용 APP/HUD<br>실시간
-                            비주얼 가이드</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 10</span></div>
-    </div>
+                        style="position: absolute; top: 10px; left: 15px; font-size: 12px; font-weight: 900; color: #004a99; background: #e3f2fd; padding: 4px 10px; border-radius: 4px;">
+                        [Perspective View] 실증 선박 입체 구조</div>
+                    <img src="./media__1770217861339.png" style="width: 90%; height: auto; object-fit: contain;">
 
-    <!-- Slide 12: Explainable AI Logic -->
-    <div class="slide">
-        <header>
-            <h1>12. 설명 가능한 AI (XAI) 판단 로직</h1>
-            <span>Transparency in Critical Decision Making</span>
-        </header>
-        <div class="content-area" style="gap: 20px;">
-            <div class="flex-col" style="flex: 1.2;">
-                <div class="card" style="border-left: 5px solid #6366f1; padding: 20px; background: #f8fafc;">
-                    <h3 style="color: #4f46e5; margin-bottom: 15px;">"왜 이 대피로를 선택했는가?"</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div
-                            style="display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                            <div style="font-size: 18px;">🔥</div>
-                            <div style="flex:1;">
-                                <div style="font-size: 13px; font-weight: 700;">화재 확산 속도</div>
-                                <div style="height: 6px; background: #fee2e2; border-radius: 3px; margin-top: 5px;">
-                                    <div style="width: 85%; height: 100%; background: #f87171; border-radius: 3px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="font-size: 11px; font-weight: 900; color: #ef4444;">High</div>
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                            <div style="font-size: 18px;">💨</div>
-                            <div style="flex:1;">
-                                <div style="font-size: 13px; font-weight: 700;">연기/농연 밀도</div>
-                                <div style="height: 6px; background: #f3f4f6; border-radius: 3px; margin-top: 5px;">
-                                    <div style="width: 45%; height: 100%; background: #94a3b8; border-radius: 3px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="font-size: 11px; font-weight: 900; color: #64748b;">Mid</div>
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                            <div style="font-size: 18px;">👥</div>
-                            <div style="flex:1;">
-                                <div style="font-size: 13px; font-weight: 700;">대피 인원 병목도</div>
-                                <div style="height: 6px; background: #fef3c7; border-radius: 3px; margin-top: 5px;">
-                                    <div style="width: 25%; height: 100%; background: #fbbf24; border-radius: 3px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="font-size: 11px; font-weight: 900; color: #d97706;">Low</div>
-                        </div>
-                    </div>
+                    <!-- 정밀 보정된 센서 마커 (Perspective) -->
+                    <div title="Edge Node"
+                        style="position: absolute; top: 26%; left: 33%; width: 12px; height: 12px; background: #2196f3; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #2196f3; z-index: 10;">
+                    </div> <!-- 브릿지 -->
+                    <div title="LiDAR"
+                        style="position: absolute; top: 43%; left: 47%; width: 12px; height: 12px; background: #00bcd4; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #00bcd4; z-index: 10;">
+                    </div> <!-- 거주구역 센터 -->
+                    <div title="Thermal Fusion"
+                        style="position: absolute; top: 54%; left: 56%; width: 12px; height: 12px; background: #ff5252; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #ff5252; z-index: 10;">
+                    </div> <!-- 엔진 구역 -->
+                    <div title="Multi-Sensor"
+                        style="position: absolute; top: 66%; left: 68%; width: 12px; height: 12px; background: #ffeb3b; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #ffeb3b; z-index: 10;">
+                    </div> <!-- 선미 구역 -->
                 </div>
-                <div style="margin-top: 15px; font-size: 12px; color: #666; font-style: italic;">
-                    ※ 인공지능이 판단 근거를 시각적으로 제시함으로써 승조원의 현장 판단력을 보조하고 시스템 신뢰도를 극대화합니다.
+
+                <!-- Sensor Legend -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="card" style="padding: 12px; border-left: 5px solid #00bcd4; background: white;">
+                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
+                                style="width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; margin-right: 8px;"></span>3D
+                            LiDAR Sensor</h4>
+                        <p style="font-size: 10px; color: #666;">선실 통로 및 메인 하우징 입구 배치 (밀집도 분석)</p>
+                    </div>
+                    <div class="card" style="padding: 12px; border-left: 5px solid #ff5252; background: white;">
+                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
+                                style="width: 8px; height: 8px; background: #ff5252; border-radius: 50%; margin-right: 8px;"></span>Thermal
+                            & Optical Fusion</h4>
+                        <p style="font-size: 10px; color: #666;">기관실, 유류고 등 고위험 구역 집중 배치</p>
+                    </div>
+                    <div class="card" style="padding: 12px; border-left: 5px solid #ffeb3b; background: white;">
+                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
+                                style="width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; margin-right: 8px;"></span>Multi-Environmental
+                            Sensor</h4>
+                        <p style="font-size: 10px; color: #666;">선실 내부 GAS/연기/열 복합 감지 노드</p>
+                    </div>
+                    <div class="card" style="padding: 12px; border-left: 5px solid #2196f3; background: white;">
+                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
+                                style="width: 8px; height: 8px; background: #2196f3; border-radius: 50%; margin-right: 8px;"></span>Edge
+                            Intelligence Node</h4>
+                        <p style="font-size: 10px; color: #666;">구역별 데이터 통합 연산 및 최적 경로 계산</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex-col flex-1 card"
-                style="background: #1e293b; color: white; border: none; padding: 25px; justify-content: center;">
-                <h3 style="color: #38bdf8; text-align: center; margin-bottom: 20px;">Decision Scorecard</h3>
-                <div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden;">
-                    <div
-                        style="background: rgba(255,255,255,0.05); padding: 10px; font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        Target: 1번 우현 탈출구</div>
-                    <div style="padding: 20px; text-align: center;">
-                        <div style="font-size: 11px; opacity: 0.7;">Path Confidence</div>
-                        <div style="font-size: 42px; font-weight: 900; color: #38bdf8;">99.4%</div>
-                        <div
-                            style="margin-top: 10px; display: inline-block; padding: 4px 12px; border-radius: 20px; background: #065f46; color: #34d399; font-size: 11px; font-weight: 800;">
-                            VERIFIED BY XAI</div>
-                    </div>
-                </div>
+
+            <!-- Top View Map -->
+            <div
+                style="height: 140px; background: #fff; border: 1px solid #eee; border-radius: 8px; position: relative; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div
+                    style="position: absolute; top: 10px; left: 15px; font-size: 12px; font-weight: 900; color: #2e7d32; background: #f1f8e9; padding: 4px 10px; border-radius: 4px;">
+                    [Top View] 데크별 정밀 센서 배치도</div>
+                <img src="./media__1770217818320.png" style="width: 100%; height: 80%; object-fit: contain;">
+
+                <!-- 정밀 보정된 센서 마커 (Top View) -->
+                <div
+                    style="position: absolute; top: 50%; left: 60%; width: 8px; height: 8px; background: #2196f3; border-radius: 50%; box-shadow: 0 0 8px #2196f3;">
+                </div> <!-- 조타실 (Bridge - Front) -->
+                <div
+                    style="position: absolute; top: 52%; left: 50%; width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; box-shadow: 0 0 8px #00bcd4;">
+                </div> <!-- 거주구역 통로 (Living Quarter - Mid-Front) -->
+                <div
+                    style="position: absolute; top: 48%; left: 41%; width: 8px; height: 8px; background: #ff5252; border-radius: 50%; box-shadow: 0 0 8px #ff5252;">
+                </div> <!-- 엔진 구역 (Engine - Mid-Rear) -->
+                <div
+                    style="position: absolute; top: 55%; left: 34%; width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 8px #ffeb3b;">
+                </div> <!-- 선미 측 (Stern - Rear) -->
             </div>
         </div>
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 11</span></div>
     </div>
 
+    <!-- Slide 12: I-SEDSS 지능형 가치 사슬 및 XAI 판단 로직 (Merged) -->
+    <div class="slide">
+        <header>
+            <h1>12. I-SEDSS 지능형 가공 가치 사슬 및 XAI 판단 로직</h1>
+            <span>Seamless Integration & Transparency in Decision Making</span>
+        </header>
+        <div class="content-area" style="flex-direction: column; gap: 20px; padding-top: 10px;">
+            <div style="display: flex; width: 100%; gap: 10px;">
+                <!-- SENSING -->
+                <div
+                    style="flex: 1; background: #e3f2fd; border: 2px solid #1565c0; border-radius: 12px; padding: 10px; text-align: center;">
+                    <h4 style="color: #1565c0; font-size: 14px; margin-bottom: 5px;">1. Sensing</h4>
+                    <p style="font-size: 10px; color: #444; line-height: 1.3;">LiDAR + 열화상 퓨전<br>실시간 환경 수집</p>
+                </div>
+                <div style="display: flex; align-items: center; color: #1565c0;">➔</div>
+                <!-- ANALYSIS -->
+                <div
+                    style="flex: 1; background: #f1f8e9; border: 2px solid #2e7d32; border-radius: 12px; padding: 10px; text-align: center;">
+                    <h4 style="color: #2e7d32; font-size: 14px; margin-bottom: 5px;">2. Analysis</h4>
+                    <p style="font-size: 10px; color: #444; line-height: 1.3;">XAI 상황 인지<br>동적 경로 최적화</p>
+                </div>
+                <div style="display: flex; align-items: center; color: #2e7d32;">➔</div>
+                <!-- NOTIFY -->
+                <div
+                    style="flex: 1; background: #fff3e0; border: 2px solid #ef6c00; border-radius: 12px; padding: 10px; text-align: center;">
+                    <h4 style="color: #ef6c00; font-size: 14px; margin-bottom: 5px;">3. Notify</h4>
+                    <p style="font-size: 10px; color: #444; line-height: 1.3;">Starlink 위성 통신<br>실시간 전파</p>
+                </div>
+                <div style="display: flex; align-items: center; color: #ef6c00;">➔</div>
+                <!-- GUIDANCE -->
+                <div
+                    style="flex: 1; background: #fce4ec; border: 2px solid #c2185b; border-radius: 12px; padding: 10px; text-align: center;">
+                    <h4 style="color: #c2185b; font-size: 14px; margin-bottom: 5px;">4. Guidance</h4>
+                    <p style="font-size: 10px; color: #444; line-height: 1.3;">지능형 LED 사이니지<br>모바일 HUD 유도</p>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px; flex: 1;">
+                <div class="card"
+                    style="flex: 1.2; border-left: 5px solid #6366f1; background: #f8fafc; padding: 15px;">
+                    <h3 style="color: #4f46e5; font-size: 16px; margin-bottom: 10px;">"왜 이 대피로를 선택했는가?" (XAI Logic)</h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 10px; background: white; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <div style="font-size: 14px;">🔥</div>
+                            <div style="flex:1;">
+                                <div style="font-size: 11px; font-weight: 700;">화재 확산 속도 (High)</div>
+                                <div style="height: 4px; background: #fee2e2; border-radius: 2px; margin-top: 3px;">
+                                    <div style="width: 85%; height: 100%; background: #f87171; border-radius: 2px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 10px; background: white; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <div style="font-size: 14px;">💨</div>
+                            <div style="flex:1;">
+                                <div style="font-size: 11px; font-weight: 700;">농연 밀도 (Mid)</div>
+                                <div style="height: 4px; background: #f3f4f6; border-radius: 2px; margin-top: 3px;">
+                                    <div style="width: 45%; height: 100%; background: #94a3b8; border-radius: 2px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card"
+                    style="flex: 1; background: #1e293b; color: white; padding: 15px; text-align: center;">
+                    <h3 style="color: #38bdf8; font-size: 14px; margin-bottom: 10px;">Decision Scorecard</h3>
+                    <div style="padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+                        <div style="font-size: 10px; opacity: 0.7;">Path Confidence</div>
+                        <div style="font-size: 32px; font-weight: 900; color: #38bdf8;">99.4%</div>
+                        <div
+                            style="margin-top: 5px; display: inline-block; padding: 2px 10px; border-radius: 10px; background: #065f46; color: #34d399; font-size: 10px;">
+                            VERIFIED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 12</span></div>
+    </div>
 
 
-    <!-- Slide 14: Consortium Organization -->
+
+    <!-- Slide 12: Consortium Organization -->
     <div class="slide">
         <header>
             <h1>13. 기관별 추진 체계 및 컨소시엄 구성</h1>
@@ -1714,7 +1753,7 @@
         <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 13</span></div>
     </div>
 
-    <!-- Slide 15: Lead Org (ODN) -->
+    <!-- Slide 13: Lead Org (ODN) -->
     <div class="slide">
         <header>
             <h1>14. 주관기관 소개: (주)오든 (ODN)</h1>
@@ -1947,26 +1986,12 @@
             <h1>18. Synthetic Data & AI Training Pipeline</h1>
             <span>High-Fidelity AI Training via FDS & Digital Twin Simulation</span>
         </header>
-        <div class="content-area" style="gap: 20px;">
-            <div class="flex-col flex-1" style="gap: 12px;">
-                <div class="card" style="border-left: 5px solid #004a99; background: #f0f7ff;">
-                    <h3 style="font-size: 15px; color: #004a99;">🧪 FDS 기반 화재 시뮬레이션 연동</h3>
-                    <p style="font-size: 12px; color:#333; line-height: 1.5;">실제 선박 화재 데이터의 희소성을 극복하기 위해 <strong>NIST
-                            FDS(Fire Dynamics Simulator)</strong> 데이터를 디지털 트윈상에 투영, 수만 가지 변수(풍향, 유류종류, 인파 등)를 반영한 학습
-                        데이터셋 자동 생성</p>
-                </div>
-                <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9;">
-                    <h3 style="font-size: 15px; color: #2e7d32;">🔄 Edge-Case 자동 생성 루프</h3>
-                    <p style="font-size: 12px; color:#333; line-height: 1.5;">야간, 농연, 센서 고정 등 실생활에서 수집하기 어려운
-                        <strong>Edge-Case</strong>를 가상 환경에서 무한 생성하여 AI 모델의 강건성(Robustness) 및 예외 상황 대응력 극대화
-                    </p>
-                </div>
-            </div>
-            <div class="flex-col flex-1"
-                style="background: #fff; border: 1px solid #ddd; border-top: 4px solid #004a99; border-radius: 8px; padding: 15px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="content-area" style="flex-direction: column; gap: 20px;">
+            <div class="flex-col"
+                style="flex: 1.5; background: #fff; border: 1px solid #ddd; border-top: 4px solid #004a99; border-radius: 8px; padding: 15px; display: flex; flex-direction: column; justify-content: center;">
                 <h3 style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #004a99;">
                     Learning-to-Deployment Cycle</h3>
-                <div class="mermaid" style="width: 100%; max-height: 300px;">
+                <div class="mermaid" style="width: 100%; display: flex; justify-content: center;">
                     graph LR
                     S[FDS Simulation] --> D[Synthetic Data Generation]
                     D --> T[AI Model Training]
@@ -1978,6 +2003,20 @@
                 </div>
                 <div style="margin-top: 15px; font-size: 11px; color: #666; text-align: center; font-style: italic;">
                     * 10,000+ 시나리오 기반 학습으로 탐지 정확도 99.9% 달성 기반 마련
+                </div>
+            </div>
+            <div class="flex-col" style="flex: 1; flex-direction: row; gap: 20px;">
+                <div class="card" style="flex: 1; border-left: 5px solid #004a99; background: #f0f7ff;">
+                    <h3 style="font-size: 15px; color: #004a99;">🧪 FDS 기반 화재 시뮬레이션 연동</h3>
+                    <p style="font-size: 12px; color:#333; line-height: 1.5;">실제 선박 화재 데이터의 희소성을 극복하기 위해 <strong>NIST
+                            FDS(Fire Dynamics Simulator)</strong> 데이터를 디지털 트윈상에 투영, 수만 가지 변수(풍향, 유류종류, 인파 등)를 반영한 학습
+                        데이터셋 자동 생성</p>
+                </div>
+                <div class="card" style="flex: 1; border-left: 5px solid #2e7d32; background: #f1f8e9;">
+                    <h3 style="font-size: 15px; color: #2e7d32;">🔄 Edge-Case 자동 생성 루프</h3>
+                    <p style="font-size: 12px; color:#333; line-height: 1.5;">야간, 농연, 센서 고정 등 실생활에서 수집하기 어려운
+                        <strong>Edge-Case</strong>를 가상 환경에서 무한 생성하여 AI 모델의 강건성(Robustness) 및 예외 상황 대응력 극대화
+                    </p>
                 </div>
             </div>
         </div>
@@ -2426,7 +2465,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 21</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 23</span></div>
     </div>
 
     <!-- Slide 28: Global Vision & Scalability -->
@@ -2477,7 +2516,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 22</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 24</span></div>
     </div>
 
     <!-- Slide 12: Core Strategic Technologies (Algorithm 1) -->
@@ -2521,14 +2560,14 @@
                 </ul>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 23</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25</span></div>
     </div>
 
     <!-- Slide 13: AI Fire Detection (Algorithm 2) -->
 
     <div class="slide">
         <header>
-            <h1>26. AI 화재 감지 및 센서 퓨전 기술</h1>
+            <h1>27. AI 화재 감지 및 센서 퓨전 기술</h1>
             <span>Advanced Deep Learning & Decision Model</span>
         </header>
         <div class="content-area">
@@ -2559,14 +2598,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 24</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 26</span></div>
     </div>
 
     <!-- Slide 14: LiDAR Density Analysis (Algorithm 3) -->
 
     <div class="slide">
         <header>
-            <h1>27. LiDAR 기반 실시간 밀집도 및 인원 분석</h1>
+            <h1>28. LiDAR 기반 실시간 밀집도 및 인원 분석</h1>
             <span>Point Cloud Processing & Dynamic Flow Control</span>
         </header>
         <div class="content-area">
@@ -2597,14 +2636,14 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 25</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 27</span></div>
     </div>
 
     <!-- Slide 15: Equipment Specification Table (Hardware 1) -->
 
     <div class="slide">
         <header>
-            <h1>28. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
+            <h1>29. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
             <span>Explainable AI (XAI) for Transparent Decision Support</span>
         </header>
         <div class="content-area" style="gap: 20px;">
@@ -2714,95 +2753,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 26</span></div>
+        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 28</span></div>
     </div>
 
-    <!-- Slide 08-5: O&M Digital Loop & Sustainability -->
 
-    <div class="slide">
-        <header>
-            <h1>29. 실증 선박(새동백호) 센서 및 엣지 노드 배치 안</h1>
-            <span>Infrastructure Deployment Strategy on Sae-Dongbaek</span>
-        </header>
-        <div class="content-area" style="flex-direction: column; gap: 15px;">
-            <div style="display: flex; gap: 20px; flex: 1;">
-                <!-- Main Ship Perspective -->
-                <div
-                    style="flex: 1.5; background: #fff; border: 1px solid #eee; border-radius: 8px; position: relative; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <div
-                        style="position: absolute; top: 10px; left: 15px; font-size: 12px; font-weight: 900; color: #004a99; background: #e3f2fd; padding: 4px 10px; border-radius: 4px;">
-                        [Perspective View] 실증 선박 입체 구조</div>
-                    <img src="./media__1770217861339.png" style="width: 90%; height: auto; object-fit: contain;">
-
-                    <!-- 정밀 보정된 센서 마커 (Perspective) -->
-                    <div title="Edge Node"
-                        style="position: absolute; top: 26%; left: 33%; width: 12px; height: 12px; background: #2196f3; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #2196f3; z-index: 10;">
-                    </div> <!-- 브릿지 -->
-                    <div title="LiDAR"
-                        style="position: absolute; top: 43%; left: 47%; width: 12px; height: 12px; background: #00bcd4; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #00bcd4; z-index: 10;">
-                    </div> <!-- 거주구역 센터 -->
-                    <div title="Thermal Fusion"
-                        style="position: absolute; top: 54%; left: 56%; width: 12px; height: 12px; background: #ff5252; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #ff5252; z-index: 10;">
-                    </div> <!-- 엔진 구역 -->
-                    <div title="Multi-Sensor"
-                        style="position: absolute; top: 66%; left: 68%; width: 12px; height: 12px; background: #ffeb3b; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 15px #ffeb3b; z-index: 10;">
-                    </div> <!-- 선미 구역 -->
-                </div>
-
-                <!-- Sensor Legend -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                    <div class="card" style="padding: 12px; border-left: 5px solid #00bcd4; background: white;">
-                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
-                                style="width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; margin-right: 8px;"></span>3D
-                            LiDAR Sensor</h4>
-                        <p style="font-size: 10px; color: #666;">선실 통로 및 메인 하우징 입구 배치 (밀집도 분석)</p>
-                    </div>
-                    <div class="card" style="padding: 12px; border-left: 5px solid #ff5252; background: white;">
-                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
-                                style="width: 8px; height: 8px; background: #ff5252; border-radius: 50%; margin-right: 8px;"></span>Thermal
-                            & Optical Fusion</h4>
-                        <p style="font-size: 10px; color: #666;">기관실, 유류고 등 고위험 구역 집중 배치</p>
-                    </div>
-                    <div class="card" style="padding: 12px; border-left: 5px solid #ffeb3b; background: white;">
-                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
-                                style="width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; margin-right: 8px;"></span>Multi-Environmental
-                            Sensor</h4>
-                        <p style="font-size: 10px; color: #666;">선실 내부 GAS/연기/열 복합 감지 노드</p>
-                    </div>
-                    <div class="card" style="padding: 12px; border-left: 5px solid #2196f3; background: white;">
-                        <h4 style="font-size: 13px; margin-bottom: 4px; display: flex; align-items: center;"><span
-                                style="width: 8px; height: 8px; background: #2196f3; border-radius: 50%; margin-right: 8px;"></span>Edge
-                            Intelligence Node</h4>
-                        <p style="font-size: 10px; color: #666;">구역별 데이터 통합 연산 및 최적 경로 계산</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Top View Map -->
-            <div
-                style="height: 140px; background: #fff; border: 1px solid #eee; border-radius: 8px; position: relative; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <div
-                    style="position: absolute; top: 10px; left: 15px; font-size: 12px; font-weight: 900; color: #2e7d32; background: #f1f8e9; padding: 4px 10px; border-radius: 4px;">
-                    [Top View] 데크별 정밀 센서 배치도</div>
-                <img src="./media__1770217818320.png" style="width: 100%; height: 80%; object-fit: contain;">
-
-                <!-- 정밀 보정된 센서 마커 (Top View) -->
-                <div
-                    style="position: absolute; top: 50%; left: 60%; width: 8px; height: 8px; background: #2196f3; border-radius: 50%; box-shadow: 0 0 8px #2196f3;">
-                </div> <!-- 조타실 (Bridge - Front) -->
-                <div
-                    style="position: absolute; top: 52%; left: 50%; width: 8px; height: 8px; background: #00bcd4; border-radius: 50%; box-shadow: 0 0 8px #00bcd4;">
-                </div> <!-- 거주구역 통로 (Living Quarter - Mid-Front) -->
-                <div
-                    style="position: absolute; top: 48%; left: 41%; width: 8px; height: 8px; background: #ff5252; border-radius: 50%; box-shadow: 0 0 8px #ff5252;">
-                </div> <!-- 엔진 구역 (Engine - Mid-Rear) -->
-                <div
-                    style="position: absolute; top: 55%; left: 34%; width: 8px; height: 8px; background: #ffeb3b; border-radius: 50%; box-shadow: 0 0 8px #ffeb3b;">
-                </div> <!-- 선미 측 (Stern - Rear) -->
-            </div>
-        </div>
-        <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 27</span></div>
-    </div>
 
     <!-- Slide 18-1: Hardware Technical Specifications -->
 
@@ -3210,7 +3164,7 @@
                     <h3>🌐 외관 3D 모델링 & 디지털 트윈 (신규)</h3>
                     <ul>
                         <li><strong>드론 기반 포토그래메트리</strong>: 선체 외관 고정밀 3D 메시 생성</li>
-                        <li><strong>Unity/Unreal 통합</strong>: 실시간 렌더링 가능한 디지털 트윈 에셋</li>
+                        <li><strong>실시간 데이터 기반 통합</strong>: 실시간 렌더링 가능한 디지털 트윈 에셋</li>
                         <li><strong>LOD (Level of Detail)</strong>: 원거리~근거리 다단계 모델 제공</li>
                         <li><strong>실시간 동기화</strong>: 센서 데이터 기반 가상 선박 상태 미러링</li>
                     </ul>
@@ -4593,7 +4547,7 @@
                                 시간
                                 <strong>3초 이내</strong>
                             </td>
-                            <td style="padding: 4px; border: 1px solid #e2e8f0;">Unity/Unreal 디지털 트윈, FDS 연동 화재 확산 모델
+                            <td style="padding: 4px; border: 1px solid #e2e8f0;">실시간 데이터 기반 디지털 트윈, FDS 연동 화재 확산 모델
                             </td>
                         </tr>
                         <tr>
