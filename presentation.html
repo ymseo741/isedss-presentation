@@ -2562,7 +2562,7 @@
                     <h4 style="font-size: 14px; text-align: center; color: #1a237e; margin-bottom: 15px;">Data Lifecycle
                         Flow Diagram</h4>
                     <div class="mermaid"
-                        style="transform: scale(1); transform-origin: center; width: 100%; display: flex; justify-content: center;">
+                        style="transform: scale(0.9); transform-origin: center; width: 100%; display: flex; justify-content: center;">
                         graph LR
                         S[Sensors] -->|Modbus| E(Edge Gateway)
                         E -->|Filter| AI{Edge AI}
@@ -4368,27 +4368,13 @@
                 <h1>50. 글로벌 OTA 및 원격 운영 체계</h1>
                 <span>Worldwide Fleet Management & Seamless AI Updates via Starlink</span>
             </header>
-            <div class="content-area" style="gap: 20px;">
-                <div class="flex-col flex-1" style="gap: 15px;">
-                    <div class="card" style="border-left: 5px solid #1565c0; background: #f1f8ff;">
-                        <h3 style="color: #1565c0;">📲 Delta Binary OTA Update</h3>
-                        <p style="font-size: 13px; color:#333; line-height: 1.5;">Starlink 위성 통신의 제한적인 대역폭을 고려하여, 변경된
-                            바이너리만
-                            전송하는 <strong>Delta 업데이트</strong> 기술 적용. 전 세계 어디서나 실시간 알고리즘 고도화 가능</p>
-                    </div>
-                    <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9;">
-                        <h3 style="color: #2e7d32;">📊 Remote Telemetry & Health Check</h3>
-                        <p style="font-size: 13px; color:#333; line-height: 1.5;">선내 모든 센서와 AI 모델의 추론 정확도를 24시간 모니터링하여,
-                            성능
-                            저하(Drift) 발생 시 즉시 원격 교정 및 리소스 최적화 수행</p>
-                    </div>
-                </div>
+            <div class="content-area" style="gap: 20px; flex-direction: column;">
                 <div class="flex-col flex-1"
-                    style="background: #f0f7ff; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; color: #333;">
+                    style="background: #f0f7ff; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; color: #333; min-height: 0;">
                     <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #1565c0;">Global Fleet
                         Ops
                         Architecture</h3>
-                    <div class="mermaid" style="width: 100%;">
+                    <div class="mermaid" style="width: 100%; display: flex; justify-content: center;">
                         graph LR
                         Shore[Shore Ops Center] -->|Starlink Delta| Ship1[Vessel A: Edge]
                         Shore -->|Starlink Delta| Ship2[Vessel B: Edge]
@@ -4397,6 +4383,20 @@
                         style Shore fill:#fff,stroke:#1565c0
                         style Ship1 fill:#fff,stroke:#1565c0
                         style Ship2 fill:#fff,stroke:#1565c0
+                    </div>
+                </div>
+                <div class="flex-col flex-1" style="gap: 15px; flex-direction: row; align-items: stretch;">
+                    <div class="card" style="border-left: 5px solid #1565c0; background: #f1f8ff; flex: 1;">
+                        <h3 style="color: #1565c0;">📲 Delta Binary OTA Update</h3>
+                        <p style="font-size: 12px; color:#333; line-height: 1.5;">Starlink 위성 통신 제한 대역폭 고려, 변경
+                            <strong>바이너리(Delta)</strong>만 전송하여 실시간 알고리즘 고도화
+                        </p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9; flex: 1;">
+                        <h3 style="color: #2e7d32;">📊 Remote Telemetry & Health Check</h3>
+                        <p style="font-size: 12px; color:#333; line-height: 1.5;">24시간 센서/AI 모델 정밀 모니터링, 성능 저하(Drift) 시
+                            <strong>원격 교정</strong> 및 리소스 최적화 즉시 수행
+                        </p>
                     </div>
                 </div>
             </div>
