@@ -4410,28 +4410,13 @@
                 <h1>51. 운영 및 유지보수(O&M) 디지털 루프 및 지속 가능성</h1>
                 <span>O&M Digital Loop & AI Continuous Learning Lifecycle</span>
             </header>
-            <div class="content-area" style="gap: 20px;">
-                <div class="flex-col flex-1" style="gap: 15px;">
-                    <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9;">
-                        <h3 style="color: #2e7d32;">🔄 데이터 선순환 (Continuous Learning)</h3>
-                        <p style="font-size: 13px; color:#333; line-height: 1.5;">실제 운항 중 발생하는 미세한 징후(Drift) 데이터를 수집하여
-                            클라우드에서 AI
-                            모델을 재학습시키고, 다시 배포하는 <strong>MLOps 루프</strong> 완성</p>
-                    </div>
-                    <div class="card" style="border-left: 5px solid #ef6c00; background: #fff3e0;">
-                        <h3 style="color: #ef6c00;">🛠️ 선제적 유지보수 (Predictive Maintenance)</h3>
-                        <p style="font-size: 13px; color:#333; line-height: 1.5;">센서의 수명 및 정밀도 변화를 실시간 모니터링하여, 고장 발생 전
-                            부품 교체
-                            시점을
-                            알람으로 제공하는 <strong>PdM 시스템</strong> 통합</p>
-                    </div>
-                </div>
+            <div class="content-area" style="gap: 20px; flex-direction: column;">
                 <div class="flex-col flex-1"
-                    style="background: #f0f7ff; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; color: #333;">
+                    style="background: #f0f7ff; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; color: #333; min-height: 0;">
                     <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #1565c0;">O&M Lifecycle
                         Loop
                     </h3>
-                    <div class="mermaid" style="width: 100%;">
+                    <div class="mermaid" style="width: 100%; display: flex; justify-content: center;">
                         graph LR
                         Collect[Sea Trial Data] --> Analyze[Anomaly Detection]
                         Analyze --> Refine[Model Refinement]
@@ -4444,6 +4429,21 @@
                         방지 및
                         상시
                         최신 상태 유지</div>
+                </div>
+                <div class="flex-col flex-1" style="gap: 15px; flex-direction: row; align-items: stretch;">
+                    <div class="card" style="border-left: 5px solid #2e7d32; background: #f1f8e9; flex: 1;">
+                        <h3 style="color: #2e7d32;">🔄 데이터 선순환 (Continuous Learning)</h3>
+                        <p style="font-size: 12px; color:#333; line-height: 1.5;">실제 운항 중 발생하는 미세한 징후(Drift) 데이터를 수집하여
+                            클라우드에서 AI
+                            모델을 재학습시키고, 다시 배포하는 <strong>MLOps 루프</strong> 완성</p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #ef6c00; background: #fff3e0; flex: 1;">
+                        <h3 style="color: #ef6c00;">🛠️ 선제적 유지보수 (Predictive Maintenance)</h3>
+                        <p style="font-size: 12px; color:#333; line-height: 1.5;">센서의 수명 및 정밀도 변화를 실시간 모니터링하여, 고장 발생 전
+                            부품 교체
+                            시점을
+                            알람으로 제공하는 <strong>PdM 시스템</strong> 통합</p>
+                    </div>
                 </div>
             </div>
             <div class="footer"><span>I-SEDSS Business Proposal</span><span>Page 50</span></div>
