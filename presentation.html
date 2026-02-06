@@ -549,8 +549,8 @@
 
     <div class="slide title-slide">
         <div class="hero">
-            <h1>지능형 선박 화재 안전 지원 시스템<br>사업계획서</h1>
-            <h2>통합 연결성 및 아키텍처 구성도</h2>
+            <h1>지능형 선박 화재 안전 지원 시스템</h1>
+            <h2>2026년도 지역맞춤형 재난안전 문제해결 기술개발 지원(2단계)</h2>
             <div class="orgs">
                 주관 : (주)오든 &nbsp; 공동 : (주)한빛안전기술단 · (사)해양수산과학기술연구조합 · 전남대학교 · (재)한국건설생활환경시험연구원<br>
             </div>
@@ -561,7 +561,7 @@
 
     <div class="slide">
         <header>
-            <h1>ToC</h1>
+            <h1>목차</h1>
             <span>Presentation Index & Business Roadmap Overview</span>
         </header>
         <div class="content-area"
@@ -2087,14 +2087,14 @@
             </div>
             <div class="flex-col" style="flex: 1; flex-direction: row; gap: 20px;">
                 <div class="card" style="flex: 1; border-left: 5px solid #004a99; background: #f0f7ff;">
-                    <h3 style="font-size: 15px; color: #004a99;">🧪 FDS 기반 화재 시뮬레이션 연동</h3>
-                    <p style="font-size: 12px; color:#333; line-height: 1.5;">실제 선박 화재 데이터의 희소성을 극복하기 위해 <strong>NIST
+                    <h3 style="font-size: 16px; color: #004a99;">🧪 FDS 기반 화재 시뮬레이션 연동</h3>
+                    <p style="font-size: 14px; color:#333; line-height: 1.5;">실제 선박 화재 데이터의 희소성을 극복하기 위해 <strong>NIST
                             FDS(Fire Dynamics Simulator)</strong> 데이터를 디지털 트윈상에 투영, 수만 가지 변수(풍향, 유류종류, 인파 등)를 반영한 학습
                         데이터셋 자동 생성</p>
                 </div>
                 <div class="card" style="flex: 1; border-left: 5px solid #2e7d32; background: #f1f8e9;">
-                    <h3 style="font-size: 15px; color: #2e7d32;">🔄 Edge-Case 자동 생성 루프</h3>
-                    <p style="font-size: 12px; color:#333; line-height: 1.5;">야간, 농연, 센서 고정 등 실생활에서 수집하기 어려운
+                    <h3 style="font-size: 16px; color: #2e7d32;">🔄 Edge-Case 자동 생성 루프</h3>
+                    <p style="font-size: 14px; color:#333; line-height: 1.5;">야간, 농연, 센서 고정 등 실생활에서 수집하기 어려운
                         <strong>Edge-Case</strong>를 가상 환경에서 무한 생성하여 AI 모델의 강건성(Robustness) 및 예외 상황 대응력 극대화
                     </p>
                 </div>
@@ -2562,7 +2562,8 @@
                     <h4 style="font-size: 14px; text-align: center; color: #1a237e; margin-bottom: 15px;">Data Lifecycle
                         Flow Diagram</h4>
                     <div class="mermaid"
-                        style="transform: scale(0.8); transform-origin: center; width: 100%; display: flex; justify-content: center;">
+                        style="transform: scale(0.7); transform-origin: top center; margin: 0 auto; display: flex; justify-content: center;">
+                        %%{init: {'themeVariables': { 'fontSize': '8px'}}}%%
                         graph LR
                         S[Sensors] -->|Modbus| E(Edge Gateway)
                         E -->|Filter| AI{Edge AI}
@@ -2729,22 +2730,10 @@
             <h1>30. 설명 가능한 AI (XAI) 및 판단 신뢰성 검증</h1>
             <span>Explainable AI (XAI) for Transparent Decision Support</span>
         </header>
-        <div class="content-area" style="gap: 20px;">
-            <div class="flex-col flex-1" style="gap: 15px;">
-                <div class="card" style="border-left: 5px solid #d32f2f; background: #fff5f5;">
-                    <h3 style="color: #d32f2f;">🧠 "왜 이 대피로인가?" - 추론 근거 제시</h3>
-                    <p style="font-size: 13px; color:#333; line-height: 1.5;">사용자(승조원)가 AI의 판단을 신뢰할 수 있도록 <strong>SHAP /
-                            LIME</strong> 기법을 활용하여 경로 선정에 기여한 핵심 변수(화재 확산 속도, 인파 밀집도, 선체 경사)를 시각적으로 해설</p>
-                </div>
-                <div class="card" style="border-left: 5px solid #1976d2; background: #e3f2fd;">
-                    <h3 style="color: #1976d2;">📝 Blackbox Logging & Accountability</h3>
-                    <p style="font-size: 13px; color:#333; line-height: 1.5;">사고 후 법적 분석 및 책임 소재 규명을 위해 AI의 매 순간 판단 로그를
-                        <strong>VDR(Voyage Data Recorder)</strong>급 보안 프로토콜로 저장하여 추적성(Traceability) 확보
-                    </p>
-                </div>
-            </div>
-            <div class="flex-col flex-1"
-                style="background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="content-area" style="flex-direction: column; gap: 20px;">
+            <!-- Right Visual Moved to Top -->
+            <div class="flex-col"
+                style="flex: 1.5; background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center;">
                 <h3 style="font-size: 16px; margin-bottom: 20px; text-align: center; color: #d32f2f;">XAI Process: From
                     Black Box to Glass Box</h3>
 
@@ -2833,6 +2822,21 @@
                             <div style="font-size: 9px; color: #555;">Confidence: 99.2%</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Left Cards Moved to Bottom -->
+            <div class="flex-col" style="flex: 1; flex-direction: row; gap: 20px;">
+                <div class="card" style="flex: 1; border-left: 5px solid #d32f2f; background: #fff5f5;">
+                    <h3 style="color: #d32f2f;">🧠 "왜 이 대피로인가?" - 추론 근거 제시</h3>
+                    <p style="font-size: 13px; color:#333; line-height: 1.5;">사용자(승조원)가 AI의 판단을 신뢰할 수 있도록 <strong>SHAP /
+                            LIME</strong> 기법을 활용하여 경로 선정에 기여한 핵심 변수(화재 확산 속도, 인파 밀집도, 선체 경사)를 시각적으로 해설</p>
+                </div>
+                <div class="card" style="flex: 1; border-left: 5px solid #1976d2; background: #e3f2fd;">
+                    <h3 style="color: #1976d2;">📝 Blackbox Logging & Accountability</h3>
+                    <p style="font-size: 13px; color:#333; line-height: 1.5;">사고 후 법적 분석 및 책임 소재 규명을 위해 AI의 매 순간 판단 로그를
+                        <strong>VDR(Voyage Data Recorder)</strong>급 보안 프로토콜로 저장하여 추적성(Traceability) 확보
+                    </p>
                 </div>
             </div>
         </div>
@@ -3372,7 +3376,9 @@
             <div class="flex-col"
                 style="flex: 1.5; background: #fafafa; border: 1px solid #ddd; border-radius: 8px; padding: 15px; justify-content: center; min-height: 0;">
                 <h3 style="font-size: 16px; margin-bottom: 15px; text-align: center;">📋 지능형 디지털 SOP 통합 관리 서비스 로직</h3>
-                <div class="mermaid" style="width: 100%; display: flex; justify-content: center;">
+                <div class="mermaid"
+                    style="width: 100%; display: flex; justify-content: center; transform: scaleX(1.2); transform-origin: center;">
+                    %%{init: {'themeVariables': { 'fontSize': '8px'}}}%%
                     graph LR
                     S[사고 인지<br />Sensor Fusion] --> A{AI 분석 / 판단}
                     A -->|화재| F[연기 확산 예측<br />경로 생성]
