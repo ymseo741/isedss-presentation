@@ -5037,7 +5037,8 @@
                 const options = {
                     backgroundColor: '#ffffff',
                     style: { transform: 'none' },
-                    pixelRatio: 2 // High resolution for PPT
+                    pixelRatio: 3, // Increased for PNG
+                    cacheBust: true
                 };
 
                 const promise = (type === 'png')
@@ -5103,7 +5104,8 @@
 
                     const dataUrl = await htmlToImage.toPng(slideElement, {
                         pixelRatio: 2,
-                        backgroundColor: isTransparent ? '#ffffff' : style.backgroundColor
+                        backgroundColor: isTransparent ? '#ffffff' : style.backgroundColor,
+                        cacheBust: true
                     });
                     slide.addImage({ data: dataUrl, x: 0, y: 0, w: '100%', h: '100%' });
                 } catch (e) {
@@ -5248,10 +5250,33 @@
 
             async function getImageDataUrl(imgEl) {
                 if (imgEl.src.startsWith('data:')) return imgEl.src;
+
+                // Ensure image is fully loaded
+                if (!imgEl.complete || imgEl.naturalWidth === 0) {
+                    await new Promise(resolve => {
+                        imgEl.onload = resolve;
+                        imgEl.onerror = resolve;
+                    });
+                }
+
+                // Try canvas first (Internal origin/Server should support this)
                 try {
-                    return await htmlToImage.toPng(imgEl);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = imgEl.naturalWidth || imgEl.width;
+                    canvas.height = imgEl.naturalHeight || imgEl.height;
+                    const ctx = canvas.getContext('2d');
+                    // Add crossOrigin only if needed
+                    if (imgEl.src.startsWith('http')) imgEl.crossOrigin = 'anonymous';
+                    ctx.drawImage(imgEl, 0, 0);
+                    return canvas.toDataURL('image/png');
                 } catch (e) {
-                    return imgEl.src;
+                    console.warn('Canvas export failed, falling back to htmlToImage', e);
+                    try {
+                        return await htmlToImage.toPng(imgEl, { cacheBust: true });
+                    } catch (err) {
+                        // Final fallback to original src
+                        return imgEl.src;
+                    }
                 }
             }
 
