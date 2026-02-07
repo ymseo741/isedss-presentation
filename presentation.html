@@ -9,6 +9,8 @@
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS@3.12.0/dist/pptxgen.bundle.js"></script>
     <style>
         @font-face {
             font-family: 'S-CoreDream-5Medium';
@@ -542,10 +544,98 @@
             height: auto !important;
             object-fit: contain;
         }
+
+        .bulk-download-bar {
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .download-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding: 0;
+            user-select: none;
+        }
+
+        .download-btn {
+            border: none;
+            color: #fff;
+            background: #607d8b;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 800;
+            transition: all 0.2s;
+            opacity: 0.7;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn.png {
+            background: #2e7d32;
+        }
+
+        .download-btn.pptx-high {
+            background: #3f51b5;
+        }
+
+        .download-btn.pptx {
+            background: #d35400;
+        }
+
+        .download-btn:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide-wrapper {
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        @media print {
+
+            .bulk-download-bar,
+            .download-group,
+            .download-btn {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            .slide-wrapper {
+                margin: 0 !important;
+                page-break-after: always;
+            }
+        }
+
+        .title-slide .download-btn {
+            padding: 8px 15px;
+            font-size: 13px;
+        }
     </style>
 </head>
 
 <body>
+
+    <div class="bulk-download-bar">
+        <div style="font-weight: 800; color: #1e293b; margin-right: auto;">전체 슬라이드 일괄 다운로드</div>
+        <button class="download-btn pptx-high" onclick="downloadAllSlidesAsPPTX('snapshot')">Full PPTX (Image
+            Snapshot)</button>
+        <button class="download-btn pptx" onclick="downloadAllSlidesAsPPTX('editable')">Full PPTX (Editable
+            Structural)</button>
+    </div>
 
     <!-- Slide 1: Title -->
 
@@ -4884,7 +4974,341 @@
 
             document.addEventListener('DOMContentLoaded', () => {
                 // Infographic-based system overview ready
+
+                // Dynamically add Download buttons outside slides
+                document.querySelectorAll('.slide').forEach((slide, index) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'slide-wrapper';
+                    slide.parentNode.insertBefore(wrapper, slide);
+
+                    const group = document.createElement('div');
+                    group.className = 'download-group';
+
+                    const btnSvg = document.createElement('button');
+                    btnSvg.innerText = 'SVG (Browser Only)';
+                    btnSvg.className = 'download-btn';
+                    btnSvg.title = 'Download as SVG (Browser View Only)';
+                    btnSvg.onclick = (e) => {
+                        e.preventDefault();
+                        downloadSlide(slide, index + 1, 'svg');
+                    };
+
+                    const btnPng = document.createElement('button');
+                    btnPng.innerText = 'PNG Image';
+                    btnPng.className = 'download-btn png';
+                    btnPng.title = 'Download as High-Res PNG';
+                    btnPng.onclick = (e) => {
+                        e.preventDefault();
+                        downloadSlide(slide, index + 1, 'png');
+                    };
+
+                    const btnPptxHigh = document.createElement('button');
+                    btnPptxHigh.innerText = 'PPTX (High-Fidelity Snapshot)';
+                    btnPptxHigh.className = 'download-btn pptx-high';
+                    btnPptxHigh.title = 'Perfect visual (Image-based PPTX)';
+                    btnPptxHigh.onclick = (e) => {
+                        e.preventDefault();
+                        downloadSlideAsPPTXSnapshot(slide, index + 1);
+                    };
+
+                    const btnPptxEdit = document.createElement('button');
+                    btnPptxEdit.innerText = 'PPTX (Editable Structural)';
+                    btnPptxEdit.className = 'download-btn pptx';
+                    btnPptxEdit.title = 'Structural editing (Objects mapped PPTX)';
+                    btnPptxEdit.onclick = (e) => {
+                        e.preventDefault();
+                        downloadSlideAsPPTX(slide, index + 1);
+                    };
+
+                    group.appendChild(btnSvg);
+                    group.appendChild(btnPng);
+                    group.appendChild(btnPptxHigh);
+                    group.appendChild(btnPptxEdit);
+
+                    wrapper.appendChild(group);
+                    wrapper.appendChild(slide);
+                });
             });
+
+            function downloadSlide(slideElement, slideIndex, type) {
+                const group = slideElement.querySelector('.download-group');
+                if (group) group.style.visibility = 'hidden';
+
+                const options = {
+                    backgroundColor: '#ffffff',
+                    style: { transform: 'none' },
+                    pixelRatio: 2 // High resolution for PPT
+                };
+
+                const promise = (type === 'png')
+                    ? htmlToImage.toPng(slideElement, options)
+                    : htmlToImage.toSvg(slideElement, options);
+
+                promise.then(function (dataUrl) {
+                    const link = document.createElement('a');
+                    link.download = `I-SEDSS-Slide-${slideIndex.toString().padStart(2, '0')}.${type}`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    if (group) group.style.visibility = 'visible';
+                })
+                    .catch(function (error) {
+                        console.error(`Error generating ${type}:`, error);
+                        if (group) group.style.visibility = 'visible';
+                        alert(`${type.toUpperCase()} 생성 중 오류가 발생했습니다.`);
+                    });
+            }
+
+            async function downloadAllSlidesAsPPTX(mode) {
+                const pptx = new PptxGenJS();
+                pptx.layout = 'LAYOUT_16x9';
+                const slides = document.querySelectorAll('.slide');
+
+                const bar = document.querySelector('.bulk-download-bar');
+                if (bar) bar.style.opacity = '0.5';
+
+                try {
+                    for (let i = 0; i < slides.length; i++) {
+                        if (mode === 'snapshot') {
+                            await addSlideToPPTXSnapshot(pptx, slides[i], i + 1);
+                        } else {
+                            await addSlideToPPTXEditable(pptx, slides[i], i + 1);
+                        }
+                    }
+                    pptx.writeFile({ fileName: `I-SEDSS-Full-Presentation-${mode === 'snapshot' ? 'Images' : 'Editable'}.pptx` });
+                } catch (e) {
+                    console.error('Bulk export failed:', e);
+                    alert('전체 파일 생성 중 오류가 발생했습니다.');
+                } finally {
+                    if (bar) bar.style.opacity = '1';
+                }
+            }
+
+            async function downloadSlideAsPPTXSnapshot(slideElement, slideIndex) {
+                const pptx = new PptxGenJS();
+                pptx.layout = 'LAYOUT_16x9';
+                await addSlideToPPTXSnapshot(pptx, slideElement, slideIndex);
+                pptx.writeFile({ fileName: `I-SEDSS-ImageSnapshot-Slide-${slideIndex.toString().padStart(2, '0')}.pptx` });
+            }
+
+            async function addSlideToPPTXSnapshot(pptx, slideElement, slideIndex) {
+                const slide = pptx.addSlide();
+                const group = slideElement.querySelector('.download-group');
+                if (group) group.style.visibility = 'hidden';
+
+                try {
+                    const style = window.getComputedStyle(slideElement);
+                    const isTransparent = style.backgroundColor === 'rgba(0, 0, 0, 0)' || style.backgroundColor === 'transparent';
+
+                    const dataUrl = await htmlToImage.toPng(slideElement, {
+                        pixelRatio: 2,
+                        backgroundColor: isTransparent ? '#ffffff' : style.backgroundColor
+                    });
+                    slide.addImage({ data: dataUrl, x: 0, y: 0, w: '100%', h: '100%' });
+                } catch (e) {
+                    console.error('Snapshot slide failed:', slideIndex, e);
+                } finally {
+                    if (group) group.style.visibility = 'visible';
+                }
+            }
+
+            async function downloadSlideAsPPTX(slideElement, slideIndex) {
+                const pptx = new PptxGenJS();
+                pptx.layout = 'LAYOUT_16x9';
+                await addSlideToPPTXEditable(pptx, slideElement, slideIndex);
+                pptx.writeFile({ fileName: `I-SEDSS-EditableStructural-Slide-${slideIndex.toString().padStart(2, '0')}.pptx` });
+            }
+
+            async function addSlideToPPTXEditable(pptx, slideElement, slideIndex) {
+                const slide = pptx.addSlide();
+                const slideRect = slideElement.getBoundingClientRect();
+                const slideStyle = window.getComputedStyle(slideElement);
+                applyBackground(slide, slideStyle, true);
+
+                const processedImages = new Set();
+                const processedTables = new Set();
+
+                async function processNode(node) {
+                    if (node.nodeType !== 1) return;
+                    if (node.closest('.download-group')) return;
+
+                    const style = window.getComputedStyle(node);
+                    const rect = node.getBoundingClientRect();
+                    const x = ((rect.left - slideRect.left) / slideRect.width) * 100;
+                    const y = ((rect.top - slideRect.top) / slideRect.height) * 100;
+                    const w = (rect.width / slideRect.width) * 100;
+                    const h = (rect.height / slideRect.height) * 100;
+
+                    if (w < 0.1 || h < 0.1) return;
+
+                    // A. Native Table Support (High Fidelity)
+                    if (node.tagName === 'TABLE' && !processedTables.has(node)) {
+                        processedTables.add(node);
+                        const tableData = [];
+                        const rows = node.querySelectorAll('tr');
+                        rows.forEach(tr => {
+                            const row = [];
+                            const cells = tr.querySelectorAll('th, td');
+                            cells.forEach(cell => {
+                                const cellStyle = window.getComputedStyle(cell);
+                                row.push({
+                                    text: cell.innerText.trim(),
+                                    options: {
+                                        fill: cellStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' ? { color: rgbToHex(cellStyle.backgroundColor) } : null,
+                                        color: rgbToHex(cellStyle.color),
+                                        fontSize: Math.max(8, parseFloat(cellStyle.fontSize) * 0.72),
+                                        bold: parseInt(cellStyle.fontWeight) >= 600,
+                                        align: cellStyle.textAlign === 'center' ? 'center' : (cellStyle.textAlign === 'right' ? 'right' : 'left'),
+                                        valign: 'middle',
+                                        border: { type: 'solid', color: 'CCCCCC', pt: 0.5 },
+                                        margin: [2, 2, 2, 2]
+                                    }
+                                });
+                            });
+                            tableData.push(row);
+                        });
+                        slide.addTable(tableData, { x: x + '%', y: y + '%', w: w + '%', h: h + '%', border: { type: 'solid', color: '999999', pt: 1 }, autoPage: false });
+                        return;
+                    }
+
+                    // B. Container Shapes
+                    const hasBg = style.backgroundColor !== 'rgba(0, 0, 0, 0)' && style.backgroundColor !== 'transparent';
+                    const hasGradient = style.backgroundImage && style.backgroundImage.includes('gradient');
+                    const hasBorder = style.borderStyle !== 'none' && parseFloat(style.borderWidth) > 0;
+                    const hasShadow = style.boxShadow !== 'none' && style.boxShadow.length > 5;
+
+                    if (hasBg || hasGradient || hasBorder) {
+                        const shapeOptions = {
+                            x: x + '%', y: y + '%', w: w + '%', h: h + '%',
+                            line: hasBorder ? { color: rgbToHex(style.borderColor), width: Math.max(0.5, parseFloat(style.borderWidth) * 0.75) } : null,
+                            rectRadius: parseFloat(style.borderRadius) / slideRect.width
+                        };
+                        if (hasGradient) applyGradient(shapeOptions, style.backgroundImage);
+                        else if (hasBg) shapeOptions.fill = { color: rgbToHex(style.backgroundColor) };
+                        if (hasShadow) applyShadow(shapeOptions, style.boxShadow);
+                        slide.addShape(pptx.ShapeType.rect, shapeOptions);
+                    }
+
+                    // C. Robust Images
+                    if (node.tagName === 'IMG' && !processedImages.has(node)) {
+                        try {
+                            const dataUrl = await getImageDataUrl(node);
+                            slide.addImage({ data: dataUrl, x: x + '%', y: y + '%', w: w + '%', h: h + '%' });
+                            processedImages.add(node);
+                        } catch (e) { console.error('Image capture failed', e); }
+                    }
+
+                    // D. Mermaid
+                    if (node.classList.contains('mermaid')) {
+                        const svg = node.querySelector('svg');
+                        if (svg) {
+                            const svgRect = svg.getBoundingClientRect();
+                            try {
+                                const dataUrl = await htmlToImage.toPng(svg, { pixelRatio: 2 });
+                                slide.addImage({ data: dataUrl, x: ((svgRect.left - slideRect.left) / slideRect.width) * 100 + '%', y: ((svgRect.top - slideRect.top) / slideRect.height) * 100 + '%', w: (svgRect.width / slideRect.width) * 100 + '%', h: (svgRect.height / slideRect.height) * 100 + '%' });
+                            } catch (e) { console.error('Mermaid capture failed', e); }
+                            return;
+                        }
+                    }
+
+                    // E. Precise Text Mapping (Ultra-Fidelity v2)
+                    const directText = Array.from(node.childNodes).filter(n => n.nodeType === 3 && n.textContent.trim().length > 0).map(n => n.textContent.trim()).join(' ');
+                    if (directText) {
+                        const paddingLeft = parseFloat(style.paddingLeft) || 0;
+                        const paddingTop = parseFloat(style.paddingTop) || 0;
+                        const paddingRight = parseFloat(style.paddingRight) || 0;
+                        const paddingBottom = parseFloat(style.paddingBottom) || 0;
+
+                        slide.addText(directText, {
+                            x: x + '%', y: y + '%', w: w + '%', h: h + '%',
+                            fontSize: Math.max(6, parseFloat(style.fontSize) * 0.72),
+                            color: rgbToHex(style.color),
+                            bold: parseInt(style.fontWeight) >= 600,
+                            italic: style.fontStyle === 'italic',
+                            valign: 'middle',
+                            align: style.textAlign === 'center' ? 'center' : (style.textAlign === 'right' ? 'right' : 'left'),
+                            fontFace: 'Arial',
+                            wrap: true,
+                            autoFit: true,
+                            margin: [
+                                (paddingTop / rect.height) * 10,
+                                (paddingRight / rect.width) * 10,
+                                (paddingBottom / rect.height) * 10,
+                                (paddingLeft / rect.width) * 10
+                            ]
+                        });
+                    }
+
+                    for (const child of node.children) await processNode(child);
+                }
+
+                await processNode(slideElement);
+            }
+
+            async function getImageDataUrl(imgEl) {
+                if (imgEl.src.startsWith('data:')) return imgEl.src;
+                try {
+                    return await htmlToImage.toPng(imgEl);
+                } catch (e) {
+                    return imgEl.src;
+                }
+            }
+
+            function applyBackground(target, style, isSlide) {
+                if (style.backgroundImage && style.backgroundImage.includes('gradient')) {
+                    target.background = { color: '001f4d' };
+                } else if (style.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+                    const color = rgbToHex(style.backgroundColor);
+                    if (isSlide) target.background = { color: color };
+                }
+            }
+
+            function applyGradient(options, gradientStr) {
+                const colors = gradientStr.match(/rgb\(\d+,\s*\d+,\s*\d+\)/g) || gradientStr.match(/rgba\(\d+,\s*\d+,\s*\d+,\s*[\d.]+\)/g);
+                if (colors && colors.length >= 2) {
+                    options.fill = {
+                        type: 'gradient',
+                        type: 'linear',
+                        angle: 135,
+                        colorStops: colors.map((c, i) => ({
+                            offset: Math.round((i / (colors.length - 1)) * 100),
+                            color: rgbToHex(c)
+                        }))
+                    };
+                } else {
+                    options.fill = { color: 'EEEEEE' };
+                }
+            }
+
+            function applyShadow(options, shadowStr) {
+                const colors = shadowStr.match(/rgba?\([^)]+\)/g);
+                const dimensions = shadowStr.match(/(-?\d+px)/g);
+
+                if (colors && dimensions && dimensions.length >= 3) {
+                    options.shadow = {
+                        type: 'outer',
+                        color: rgbToHex(colors[0]),
+                        blur: Math.min(20, parseFloat(dimensions[2]) || 5),
+                        offset: Math.min(10, parseFloat(dimensions[1]) || 2),
+                        angle: 135,
+                        opacity: colors[0].includes('rgba') ? parseFloat(colors[0].split(',')[3]) : 0.5
+                    };
+                }
+            }
+
+            function rgbToHex(colorStr) {
+                if (!colorStr || colorStr === 'transparent' || colorStr === 'rgba(0, 0, 0, 0)') return 'FFFFFF';
+                if (colorStr.startsWith('#')) return colorStr.replace('#', '').toUpperCase();
+
+                const parts = colorStr.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+                if (!parts) return '000000';
+
+                const r = parseInt(parts[1]).toString(16).padStart(2, '0');
+                const g = parseInt(parts[2]).toString(16).padStart(2, '0');
+                const b = parseInt(parts[3]).toString(16).padStart(2, '0');
+                return (r + g + b).toUpperCase();
+            }
         </script>
 </body>
 
